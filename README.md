@@ -15,6 +15,5 @@
          MongoDB
 * Other:
 
-         AWS, Docker, 
-         CI/CD(Jenkins, Artifactory, Sonar, Tomcat)         
+         AWS, Docker, CI/CD(Jenkins, Artifactory, Sonar, Tomcat)         
         
