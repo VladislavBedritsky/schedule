@@ -7,4 +7,6 @@
 
     <bean id="userDao" class="org.kek.backend.dao.impl.UserDaoImpl" />
     <bean id="userService" class="org.kek.backend.service.impl.UserServiceImpl" />
+    <bean id="cityDao" class="org.kek.backend.dao.impl.CityDaoImpl" />
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 </beans>

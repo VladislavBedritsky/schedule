@@ -44,7 +44,7 @@ public class UserDaoImplTest {
     public void saveUser() {
         userDao.saveUser(user);
         Query query = new Query().addCriteria(Criteria.where("username").is("Kyle"));
-        List<User> users = mongodbTemplate.find(query, User.class);
+        List<User> users = mongodbTemplate.find(query, User.class, "user");
 
         assertThat(users.size(), is(1));
     }
