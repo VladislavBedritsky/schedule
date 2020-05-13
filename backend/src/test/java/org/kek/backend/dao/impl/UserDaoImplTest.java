@@ -62,6 +62,7 @@ public class UserDaoImplTest {
     }
 
     @Test
+    @Transactional
     public void updateUsername() {
         assertNotNull(userFromDb);
 
@@ -80,4 +81,5 @@ public class UserDaoImplTest {
         userDao.removeUser(userFromDb);
         assertNotEquals(sizeOfListBeforeRemove, userDao.findAll().size());
     }
+
 }

@@ -11,6 +11,7 @@
     <modules>
         <module>backend</module>
         <module>rest</module>
+        <module>data</module>
     </modules>
 
     <properties>
@@ -39,6 +40,11 @@
             <dependency>
                 <groupId>org.kek</groupId>
                 <artifactId>rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kek</groupId>
+                <artifactId>data</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -77,6 +83,17 @@
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson-databind.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson-databind.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-rest-webmvc</artifactId>
+                <version>3.2.7.RELEASE</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

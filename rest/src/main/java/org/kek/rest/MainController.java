@@ -3,12 +3,13 @@ package org.kek.rest;
 import org.kek.backend.model.User;
 import org.kek.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping(path = "/users", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class MainController {
 
     @Autowired
@@ -19,7 +20,7 @@ public class MainController {
         return userService.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable String id) {
         return userService.findUserById(id);
     }
@@ -30,14 +31,15 @@ public class MainController {
         return user;
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public User updateUsername(@PathVariable String id, @RequestBody User user) {
         userService.updateUsername(id, user);
         return user;
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public void removeUser(@PathVariable String id) {
         userService.removeUserById(id);
     }
+
 }
