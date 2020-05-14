@@ -18,7 +18,7 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public void saveCity(City city) {
-        mongodbTemplate.insert(city, "cities");
+        mongodbTemplate.save(city, "cities");
     }
 
     @Override

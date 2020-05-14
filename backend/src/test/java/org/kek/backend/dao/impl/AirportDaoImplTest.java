@@ -3,8 +3,8 @@ package org.kek.backend.dao.impl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kek.backend.dao.CityDao;
-import org.kek.data.dto.City;
+import org.kek.backend.dao.AirportDao;
+import org.kek.data.dto.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -21,43 +21,37 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath*:test.xml"})
-public class CityDaoImplTest {
+public class AirportDaoImplTest {
 
     @Autowired
-    private CityDao cityDao;
+    private AirportDao airportDao;
     @Autowired
     private MongoTemplate mongodbTemplate;
 
-    private City newCity;
-    private City cityFromDb;
+    private Airport newAirport;
+    private Airport airportFromDb;
 
     @Before
     public void setUp() {
-        newCity = new City();
-        newCity.setCityName("SpringJUnit4");
+        newAirport = new Airport();
+        newAirport.setAirportName("SpringJUnit4");
 
-        cityFromDb = cityDao.findAll().stream().reduce((first,second) -> second).orElse(null);
+        airportFromDb = airportDao.findAll().stream().reduce((first,second) -> second).orElse(null);
     }
 
     @Test
     @Transactional
-    public void saveCity() {
-        cityDao.saveCity(newCity);
-        Query query = new Query().addCriteria(Criteria.where("cityName").is("SpringJUnit4"));
-        List<City> cities = mongodbTemplate.find(query, City.class, "cities");
+    public void saveAirport() {
+        airportDao.saveAirport(newAirport);
+        Query query = new Query().addCriteria(Criteria.where("airportName").is("SpringJUnit4"));
+        List<Airport> airports = mongodbTemplate.find(query, Airport.class, "airports");
 
-        assertThat(cities.size(), is(1));
+        assertThat(airports.size(), is(1));
     }
 
     @Test
     public void findAll() {
-        List<City> cities = cityDao.findAll();
-        assertNotNull(cities);
-    }
-
-    @Test
-    public void findCityById() {
-        assertNotNull(cityFromDb);
-        assertNotNull(cityDao.findCityById(cityFromDb.getId()));
+        List<Airport> airports = airportDao.findAll();
+        assertNotNull(airports);
     }
 }

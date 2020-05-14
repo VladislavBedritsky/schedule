@@ -9,6 +9,8 @@
     <bean id="userService" class="org.kek.backend.service.impl.UserServiceImpl" />
     <bean id="cityDao" class="org.kek.backend.dao.impl.CityDaoImpl" />
     <bean id="cityService" class="org.kek.backend.service.impl.CityServiceImpl" />
+    <bean id="airportDao" class="org.kek.backend.dao.impl.AirportDaoImpl" />
+    <bean id="airportService" class="org.kek.backend.service.impl.AirportServiceImpl" />
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
     <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
 

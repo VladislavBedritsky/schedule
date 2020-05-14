@@ -2,7 +2,7 @@ package org.kek.data.model.aviationstackApi;
 
 import java.util.Objects;
 
-public class CityPagination {
+public class Pagination {
 
     private Long limit;
     private Integer offset;
@@ -45,7 +45,7 @@ public class CityPagination {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CityPagination that = (CityPagination) o;
+        Pagination that = (Pagination) o;
         return Objects.equals(limit, that.limit) &&
                 Objects.equals(offset, that.offset) &&
                 Objects.equals(count, that.count) &&

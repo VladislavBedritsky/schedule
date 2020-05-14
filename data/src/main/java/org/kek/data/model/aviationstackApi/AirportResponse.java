@@ -3,10 +3,10 @@ package org.kek.data.model.aviationstackApi;
 import java.util.List;
 import java.util.Objects;
 
-public class CityResponse {
+public class AirportResponse {
 
     private Pagination pagination;
-    private List<CityData> data;
+    private List<AirportData> data;
 
     public Pagination getPagination() {
         return pagination;
@@ -16,11 +16,11 @@ public class CityResponse {
         this.pagination = pagination;
     }
 
-    public List<CityData> getData() {
+    public List<AirportData> getData() {
         return data;
     }
 
-    public void setData(List<CityData> data) {
+    public void setData(List<AirportData> data) {
         this.data = data;
     }
 
@@ -28,7 +28,7 @@ public class CityResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CityResponse that = (CityResponse) o;
+        AirportResponse that = (AirportResponse) o;
         return Objects.equals(pagination, that.pagination) &&
                 Objects.equals(data, that.data);
     }
@@ -40,7 +40,7 @@ public class CityResponse {
 
     @Override
     public String toString() {
-        return "CityResponse{" +
+        return "AirportResponse{" +
                 "pagination=" + pagination +
                 ", data=" + data +
                 '}';

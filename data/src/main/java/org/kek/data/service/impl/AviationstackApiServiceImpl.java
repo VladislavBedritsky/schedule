@@ -1,6 +1,9 @@
 package org.kek.data.service.impl;
 
+import org.kek.data.dto.Airport;
 import org.kek.data.dto.City;
+import org.kek.data.model.aviationstackApi.AirportData;
+import org.kek.data.model.aviationstackApi.AirportResponse;
 import org.kek.data.model.aviationstackApi.CityData;
 import org.kek.data.model.aviationstackApi.CityResponse;
 import org.kek.data.service.AviationstackApiService;
@@ -21,6 +24,8 @@ public class AviationstackApiServiceImpl implements AviationstackApiService {
     private RestTemplate restTemplate;
     @Value("${url.api.aviationstack.findAllCities}")
     private String findAllCitiesUrl;
+    @Value("${url.api.aviationstack.findAllAirports}")
+    private String findAllAirportsUrl;
 
 
     @Override
@@ -37,6 +42,7 @@ public class AviationstackApiServiceImpl implements AviationstackApiService {
         return cities;
     }
 
+    @Override
     public List<City> convertCityResponseToList(CityResponse cityResponse) {
         List<City> cities = new ArrayList<>();
         for(CityData cityData : cityResponse.getData()) {
@@ -52,5 +58,40 @@ public class AviationstackApiServiceImpl implements AviationstackApiService {
             cities.add(city);
         }
         return cities;
+    }
+
+    @Override
+    public List<Airport> getAllAirports() {
+        AirportResponse airportResponse = restTemplate.getForObject(
+                findAllAirportsUrl,
+                AirportResponse.class);
+
+        List<Airport> airports = new ArrayList<>();
+        if(airportResponse != null) {
+            airports = convertAirportResponseToList(airportResponse);
+        }
+
+        return airports;
+    }
+
+    @Override
+    public List<Airport> convertAirportResponseToList(AirportResponse airportResponse) {
+        List<Airport> airports = new ArrayList<>();
+        for(AirportData airportData : airportResponse.getData()) {
+            Airport airport = new Airport();
+            airport.setAirportName(airportData.getAirportName());
+            airport.setIataCode(airportData.getIataCode());
+            airport.setIcaoCode(airportData.getIcaoCode());
+            airport.setLatitude(airportData.getLatitude());
+            airport.setLongitude(airportData.getLongitude());
+            airport.setGeoNameId(airportData.getGeoNameId());
+            airport.setTimezone(airportData.getTimezone());
+            airport.setCountryName(airportData.getCountryName());
+            airport.setCountryIso2(airportData.getCountryIso2());
+            airport.setCityIataCode(airportData.getCityIataCode());
+
+            airports.add(airport);
+        }
+        return airports;
     }
 }

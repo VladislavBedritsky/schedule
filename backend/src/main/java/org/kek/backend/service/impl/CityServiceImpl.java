@@ -2,6 +2,7 @@ package org.kek.backend.service.impl;
 
 import org.kek.backend.dao.CityDao;
 import org.kek.backend.service.CityService;
+import org.kek.data.dto.Airport;
 import org.kek.data.dto.City;
 import org.kek.data.model.rapidApi.CityResponse;
 import org.kek.data.service.AviationstackApiService;
@@ -52,5 +53,6 @@ public class CityServiceImpl implements CityService {
             cityDao.saveCity(city);
         }
     }
+
 
 }
