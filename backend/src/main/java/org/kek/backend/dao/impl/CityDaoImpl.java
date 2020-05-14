@@ -29,7 +29,17 @@ public class CityDaoImpl implements CityDao {
     @Override
     public City findCityById(String id) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("_id").is(id));
+        query.addCriteria(
+                Criteria.where("_id").is(id));
         return mongodbTemplate.findOne(query, City.class, "cities");
     }
+
+    @Override
+    public City findCityByName(String iataCode) {
+        Query query = new Query();
+        query.addCriteria(
+                Criteria.where("iataCode").is(iataCode));
+        return mongodbTemplate.findOne(query, City.class, "cities");
+    }
+
 }

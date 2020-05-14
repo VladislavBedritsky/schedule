@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUsername(User user) {
+    public void updateUser(User user) {
         mongodbTemplate.save(user, "user");
     }
 

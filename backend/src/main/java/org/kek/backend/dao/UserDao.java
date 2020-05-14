@@ -12,7 +12,7 @@ public interface UserDao {
 
     User findUserById(String id);
 
-    void updateUsername(User user);
+    void updateUser(User user);
 
     void removeUser(User user);
 }

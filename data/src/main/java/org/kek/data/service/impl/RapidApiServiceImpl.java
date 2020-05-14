@@ -36,11 +36,13 @@ public class RapidApiServiceImpl implements RapidApiService {
                 RapidApiResponse.class,
                 iataCode);
 
-        List<CityResponse> cities = Objects.requireNonNull(response.getBody()).getResponse();
-
-        for(CityResponse cityResponse: cities) {
-            return cityResponse;
+        if (response.getBody().getResponse() != null) {
+            List<CityResponse> cities = response.getBody().getResponse();
+            for (CityResponse cityResponse : cities) {
+                return cityResponse;
+            }
         }
+
 
         return new CityResponse();
     }

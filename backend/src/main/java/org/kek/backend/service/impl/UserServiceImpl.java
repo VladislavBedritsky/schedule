@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public void updateUsername(String id, User user) {
         User userFromDb = userDao.findUserById(id);
         userFromDb.setUsername(user.getUsername());
-        userDao.updateUsername(userFromDb);
+        userDao.updateUser(userFromDb);
     }
 
     @Override

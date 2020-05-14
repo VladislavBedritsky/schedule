@@ -8,5 +8,9 @@
     <bean id="userDao" class="org.kek.backend.dao.impl.UserDaoImpl" />
     <bean id="userService" class="org.kek.backend.service.impl.UserServiceImpl" />
     <bean id="cityDao" class="org.kek.backend.dao.impl.CityDaoImpl" />
+    <bean id="cityService" class="org.kek.backend.service.impl.CityServiceImpl" />
+    <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
+    <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
+
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 </beans>

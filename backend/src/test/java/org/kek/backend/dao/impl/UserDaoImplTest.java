@@ -67,9 +67,12 @@ public class UserDaoImplTest {
         assertNotNull(userFromDb);
 
         userFromDb.setUsername("JUnit4");
-        userDao.updateUsername(userFromDb);
+        userDao.updateUser(userFromDb);
 
-        assertEquals(userFromDb.getUsername(), "JUnit4");
+        assertEquals(userDao
+                .findUserById(userFromDb.getId())
+                .getUsername(),
+                "JUnit4");
     }
 
     @Test
