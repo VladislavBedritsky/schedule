@@ -42,4 +42,6 @@
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
+    <bean id="userController" class="org.kek.rest.UserController" />
+
 </beans>

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/users", produces = {MediaType.APPLICATION_JSON_VALUE})
-public class MainController {
+public class UserController {
 
     @Autowired
     private UserService userService;
