@@ -12,6 +12,6 @@ public interface CityDao {
 
     City findCityById(String id);
 
-    City findCityByName(String iataCode);
+    City findCityByIataCode(String iataCode);
 
 }

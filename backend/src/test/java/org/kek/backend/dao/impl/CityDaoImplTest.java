@@ -60,4 +60,10 @@ public class CityDaoImplTest {
         assertNotNull(cityFromDb);
         assertNotNull(cityDao.findCityById(cityFromDb.getId()));
     }
+
+    @Test
+    public void findCityByIataCode() {
+        assertNotNull(cityFromDb);
+        assertNotNull(cityDao.findCityByIataCode(cityFromDb.getIataCode()));
+    }
 }

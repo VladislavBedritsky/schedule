@@ -35,7 +35,7 @@ public class CityDaoImpl implements CityDao {
     }
 
     @Override
-    public City findCityByName(String iataCode) {
+    public City findCityByIataCode(String iataCode) {
         Query query = new Query();
         query.addCriteria(
                 Criteria.where("iataCode").is(iataCode));

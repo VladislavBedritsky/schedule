@@ -2,7 +2,6 @@ package org.kek.backend.service.impl;
 
 import org.kek.backend.dao.CityDao;
 import org.kek.backend.service.CityService;
-import org.kek.data.dto.Airport;
 import org.kek.data.dto.City;
 import org.kek.data.model.rapidApi.CityResponse;
 import org.kek.data.service.AviationstackApiService;
@@ -21,12 +20,10 @@ public class CityServiceImpl implements CityService {
     private RapidApiService rapidApiService;
     @Autowired
     private AviationstackApiService aviationstackApiService;
-    @Autowired
-    private CityService cityService;
 
     @Override
     public void updateCityAlternateNamesByIataCode(String iataCode, String alternateNames) {
-        City cityFromDb = cityDao.findCityByName(iataCode);
+        City cityFromDb = cityDao.findCityByIataCode(iataCode);
         cityFromDb.setAlternateNames(alternateNames);
         cityDao.saveCity(cityFromDb);
     }
@@ -38,11 +35,11 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void updateAlternateNamesInCityCollectionsFromRapidApi() {
-        List<City> cities = cityService.findAll();
+        List<City> cities = cityDao.findAll();
         for(City city : cities) {
             CityResponse cityResponse = rapidApiService.getCityResponseByIataCode(city.getIataCode());
             if (cityResponse.getAlternateNames() != null) {
-                cityService.updateCityAlternateNamesByIataCode(city.getIataCode(), cityResponse.getAlternateNames());
+                updateCityAlternateNamesByIataCode(city.getIataCode(), cityResponse.getAlternateNames());
             }
         }
     }

@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.stubbing.Answer;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.stream.Collectors;
@@ -36,14 +37,20 @@ public class AirportServiceImplTest {
     @Test
     public void saveAllAirportsFromAviationstackApi() {
         airportService.saveAllAirportsFromAviationstackApi();
-
         Mockito.verify(aviationstackApiService, Mockito.times(1))
                 .getAllAirports();
 
+        Mockito.doAnswer((Answer) invocation -> {
+            airportDao.saveAirport(new Airport());
+            return null;
+        }).when(aviationstackApiService).getAllAirports();
+
         Mockito.when(aviationstackApiService.getAllAirports())
             .thenReturn(Stream.of(new Airport()).collect(Collectors.toList()));
-
         Assert.assertEquals(1, aviationstackApiService.getAllAirports().size());
+
+        Mockito.verify(airportDao, Mockito.times(1))
+                .saveAirport(isA(Airport.class));
 
     }
 }
