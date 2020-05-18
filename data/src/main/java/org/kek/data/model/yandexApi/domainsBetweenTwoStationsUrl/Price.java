@@ -2,9 +2,20 @@ package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import java.util.Objects;
 
+/**
+ *
+ * Information about price.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Price {
 
     private Integer cents;
+    /**
+     * Integer of basic currency units.
+     */
     private Long whole;
 
     public Integer getCents() {

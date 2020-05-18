@@ -2,7 +2,16 @@ package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import java.util.Objects;
 
+/**
+ * Information about the date, point of departure and point of arrival
+ * indicated in the request.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Search {
+
     private String date;
     private SearchTo to;
     private SearchFrom from;

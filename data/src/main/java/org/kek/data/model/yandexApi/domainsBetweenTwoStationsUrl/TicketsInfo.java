@@ -5,8 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * Information about the available types of tickets and their price.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class TicketsInfo {
 
+    /**
+     * Sign of an opportunity to buy an electronic ticket.
+     */
     @JsonProperty("et_marker")
     private Boolean etMarker;
     private List<Place> places;

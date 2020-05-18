@@ -4,8 +4,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * Consists information about
+ * the departure departure station.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class SegmentsFrom {
 
+    /**
+     * The code of the point of departure in the Yandex schedules encoding system.
+     */
     private String code;
     private String title;
     @JsonProperty("station_type")

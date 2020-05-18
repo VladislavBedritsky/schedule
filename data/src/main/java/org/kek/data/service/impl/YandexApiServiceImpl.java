@@ -35,7 +35,7 @@ public class YandexApiServiceImpl implements YandexApiService {
         List<Flight> flights = new ArrayList<>();
         if(responseTable != null) {
             flights = convertResponseTableToList(
-                    responseTable, fromIataCode, toIataCode, date
+                    responseTable, fromIataCode, toIataCode
             );
         }
 
@@ -43,8 +43,7 @@ public class YandexApiServiceImpl implements YandexApiService {
     }
 
     private List<Flight> convertResponseTableToList(
-            ResponseTable responseTable, String fromIataCode,
-            String toIataCode, String requestDate
+            ResponseTable responseTable, String fromIataCode, String toIataCode
     ) {
 
         List<Flight> flights = new ArrayList<>();
@@ -68,7 +67,7 @@ public class YandexApiServiceImpl implements YandexApiService {
             flight.setDuration(segment.getDuration());
             flight.setArrivalTerminal(segment.getArrivalTerminal());
             flight.setStartDate(segment.getStartDate());
-            flight.setRequestDate(requestDate);
+            flight.setRequestDate(responseTable.getSearch().getDate());
 
             flights.add(flight);
         }

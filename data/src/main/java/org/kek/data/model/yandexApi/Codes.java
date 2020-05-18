@@ -2,6 +2,15 @@ package org.kek.data.model.yandexApi;
 
 import java.util.Objects;
 
+/**
+ *
+ * Information about carrier codes in other encoding systems
+ * supported by Yandex Schedules.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Codes {
 
     private String icao;

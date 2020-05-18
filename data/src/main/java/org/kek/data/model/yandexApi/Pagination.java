@@ -2,10 +2,25 @@ package org.kek.data.model.yandexApi;
 
 import java.util.Objects;
 
+/**
+ * Contains information about pagination of found routes.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Pagination {
-
+    /**
+     * The total number of flights matching your search.
+     */
     private Integer total;
+    /**
+     * The limit on the number of flights that Yandex.
+     */
     private Integer limit;
+    /**
+     * The offset relative to the first search result specified in the offset parameter.
+     */
     private Integer offset;
 
     public Integer getTotal() {

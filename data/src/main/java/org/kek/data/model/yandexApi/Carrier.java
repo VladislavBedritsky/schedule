@@ -4,17 +4,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ *
+ * Information about the carrier.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Carrier {
 
+    /**
+     * Flight number.
+     */
     private Integer code;
     private String contacts;
     private String url;
+    /**
+     * Link to the carrier’s logo used by Yandex in SVG format.
+     */
     @JsonProperty("logo_svg")
     private String logoSvg;
     private String title;
     private String phone;
     private Codes codes;
     private String address;
+    /**
+     * Link to the carrier’s logo used by Yandex in raster format.
+     */
     private String logo;
     private String email;
 

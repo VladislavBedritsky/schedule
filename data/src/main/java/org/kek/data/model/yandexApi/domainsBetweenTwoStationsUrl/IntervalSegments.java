@@ -7,25 +7,58 @@ import org.kek.data.model.yandexApi.Thread;
 
 import java.util.Objects;
 
+/**
+ * Consists information about interval flights,
+ *  traffic on which is regular,
+ *  but without a specific schedule.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class IntervalSegments {
 
     private SegmentsFrom from;
     private Thread thread;
+    /**
+     * The platform number of the departure station.
+     */
     @JsonProperty("departure_platform")
     private String departurePlatform;
+    /**
+     * Stations of the flight following which stop is made.
+     */
     private String stops;
+    /**
+     * Name of the terminal of the departure station.
+     */
     @JsonProperty("departure_terminal")
     private String departureTerminal;
     private SegmentsTo to;
+    /**
+     * A sign of transfers during the flight.
+     */
     @JsonProperty("has_transfers")
     private Boolean hasTransfers;
     @JsonProperty("tickets_info")
     private TicketsInfo ticketsInfo;
+    /**
+     * Flight duration (in seconds).
+     */
     private Long duration;
+    /**
+     * Name of the terminal of the arrival station.
+     */
     @JsonProperty("arrival_terminal")
     private String arrivalTerminal;
+    /**
+     * Flight Departure Date.
+     */
     @JsonProperty("start_date")
     private String startDate;
+    /**
+     * The platform number of the arrival station.
+     */
     @JsonProperty("arrival_platform")
     private String arrivalPlatform;
 

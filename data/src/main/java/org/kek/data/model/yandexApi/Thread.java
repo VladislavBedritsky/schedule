@@ -4,22 +4,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * Flight information.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Thread {
 
+    /**
+     * Thread ID accepted in Yandex Schedules.
+     */
     private String uid;
     private String title;
     private Interval interval;
+    /**
+     * Flight number.
+     */
     private String number;
     @JsonProperty("short_title")
     private String shortTitle;
+    /**
+     * URL for requesting thread information with the identifier specified in the uid key.
+     */
     @JsonProperty("thread_method_link")
     private String threadMethodLink;
     private Carrier carrier;
     @JsonProperty("transport_type")
     private String transportType;
+    /**
+     * The name of the vehicle.
+     */
     private String vehicle;
     @JsonProperty("transport_subtype")
     private TransportSubtype transportSubtype;
+    /**
+     * Sign of express or aeroexpress.
+     */
     @JsonProperty("express_type")
     private String express_type;
 

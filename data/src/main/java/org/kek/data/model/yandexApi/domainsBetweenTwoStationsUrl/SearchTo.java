@@ -4,7 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * Information about the point of arrival indicated in the request.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class SearchTo {
+    /**
+     * The code of the point of arrival in the Yandex schedules encoding system.
+     */
     private String code;
     private String type;
     @JsonProperty("popular_title")

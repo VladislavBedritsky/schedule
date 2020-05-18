@@ -2,6 +2,14 @@ package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import java.util.Objects;
 
+/**
+ *
+ * Information about the available types of tickets and their price.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Place {
 
     private String currency;

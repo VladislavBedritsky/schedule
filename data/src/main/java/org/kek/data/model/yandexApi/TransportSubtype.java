@@ -2,9 +2,19 @@ package org.kek.data.model.yandexApi;
 
 import java.util.Objects;
 
+/**
+ * Vehicle subtype information.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class TransportSubtype {
 
     private String color;
+    /**
+     * The transport subtype code for the type
+     */
     private String code;
     private String title;
 
