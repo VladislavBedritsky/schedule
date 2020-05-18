@@ -17,9 +17,6 @@
     <context:component-scan base-package="org.kek"/>
     <context:annotation-config />
 
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
-
     <mongo:mongo-client id="mongo" host="localhost" port="27017"/>
     <mongo:db-factory id="mongoDbFactory" dbname="schedule" mongo-ref="mongo" />
     <bean id="mongodbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
