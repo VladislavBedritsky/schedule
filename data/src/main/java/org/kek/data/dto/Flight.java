@@ -5,6 +5,14 @@ import org.springframework.data.annotation.Id;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * Ticket DTO.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Flight {
 
     @Id

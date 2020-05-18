@@ -16,6 +16,14 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * RapidApiService implementation.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 @Service
 @PropertySource("classpath:url.properties")
 public class RapidApiServiceImpl implements RapidApiService {

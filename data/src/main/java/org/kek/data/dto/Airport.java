@@ -4,6 +4,14 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
+/**
+ *
+ * Airport DTO.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Airport {
 
     @Id

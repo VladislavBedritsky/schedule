@@ -6,8 +6,7 @@ import org.kek.data.model.yandexApi.Pagination;
 import java.util.List;
 
 /**
- * ResponseTable -
- *  response between two points by date from api.rasp.yandex.net REST API
+ *  Response between two points by date from api.rasp.yandex.net REST API
  *
  * @version 1.01 16 May 2020
  * @author Uladzislau Biadrytski

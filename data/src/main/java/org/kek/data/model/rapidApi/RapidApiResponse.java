@@ -3,6 +3,14 @@ package org.kek.data.model.rapidApi;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * City response from rapidapi.com REST API
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class RapidApiResponse {
 
     private List<CityResponse> response;

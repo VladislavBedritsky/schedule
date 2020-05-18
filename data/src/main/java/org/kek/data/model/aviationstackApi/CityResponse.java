@@ -3,6 +3,14 @@ package org.kek.data.model.aviationstackApi;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * City response from aviationstack.com REST API
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class CityResponse {
 
     private Pagination pagination;

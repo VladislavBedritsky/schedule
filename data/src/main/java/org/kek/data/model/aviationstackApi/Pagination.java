@@ -2,6 +2,14 @@ package org.kek.data.model.aviationstackApi;
 
 import java.util.Objects;
 
+/**
+ *
+ * Pagination information.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Pagination {
 
     private Long limit;

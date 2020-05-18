@@ -16,6 +16,14 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * AviationstackApiService implementation
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 @Service
 @PropertySource("classpath:url.properties")
 public class AviationstackApiServiceImpl implements AviationstackApiService {

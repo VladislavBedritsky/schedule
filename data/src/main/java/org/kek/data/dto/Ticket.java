@@ -4,6 +4,14 @@ import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
+/**
+ *
+ * Ticket DTO.
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Ticket {
 
     @Id
@@ -15,6 +23,9 @@ public class Ticket {
     private String name;
     private String currency;
     private Integer cents;
+    /**
+     * Integer of basic currency units.
+     */
     private Long whole;
 
     public String getId() {
