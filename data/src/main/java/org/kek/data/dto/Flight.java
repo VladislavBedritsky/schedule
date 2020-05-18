@@ -2,6 +2,7 @@ package org.kek.data.dto;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Flight {
@@ -27,6 +28,7 @@ public class Flight {
     private String arrivalTerminal;
     private String startDate;
     private String requestDate;
+    private List<Ticket> tickets;
 
     public String getId() {
         return id;
@@ -188,6 +190,14 @@ public class Flight {
         this.requestDate = requestDate;
     }
 
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -222,7 +232,7 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Segment{" +
+        return "Flight{" +
                 "id='" + id + '\'' +
                 ", timeArrival='" + timeArrival + '\'' +
                 ", fromIataCode='" + fromIataCode + '\'' +
@@ -243,6 +253,7 @@ public class Flight {
                 ", arrivalTerminal='" + arrivalTerminal + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", requestDate='" + requestDate + '\'' +
+                ", tickets=" + tickets +
                 '}';
     }
 }
