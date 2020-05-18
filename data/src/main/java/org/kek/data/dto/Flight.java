@@ -22,8 +22,14 @@ public class Flight {
     private String fromTitle;
     private String threadTitle;
     private String threadNumber;
+    /**
+     * URL for requesting thread information with the identifier specified in the uid key.
+     */
     private String threadMethodLink;
     private String carrierUrl;
+    /**
+     * Link to the carrier’s logo used by Yandex in SVG format.
+     */
     private String carrierLogoSvg;
     private String carrierTitle;
     private String carrierEmail;

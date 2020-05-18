@@ -10,6 +10,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ *
+ * UserDao implementation
+ *
+ * @version 1.01 16 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 @Repository
 public class UserDaoImpl implements UserDao {
 
