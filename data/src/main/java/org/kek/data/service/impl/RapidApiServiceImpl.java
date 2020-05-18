@@ -5,6 +5,7 @@ import org.kek.data.model.rapidApi.RapidApiResponse;
 import org.kek.data.service.RapidApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@PropertySource("classpath:url.properties")
 public class RapidApiServiceImpl implements RapidApiService {
 
     @Autowired

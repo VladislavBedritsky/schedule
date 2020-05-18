@@ -14,7 +14,8 @@ public class Segments {
     private Thread thread;
     @JsonProperty("departure_platform")
     private String departurePlatform;
-    private String departure;
+    @JsonProperty("departure")
+    private String departureTime;
     private String stops;
     @JsonProperty("departure_terminal")
     private String departureTerminal;
@@ -63,12 +64,12 @@ public class Segments {
         this.departurePlatform = departurePlatform;
     }
 
-    public String getDeparture() {
-        return departure;
+    public String getDepartureTime() {
+        return departureTime;
     }
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
     }
 
     public String getStops() {
@@ -150,7 +151,7 @@ public class Segments {
         Segments segments = (Segments) o;
         return Objects.equals(arrival, segments.arrival) &&
                 Objects.equals(departurePlatform, segments.departurePlatform) &&
-                Objects.equals(departure, segments.departure) &&
+                Objects.equals(departureTime, segments.departureTime) &&
                 Objects.equals(stops, segments.stops) &&
                 Objects.equals(departureTerminal, segments.departureTerminal) &&
                 Objects.equals(hasTransfers, segments.hasTransfers) &&
@@ -162,7 +163,7 @@ public class Segments {
 
     @Override
     public int hashCode() {
-        return Objects.hash(arrival, departurePlatform, departure, stops, departureTerminal, hasTransfers, duration, arrivalTerminal, startDate, arrivalPlatform);
+        return Objects.hash(arrival, departurePlatform, departureTime, stops, departureTerminal, hasTransfers, duration, arrivalTerminal, startDate, arrivalPlatform);
     }
 
     @Override
@@ -172,7 +173,7 @@ public class Segments {
                 ", from=" + from +
                 ", thread=" + thread +
                 ", departurePlatform='" + departurePlatform + '\'' +
-                ", departure='" + departure + '\'' +
+                ", departureTime='" + departureTime + '\'' +
                 ", stops='" + stops + '\'' +
                 ", departureTerminal='" + departureTerminal + '\'' +
                 ", to=" + to +
