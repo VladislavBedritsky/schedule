@@ -13,6 +13,7 @@
     <bean id="airportService" class="org.kek.backend.service.impl.AirportServiceImpl" />
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
     <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
+    <bean id="yandexApiService" class="org.kek.data.service.impl.YandexApiServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 </beans>

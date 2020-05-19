@@ -26,4 +26,12 @@ public interface AirportDao {
      * @return list of airports
      */
     List<Airport> findAll();
+
+    /**
+     * Get all airports in city by cities IATA code.
+     *
+     * @param iataCode Cities IATA code
+     * @return list of airports
+     */
+    List<Airport> getAirportsByCityIataCode(String iataCode);
 }

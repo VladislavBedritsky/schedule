@@ -1,5 +1,9 @@
 package org.kek.backend.service;
 
+import org.kek.data.dto.Airport;
+
+import java.util.List;
+
 /**
  *
  * Airport Service
@@ -14,4 +18,12 @@ public interface AirportService {
      * Save all airports from aviationstack.com REST API to DB
      */
     void saveAllAirportsFromAviationstackApi();
+
+    /**
+     * Get all airports in city by cities IATA code.
+     *
+     * @param iataCode Cities IATA code
+     * @return list of airports
+     */
+    List<Airport> getAirportsByCityIataCode(String iataCode);
 }

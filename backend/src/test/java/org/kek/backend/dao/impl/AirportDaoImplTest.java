@@ -54,4 +54,10 @@ public class AirportDaoImplTest {
         List<Airport> airports = airportDao.findAll();
         assertNotNull(airports);
     }
+
+    @Test
+    public void getAirportsByCityIataCode() {
+        List<Airport> airports = airportDao.getAirportsByCityIataCode(airportFromDb.getIataCode());
+        assertNotNull(airports);
+    }
 }

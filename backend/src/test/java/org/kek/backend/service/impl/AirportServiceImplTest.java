@@ -17,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -52,5 +53,17 @@ public class AirportServiceImplTest {
         Mockito.verify(airportDao, Mockito.times(1))
                 .saveAirport(isA(Airport.class));
 
+    }
+
+    @Test
+    public void getAirportsByCityIataCode() {
+
+        Mockito.when(airportService.getAirportsByCityIataCode("MOW"))
+                .thenReturn(Stream.of(new Airport()).collect(Collectors.toList()));
+
+        Assert.assertEquals(1, airportService.getAirportsByCityIataCode("MOW").size());
+
+        Mockito.verify(airportDao, Mockito.times(1))
+                .getAirportsByCityIataCode(isA(String.class));
     }
 }
