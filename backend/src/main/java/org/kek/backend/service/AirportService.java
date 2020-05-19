@@ -26,4 +26,13 @@ public interface AirportService {
      * @return list of airports
      */
     List<Airport> getAirportsByCityIataCode(String iataCode);
+
+    /**
+     * Get all airports in cities by city name.
+     *
+     * @param cityName Cities IATA code
+     * @return list of airports
+     */
+    List<Airport> getAirportsByCityName(String cityName);
+
 }
