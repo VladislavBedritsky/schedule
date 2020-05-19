@@ -4,6 +4,7 @@ import org.kek.backend.dao.CityDao;
 import org.kek.data.dto.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Collation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -52,9 +53,26 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public List<City> findCitiesByCityName(String cityName) {
+        Collation collation = Collation.of("en")
+                .strength(Collation.ComparisonLevel.primary());
         Query query = new Query();
         query.addCriteria(
-                Criteria.where("cityName").is(cityName));
+                Criteria.where("cityName").is(cityName)).collation(collation);
+        return mongodbTemplate.find(query, City.class, "cities");
+    }
+
+    @Override
+    public List<City> findCitiesByCityNameAndIataCode(String cityName, String iataCode) {
+        Collation collation = Collation.of("en")
+                .strength(Collation.ComparisonLevel.primary());
+        Query query = new Query();
+        query.addCriteria(
+                new Criteria().andOperator(
+                        Criteria.where("cityName").is(cityName),
+                        Criteria.where("iataCode").is(iataCode)
+                )
+        ).collation(collation);
+
         return mongodbTemplate.find(query, City.class, "cities");
     }
 

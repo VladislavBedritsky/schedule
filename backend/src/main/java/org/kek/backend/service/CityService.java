@@ -46,4 +46,30 @@ public interface CityService {
      * @return list of cities
      */
     List<City> findCitiesByCityName(String cityName);
+
+    /**
+     * Get city by IATA code from DB
+     *
+     * @param iataCode Cities IATA code
+     * @return City
+     */
+    City findCityByIataCode(String iataCode);
+
+    /**
+     * Get all cities by city name and IATA code.
+     *
+     * @param cityName Cities name
+     * @param iataCode Cities IATA code
+     * @return list of cities
+     */
+    List<City> findCitiesByCityNameAndIataCode(String cityName, String iataCode);
+
+    /**
+     * Get all cities referring on parameters value.
+     *
+     * @param cityName Cities name
+     * @param iataCode Cities IATA code
+     * @return list of cities
+     */
+    List<City> getListOfCitiesReferringOnParamValues(String cityName, String iataCode);
 }

@@ -9,6 +9,7 @@ import org.kek.data.service.RapidApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -62,6 +63,29 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<City> findCitiesByCityName(String cityName) {
         return cityDao.findCitiesByCityName(cityName);
+    }
+
+    @Override
+    public City findCityByIataCode(String iataCode) {
+        return cityDao.findCityByIataCode(iataCode);
+    }
+
+    @Override
+    public List<City> findCitiesByCityNameAndIataCode(String cityName, String iataCode) {
+        return cityDao.findCitiesByCityNameAndIataCode(cityName, iataCode);
+    }
+
+    @Override
+    public List<City> getListOfCitiesReferringOnParamValues(String cityName, String iataCode) {
+        if (cityName != null && iataCode == null) {
+            return findCitiesByCityName(cityName);
+        } else if (iataCode != null && cityName == null) {
+            return Collections.singletonList(findCityByIataCode(iataCode));
+        } else if (cityName != null && iataCode != null) {
+            return findCitiesByCityNameAndIataCode(cityName, iataCode);
+        } else {
+            return findAll();
+        }
     }
 
 

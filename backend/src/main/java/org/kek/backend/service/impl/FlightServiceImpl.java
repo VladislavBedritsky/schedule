@@ -18,8 +18,6 @@ public class FlightServiceImpl implements FlightService {
     private CityService cityService;
 
 
-
-
     public List<Flight> getFlightsBetweenTwoPointsByDate(
             String departureCity, String arrivalCity, String date) {
 

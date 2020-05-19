@@ -31,11 +31,8 @@
         <constructor-arg ref="mongoDbFactory" />
     </bean>
 
-    <bean id="userDao" class="org.kek.backend.dao.impl.UserDaoImpl" />
     <bean id="userService" class="org.kek.backend.service.impl.UserServiceImpl" />
-    <bean id="cityDao" class="org.kek.backend.dao.impl.CityDaoImpl" />
     <bean id="cityService" class="org.kek.backend.service.impl.CityServiceImpl" />
-    <bean id="airportDao" class="org.kek.backend.dao.impl.AirportDaoImpl" />
     <bean id="airportService" class="org.kek.backend.service.impl.AirportServiceImpl" />
     <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
@@ -43,5 +40,6 @@
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
     <bean id="userController" class="org.kek.rest.UserController" />
+    <bean id="cityController" class="org.kek.rest.CityController" />
 
 </beans>

@@ -15,6 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -98,5 +99,54 @@ public class CityServiceImplTest {
 
         Mockito.verify(cityDao, Mockito.times(1))
                 .findCitiesByCityName(isA(String.class));
+    }
+
+    @Test
+    public void findCityByIataCode() {
+        City city = new City();
+        city.setIataCode("iataCode");
+
+        Mockito.when(cityService.findCityByIataCode("iataCode"))
+                .thenReturn(city);
+        Assert.assertEquals("iataCode", cityService.findCityByIataCode("iataCode").getIataCode());
+
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCityByIataCode(isA(String.class));
+    }
+
+    @Test
+    public void findCitiesByCityNameAndIataCode() {
+
+        Mockito.when(cityService.findCitiesByCityNameAndIataCode("cityName","iataCode"))
+                .thenReturn(Collections.singletonList(new City()));
+        Assert.assertEquals(1, cityService
+                .findCitiesByCityNameAndIataCode("cityName","iataCode")
+                .size()
+        );
+
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCitiesByCityNameAndIataCode(isA(String.class), isA(String.class));
+    }
+
+    @Test
+    public void getListOfCitiesReferringOnParamValues() {
+        String cityName = "cityName";
+        String iataCode = "iataCode";
+
+        cityService.getListOfCitiesReferringOnParamValues(cityName, iataCode);
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCitiesByCityNameAndIataCode(isA(String.class), isA(String.class));
+
+        cityService.getListOfCitiesReferringOnParamValues(cityName, null);
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCitiesByCityName(isA(String.class));
+
+        cityService.getListOfCitiesReferringOnParamValues(null, iataCode);
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCityByIataCode(isA(String.class));
+
+        cityService.getListOfCitiesReferringOnParamValues(null, null);
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findAll();
     }
 }
