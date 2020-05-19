@@ -44,4 +44,11 @@ public interface CityDao {
      */
     City findCityByIataCode(String iataCode);
 
+    /**
+     * Get all cities by cities name.
+     *
+     * @param cityName Cities name
+     * @return list of cities
+     */
+    List<City> findCitiesByCityName(String cityName);
 }

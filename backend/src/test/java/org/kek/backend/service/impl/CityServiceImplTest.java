@@ -89,4 +89,14 @@ public class CityServiceImplTest {
         Mockito.verify(cityDao, Mockito.times(1))
                 .saveCity(isA(City.class));
     }
+
+    @Test
+    public void findCitiesByCityName() {
+        Mockito.when(cityService.findCitiesByCityName("Brest"))
+                .thenReturn(Stream.of(new City()).collect(Collectors.toList()));
+        Assert.assertEquals(1, cityService.findCitiesByCityName("Brest").size());
+
+        Mockito.verify(cityDao, Mockito.times(1))
+                .findCitiesByCityName(isA(String.class));
+    }
 }

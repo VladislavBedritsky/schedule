@@ -50,4 +50,12 @@ public class CityDaoImpl implements CityDao {
         return mongodbTemplate.findOne(query, City.class, "cities");
     }
 
+    @Override
+    public List<City> findCitiesByCityName(String cityName) {
+        Query query = new Query();
+        query.addCriteria(
+                Criteria.where("cityName").is(cityName));
+        return mongodbTemplate.find(query, City.class, "cities");
+    }
+
 }
