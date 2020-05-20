@@ -11,15 +11,27 @@ import { CityService } from 'src/app/service/city.service'
 export class CityComponent implements OnInit {
 
   cities: City[];
+  selectedCity: string;
+  filteredCities = [];
 
   constructor(private _cityService: CityService) { }
 
   ngOnInit(): void {
+    this.getCities()
   }
 
   getCities() {
     this._cityService.getCities().subscribe(
-      data => console.log(data)
+      data => {
+        this.cities = data
+      }
     )
+  }
+
+  filterCities() {
+    this.filteredCities = this.cities.filter(
+      item => item.cityName.toLowerCase().includes(this.selectedCity.toLowerCase())
+    );
+    console.log(this.filteredCities)
   }
 }
