@@ -13,29 +13,14 @@ import { CityService } from 'src/app/service/city.service'
 })
 export class CityComponent implements OnInit {
 
-  cities: City[];
+  cities: City[] = [];
   selectedCity: string;
   filteredCities = [];
-
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
 
   constructor(private _cityService: CityService) { }
 
   ngOnInit(): void {
-    this.getCities()
-
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    this.getCities();
   }
 
   getCities() {
@@ -50,6 +35,6 @@ export class CityComponent implements OnInit {
     this.filteredCities = this.cities.filter(
       item => item.cityName.toLowerCase().includes(this.selectedCity.toLowerCase())
     );
-    console.log(this.filteredCities)
   }
+
 }

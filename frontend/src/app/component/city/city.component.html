@@ -1,23 +1,17 @@
-<!--<table class="mt-2">-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let city of cities" >-->
-<!--      <td>-->
-<!--        <span>{{ city.cityName }}</span>-->
-<!--      </td>-->
-<!--  </tbody>-->
-<!--</table>-->
-<input type="text" [(ngModel)]="selectedCity" (input)="filterCities()" />
-<mat-icon>home</mat-icon>
+
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
     <input type="text"
+           placeholder="City"
            matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
+           [(ngModel)]="selectedCity"
+           (input)="filterCities()"
+           [matAutocomplete]="auto1"
+           name="city">
+    <mat-autocomplete #auto1="matAutocomplete">
+      <mat-option *ngFor="let city of filteredCities" [value]="city">
+        {{city.cityName}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
