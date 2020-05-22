@@ -33,6 +33,7 @@ export class CityComponent implements OnInit {
   getIataCodeFromSelectedPoint(event, point) {
     if (event.source.selected) {
        this.selectedPointIataCode = point.pointIataCode;
+       console.log(this.selectedPointIataCode)
     }
   }
 
@@ -64,7 +65,7 @@ export class CityComponent implements OnInit {
         for(let i=0; i < this.airports.length; i++) {
           var point = new Point()
 
-          point.cityName = 'qq'
+          point.cityName = this.airports[i]['cityName']
           point.pointIataCode = this.airports[i]['iataCode']
           point.pointName = this.airports[i]['airportName']
           point.countryCode = this.airports[i]['countryIso2']
@@ -72,8 +73,6 @@ export class CityComponent implements OnInit {
 
           this.points.push(point)
         }
-
-        console.log(this.points)
       }
     )
   }

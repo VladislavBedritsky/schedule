@@ -149,4 +149,20 @@ public class CityServiceImplTest {
         Mockito.verify(cityDao, Mockito.times(1))
                 .findAll();
     }
+
+    @Test
+    public void getCityNameByCityIataCode() {
+
+        City city = new City();
+        city.setIataCode("iataCode");
+        city.setCityName("cityName");
+
+        Mockito.when(cityDao.findCityByIataCode("iataCode"))
+                .thenReturn(city);
+        Assert.assertEquals(city.getCityName(), cityDao.findCityByIataCode("iataCode").getCityName());
+
+        cityService.getCityNameByCityIataCode("iataCode");
+        Mockito.verify(cityDao, Mockito.times(2))
+                .findCityByIataCode(isA(String.class));
+    }
 }
