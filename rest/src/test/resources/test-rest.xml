@@ -41,5 +41,5 @@
 
     <bean id="userController" class="org.kek.rest.UserController" />
     <bean id="cityController" class="org.kek.rest.CityController" />
-
+    <bean id="airportController" class="org.kek.rest.AirportController" />
 </beans>

@@ -85,4 +85,12 @@ public class AirportServiceImplTest {
         Mockito.verify(cityService, Mockito.times(3))
                 .findCitiesByCityName(isA(String.class));
     }
+
+    @Test
+    public void findAll() {
+        airportService.findAll();
+
+        Mockito.verify(airportDao, Mockito.times(1))
+                .findAll();
+    }
 }

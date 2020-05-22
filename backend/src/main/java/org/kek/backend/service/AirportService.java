@@ -35,4 +35,10 @@ public interface AirportService {
      */
     List<Airport> getAirportsByCityName(String cityName);
 
+    /**
+     * Get all airports.
+     *
+     * @return list of airports
+     */
+    List<Airport> findAll();
 }

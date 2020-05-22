@@ -50,4 +50,9 @@ public class AirportServiceImpl implements AirportService {
         }
         return result;
     }
+
+    @Override
+    public List<Airport> findAll() {
+        return airportDao.findAll();
+    }
 }
