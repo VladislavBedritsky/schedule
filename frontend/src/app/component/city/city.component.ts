@@ -12,19 +12,25 @@ import { Point } from 'src/app/dto/point';
 export class CityComponent implements OnInit {
 
   cities: City[] = [];
-  selectedCity: string;
+  selectedPoint: string;
   filteredPoints = [];
-
   points: Point[] = [];
+  selectedPointIataCode: string;
 
   constructor(private _cityService: CityService) { }
 
   ngOnInit(): void {
-    this.getCities();
+    this.getCitiesAndSetPoints();
 
   }
 
-  getCities() {
+  getIataCodeFromSelectedPoint(event, point) {
+    if (event.source.selected) {
+       this.selectedPointIataCode = point.pointIataCode;
+    }
+  }
+
+  getCitiesAndSetPoints() {
     this._cityService.getCities().subscribe(
       data => {
         this.cities = data
@@ -42,12 +48,11 @@ export class CityComponent implements OnInit {
         }
       }
     )
-
   }
 
   filterPoints() {
     this.filteredPoints = this.points.filter(
-      item => item.cityName.toLowerCase().includes(this.selectedCity.toLowerCase())
+      item => item.cityName.toLowerCase().includes(this.selectedPoint.toLowerCase())
     )
   }
 
