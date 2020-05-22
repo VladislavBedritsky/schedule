@@ -6,12 +6,13 @@
            placeholder="City"
            matInput
            [(ngModel)]="selectedCity"
-           (input)="filterCities()"
-           [matAutocomplete]="auto1"
+           (input)="filterPoints()"
+           [matAutocomplete]="auto"
            name="city">
-    <mat-autocomplete #auto1="matAutocomplete">
-      <mat-option *ngFor="let city of filteredCities" [value]="city">
-        {{city.cityName}}
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let point of filteredPoints"
+                  [value]="point.pointName">
+        {{ point.typeOfPoint === 'city' ? point.cityName+'('+point.countryIataCode+')'  : point.pointName }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
