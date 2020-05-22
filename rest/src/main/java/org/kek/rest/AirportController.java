@@ -14,7 +14,7 @@ import java.util.List;
  *
  * User REST controller
  *
- * @version 1.01 2 May 2020
+ * @version 1.01 22 May 2020
  * @author Uladzislau Biadrytski
  *
  */

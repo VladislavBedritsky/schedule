@@ -12,9 +12,9 @@ import { Point } from 'src/app/dto/point';
 export class CityComponent implements OnInit {
 
   cities: City[] = [];
-  selectedPoint: string;
   filteredPoints = [];
   points: Point[] = [];
+  selectedPoint: string;
   selectedPointIataCode: string;
 
   constructor(private _cityService: CityService) { }
