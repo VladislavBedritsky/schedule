@@ -72,4 +72,12 @@ public interface CityService {
      * @return list of cities
      */
     List<City> getListOfCitiesReferringOnParamValues(String cityName, String iataCode);
+
+    /**
+     * Get city name by city IATA code
+     *
+     * @param cityIataCode Cities IATA code
+     * @return name of city
+     */
+    String getCityNameByCityIataCode(String cityIataCode);
 }

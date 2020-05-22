@@ -55,4 +55,17 @@ public class AirportServiceImpl implements AirportService {
     public List<Airport> findAll() {
         return airportDao.findAll();
     }
+
+    @Override
+    public void updateCityNameInAirportsCollection() {
+
+        for (Airport airport : airportDao.findAll()) {
+            airport.setCityName(
+                cityService.getCityNameByCityIataCode(airport.getCityIataCode())
+            );
+
+            airportDao.saveAirport(airport);
+        }
+    }
+
 }

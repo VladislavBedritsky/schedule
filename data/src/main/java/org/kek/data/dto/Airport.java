@@ -26,6 +26,7 @@ public class Airport {
     private String countryName;
     private String countryIso2;
     private String cityIataCode;
+    private String cityName;
 
     public String getId() {
         return id;
@@ -115,6 +116,14 @@ public class Airport {
         this.cityIataCode = cityIataCode;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,12 +139,13 @@ public class Airport {
                 Objects.equals(timezone, airport.timezone) &&
                 Objects.equals(countryName, airport.countryName) &&
                 Objects.equals(countryIso2, airport.countryIso2) &&
-                Objects.equals(cityIataCode, airport.cityIataCode);
+                Objects.equals(cityIataCode, airport.cityIataCode) &&
+                Objects.equals(cityName, airport.cityName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, airportName, iataCode, icaoCode, latitude, longitude, geoNameId, timezone, countryName, countryIso2, cityIataCode);
+        return Objects.hash(id, airportName, iataCode, icaoCode, latitude, longitude, geoNameId, timezone, countryName, countryIso2, cityIataCode, cityName);
     }
 
     @Override
@@ -152,6 +162,7 @@ public class Airport {
                 ", countryName='" + countryName + '\'' +
                 ", countryIso2='" + countryIso2 + '\'' +
                 ", cityIataCode='" + cityIataCode + '\'' +
+                ", cityName='" + cityName + '\'' +
                 '}';
     }
 }

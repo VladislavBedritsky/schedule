@@ -41,4 +41,10 @@ public interface AirportService {
      * @return list of airports
      */
     List<Airport> findAll();
+
+    /**
+     * Update city name in Airports collection.
+     *
+     */
+    void updateCityNameInAirportsCollection();
 }

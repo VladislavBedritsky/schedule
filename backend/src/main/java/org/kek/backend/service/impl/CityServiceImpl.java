@@ -88,5 +88,9 @@ public class CityServiceImpl implements CityService {
         }
     }
 
-
+    @Override
+    public String getCityNameByCityIataCode(String cityIataCode) {
+        return findCityByIataCode(cityIataCode)
+                .getCityName();
+    }
 }

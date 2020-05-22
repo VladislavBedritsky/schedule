@@ -93,4 +93,23 @@ public class AirportServiceImplTest {
         Mockito.verify(airportDao, Mockito.times(1))
                 .findAll();
     }
+
+    @Test
+    public void updateCityNameInAirportsCollection() {
+        Airport airport = new Airport();
+        airport.setCityIataCode("MOW");
+
+        Mockito.when(airportDao.findAll())
+                .thenReturn(Stream.of(airport, airport).collect(Collectors.toList()));
+        Assert.assertEquals(2, airportDao.findAll().size());
+
+        airportService.updateCityNameInAirportsCollection();
+
+        Mockito.verify(airportDao, Mockito.times(2))
+                .findAll();
+        Mockito.verify(cityService, Mockito.times(2))
+                .getCityNameByCityIataCode(isA(String.class));
+        Mockito.verify(airportDao, Mockito.times(2))
+                .saveAirport(isA(Airport.class));
+    }
 }
