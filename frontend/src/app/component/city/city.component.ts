@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/common/city';
 import { CityService } from 'src/app/service/city.service'
 import { Point } from 'src/app/dto/point';
+import { Airport } from 'src/app/common/airport';
+import { AirportService } from 'src/app/service/airport.service'
+
 
 @Component({
   selector: 'app-city',
@@ -12,16 +15,19 @@ import { Point } from 'src/app/dto/point';
 export class CityComponent implements OnInit {
 
   cities: City[] = [];
-  filteredPoints = [];
+  airports: Airport[] = [];
   points: Point[] = [];
+
+  filteredPoints = [];
   selectedPoint: string;
   selectedPointIataCode: string;
 
-  constructor(private _cityService: CityService) { }
+  constructor(private _cityService: CityService,
+              private _airportService: AirportService) { }
 
   ngOnInit(): void {
     this.getCitiesAndSetPoints();
-
+    this.getAirportsAndSetPoints();
   }
 
   getIataCodeFromSelectedPoint(event, point) {
@@ -41,11 +47,33 @@ export class CityComponent implements OnInit {
           point.cityName = this.cities[i]['cityName']
           point.pointIataCode = this.cities[i]['iataCode']
           point.pointName = this.cities[i]['cityName']
-          point.countryIataCode = this.cities[i]['countryCode']
+          point.countryCode = this.cities[i]['countryCode']
           point.typeOfPoint = 'city'
 
           this.points.push(point)
         }
+      }
+    )
+  }
+
+  getAirportsAndSetPoints() {
+    this._airportService.getAirports().subscribe(
+      data => {
+        this.airports = data
+
+        for(let i=0; i < this.airports.length; i++) {
+          var point = new Point()
+
+          point.cityName = 'qq'
+          point.pointIataCode = this.airports[i]['iataCode']
+          point.pointName = this.airports[i]['airportName']
+          point.countryCode = this.airports[i]['countryIso2']
+          point.typeOfPoint = 'airport'
+
+          this.points.push(point)
+        }
+
+        console.log(this.points)
       }
     )
   }
@@ -55,5 +83,6 @@ export class CityComponent implements OnInit {
       item => item.cityName.toLowerCase().includes(this.selectedPoint.toLowerCase())
     )
   }
+
 
 }

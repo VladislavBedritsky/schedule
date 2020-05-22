@@ -13,7 +13,7 @@
       <mat-option *ngFor="let point of filteredPoints"
                    [value]="point.cityName"
                   (onSelectionChange)="getIataCodeFromSelectedPoint($event, point)">
-        {{ point.typeOfPoint === 'city' ? point.cityName+'('+point.countryIataCode+')'  : point.pointName }}
+        {{ point.typeOfPoint === 'city' ? point.cityName+'('+point.countryCode+')'  : point.pointName }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

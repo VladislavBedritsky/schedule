@@ -3,7 +3,7 @@ export class Point {
   cityName: string;
   pointName: string;
   pointIataCode: string;
-  countryIataCode: string;
+  countryCode: string;
   typeOfPoint: string;
 
 }
