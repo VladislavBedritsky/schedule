@@ -1,17 +1,29 @@
+.input-material-cityName {
+  font-weight: 500;
+  font-size: 90%;
+}
+
+.input-material-cityCode {
+  color: #BFBFBC;
+  font-size: 90%;
+}
+
 .input-material-icon {
   color: #BFBFBC;
   vertical-align: -5px;
   margin-left: 5px;
 }
 
-.input-material-airport {
+.input-material-pointName {
   margin-left: 10px;
-  font-weight: bold;
-  fint-size: 80%;
+  font-weight: 500;
+  font-size: 90%;
 }
 
 .input-material-code {
   color: #BFBFBC;
   float: right;
+  font-size: 80%;
+  font-weight: 500;
 }
 
