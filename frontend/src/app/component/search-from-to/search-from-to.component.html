@@ -11,7 +11,14 @@
       <mat-option *ngFor="let point of filteredPoints"
                   [value]="point.pointName"
                   (onSelectionChange)="getIataCodeFromSelectedPoint($event, point)">
-        {{ point.typeOfPoint === 'city' ? point.cityName+'('+point.countryCode+')'  : point.pointName }}
+        <span *ngIf="point.typeOfPoint === 'city'">{{ point.cityName+'('+point.countryCode+')' }}</span>
+        <i *ngIf="point.typeOfPoint === 'airport'" >
+          <i class="material-icons" style=
+   "vertical-align: -5px;">
+            flight_takeoff
+          </i>
+          {{ point.pointName }}
+        </i>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
