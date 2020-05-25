@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { City } from 'src/app/common/city';
 import { CityService } from 'src/app/service/city.service'
@@ -6,12 +7,15 @@ import { Point } from 'src/app/dto/point';
 import { Airport } from 'src/app/common/airport';
 import { AirportService } from 'src/app/service/airport.service'
 
+
 @Component({
   selector: 'app-search-from-to',
   templateUrl: './search-from-to.component.html',
   styleUrls: ['./search-from-to.component.css']
 })
 export class SearchFromToComponent implements OnInit {
+
+  colorControl = new FormControl('warn');
 
   cities: City[] = [];
   airports: Airport[] = [];

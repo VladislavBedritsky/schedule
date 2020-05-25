@@ -1,13 +1,13 @@
 <form class="search-form">
-  <mat-form-field class="form-from">
+  <mat-form-field class="form-from" appearance="outline" >
+    <mat-label>From</mat-label>
     <input type="text"
-           placeholder="From"
            matInput
            [(ngModel)]="selectedPointFrom"
            (input)="filterPointsFrom()"
            [matAutocomplete]="autoFrom"
            name="city">
-    <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300">
+    <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300" >
       <mat-option *ngFor="let point of filteredPointsFrom"
                   [value]="point.pointName"
                   (onSelectionChange)="getIataCodeFromSelectedPointFrom($event, point)">
@@ -30,9 +30,9 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field class="form-to">
+  <mat-form-field class="form-to" appearance="outline">
+    <mat-label>To</mat-label>
     <input type="text"
-           placeholder="To"
            matInput
            [(ngModel)]="selectedPointTo"
            (input)="filterPointsTo()"

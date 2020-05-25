@@ -1,3 +1,15 @@
+::ng-deep .mat-focused .mat-form-field-label {
+  color: blue !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: white !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: green !important;
+}
+
 .input-material-cityName {
   font-weight: 500;
   font-size: 90%;
