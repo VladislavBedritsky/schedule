@@ -1,4 +1,4 @@
-<form class="example-form">
+<form class="search-form">
   <mat-form-field class="example-full-width">
     <input type="text"
            placeholder="From"
@@ -7,18 +7,18 @@
            (input)="filterPoints()"
            [matAutocomplete]="auto"
            name="city">
-    <mat-autocomplete #auto="matAutocomplete">
+    <mat-autocomplete #auto="matAutocomplete" class="matAutocomplete" [panelWidth]="300">
       <mat-option *ngFor="let point of filteredPoints"
                   [value]="point.pointName"
                   (onSelectionChange)="getIataCodeFromSelectedPoint($event, point)">
         <span *ngIf="point.typeOfPoint === 'city'">{{ point.cityName+'('+point.countryCode+')' }}</span>
-        <i *ngIf="point.typeOfPoint === 'airport'" >
-          <i class="material-icons" style=
-   "vertical-align: -5px;">
+        <span *ngIf="point.typeOfPoint === 'airport'" >
+          <i class="input-material-icon material-icons">
             flight_takeoff
           </i>
-          {{ point.pointName }}
-        </i>
+          <span class="input-material-airport">{{ point.pointName | truncateText:[15] }}</span>
+          <span class="input-material-code">{{ point.pointIataCode }}</span>
+        </span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

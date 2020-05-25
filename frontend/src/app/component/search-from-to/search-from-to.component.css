@@ -1,0 +1,17 @@
+.input-material-icon {
+  color: #BFBFBC;
+  vertical-align: -5px;
+  margin-left: 5px;
+}
+
+.input-material-airport {
+  margin-left: 10px;
+  font-weight: bold;
+  fint-size: 80%;
+}
+
+.input-material-code {
+  color: #BFBFBC;
+  float: right;
+}
+

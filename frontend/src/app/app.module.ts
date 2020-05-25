@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './component/main/main.component';
 import { CityComponent } from './component/city/city.component';
 import { SearchFromToComponent } from './component/search-from-to/search-from-to.component';
+import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SearchFromToComponent } from './component/search-from-to/search-from-to
     AppComponent,
     MainComponent,
     CityComponent,
-    SearchFromToComponent
+    SearchFromToComponent,
+    TruncateTextPipe
   ],
   imports: [
     BrowserModule,
