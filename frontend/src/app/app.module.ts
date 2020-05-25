@@ -9,13 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MainComponent } from './component/main/main.component';
 import { CityComponent } from './component/city/city.component';
+import { SearchFromToComponent } from './component/search-from-to/search-from-to.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    CityComponent
+    CityComponent,
+    SearchFromToComponent
   ],
   imports: [
     BrowserModule,
