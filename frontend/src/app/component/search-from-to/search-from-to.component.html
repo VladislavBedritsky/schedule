@@ -1,16 +1,47 @@
 <form class="search-form">
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="form-from">
     <input type="text"
            placeholder="From"
            matInput
-           [(ngModel)]="selectedPoint"
-           (input)="filterPoints()"
-           [matAutocomplete]="auto"
+           [(ngModel)]="selectedPointFrom"
+           (input)="filterPointsFrom()"
+           [matAutocomplete]="autoFrom"
            name="city">
-    <mat-autocomplete #auto="matAutocomplete" class="matAutocomplete" [panelWidth]="300">
-      <mat-option *ngFor="let point of filteredPoints"
+    <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300">
+      <mat-option *ngFor="let point of filteredPointsFrom"
                   [value]="point.pointName"
-                  (onSelectionChange)="getIataCodeFromSelectedPoint($event, point)">
+                  (onSelectionChange)="getIataCodeFromSelectedPointFrom($event, point)">
+
+        <span *ngIf="point.typeOfPoint === 'city'">
+          <span class="input-material-cityName">{{ point.cityName }}, </span>
+          <span class="input-material-cityCode">{{ point.countryCode }}</span>
+          <span class="input-material-code">{{ point.pointIataCode }}</span>
+        </span>
+
+        <span *ngIf="point.typeOfPoint === 'airport'" >
+          <i class="input-material-icon material-icons">
+            flight_takeoff
+          </i>
+          <span class="input-material-pointName">{{ point.pointName | truncateText:[21] }}</span>
+          <span class="input-material-code">{{ point.pointIataCode }}</span>
+        </span>
+
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="form-to">
+    <input type="text"
+           placeholder="To"
+           matInput
+           [(ngModel)]="selectedPointTo"
+           (input)="filterPointsTo()"
+           [matAutocomplete]="autoTo"
+           name="city">
+    <mat-autocomplete #autoTo="matAutocomplete" [panelWidth]="300">
+      <mat-option *ngFor="let point of filteredPointsTo"
+                  [value]="point.pointName"
+                  (onSelectionChange)="getIataCodeFromSelectedPointTo($event, point)">
 
         <span *ngIf="point.typeOfPoint === 'city'">
           <span class="input-material-cityName">{{ point.cityName }}, </span>

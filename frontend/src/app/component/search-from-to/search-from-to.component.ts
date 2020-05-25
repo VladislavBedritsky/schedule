@@ -17,9 +17,13 @@ export class SearchFromToComponent implements OnInit {
   airports: Airport[] = [];
   points: Point[] = [];
 
-  filteredPoints = [];
-  selectedPoint: string;
-  selectedPointIataCode: string;
+  filteredPointsFrom = [];
+  selectedPointFrom: string;
+  selectedPointFromIataCode: string;
+
+  filteredPointsTo = [];
+  selectedPointTo: string;
+  selectedPointToIataCode: string;
 
   constructor(private _cityService: CityService,
               private _airportService: AirportService) { }
@@ -27,13 +31,6 @@ export class SearchFromToComponent implements OnInit {
   ngOnInit(): void {
     this.getCitiesAndSetPoints();
     this.getAirportsAndSetPoints();
-  }
-
-  getIataCodeFromSelectedPoint(event, point) {
-    if (event.source.selected) {
-       this.selectedPointIataCode = point.pointIataCode;
-       console.log(this.selectedPointIataCode)
-    }
   }
 
   getCitiesAndSetPoints() {
@@ -71,22 +68,46 @@ export class SearchFromToComponent implements OnInit {
           point.typeOfPoint = 'airport'
 
           this.points.push(point)
-
         }
       }
     )
   }
 
-  filterPoints() {
-    this.filteredPoints = this.points.filter(
-      item => item.cityName.toLowerCase().includes(this.selectedPoint.toLowerCase())
+  filterPointsFrom() {
+    this.filteredPointsFrom = this.points.filter(
+      item => item.cityName.toLowerCase().includes(this.selectedPointFrom.toLowerCase())
     )
 
-    if (this.filteredPoints.length === 0) {
-      this.filteredPoints = this.points.filter(
-        item => item.pointName.toLowerCase().includes(this.selectedPoint.toLowerCase())
+    if (this.filteredPointsFrom.length === 0) {
+      this.filteredPointsFrom = this.points.filter(
+        item => item.pointName.toLowerCase().includes(this.selectedPointFrom.toLowerCase())
       )
     }
   }
 
+  getIataCodeFromSelectedPointFrom(event, point) {
+    if (event.source.selected) {
+       this.selectedPointFromIataCode = point.pointIataCode;
+       console.log(this.selectedPointFromIataCode)
+    }
+  }
+
+  filterPointsTo() {
+    this.filteredPointsTo = this.points.filter(
+      item => item.cityName.toLowerCase().includes(this.selectedPointTo.toLowerCase())
+    )
+
+    if (this.filteredPointsTo.length === 0) {
+      this.filteredPointsTo = this.points.filter(
+        item => item.pointName.toLowerCase().includes(this.selectedPointTo.toLowerCase())
+      )
+    }
+  }
+
+  getIataCodeFromSelectedPointTo(event, point) {
+    if (event.source.selected) {
+       this.selectedPointToIataCode = point.pointIataCode;
+       console.log(this.selectedPointToIataCode)
+    }
+  }
 }
