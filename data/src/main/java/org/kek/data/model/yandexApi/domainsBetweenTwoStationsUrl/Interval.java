@@ -1,4 +1,4 @@
-package org.kek.data.model.yandexApi;
+package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

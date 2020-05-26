@@ -1,11 +1,12 @@
-package org.kek.data.model.yandexApi;
+package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.kek.data.model.yandexApi.TransportSubtype;
 
 import java.util.Objects;
 
 /**
- * Flight information.
+ * Thread information.
  *
  * @version 1.01 16 May 2020
  * @author Uladzislau Biadrytski
@@ -43,7 +44,7 @@ public class Thread {
      * Sign of express or aeroexpress.
      */
     @JsonProperty("express_type")
-    private String express_type;
+    private String expressType;
 
     public String getUid() {
         return uid;
@@ -125,12 +126,12 @@ public class Thread {
         this.transportSubtype = transportSubtype;
     }
 
-    public String getExpress_type() {
-        return express_type;
+    public String getExpressType() {
+        return expressType;
     }
 
-    public void setExpress_type(String express_type) {
-        this.express_type = express_type;
+    public void setExpressType(String expressType) {
+        this.expressType = expressType;
     }
 
     @Override
@@ -146,12 +147,12 @@ public class Thread {
                 Objects.equals(threadMethodLink, thread.threadMethodLink) &&
                 Objects.equals(transportType, thread.transportType) &&
                 Objects.equals(vehicle, thread.vehicle) &&
-                Objects.equals(express_type, thread.express_type);
+                Objects.equals(expressType, thread.expressType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uid, title, interval, number, shortTitle, threadMethodLink, transportType, vehicle, express_type);
+        return Objects.hash(uid, title, interval, number, shortTitle, threadMethodLink, transportType, vehicle, expressType);
     }
 
     @Override
@@ -167,7 +168,7 @@ public class Thread {
                 ", transportType='" + transportType + '\'' +
                 ", vehicle='" + vehicle + '\'' +
                 ", transportSubtype=" + transportSubtype +
-                ", express_type='" + express_type + '\'' +
+                ", express_type='" + expressType + '\'' +
                 '}';
     }
 }

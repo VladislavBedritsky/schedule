@@ -1,6 +1,7 @@
-package org.kek.data.model.yandexApi;
+package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.kek.data.model.yandexApi.Codes;
 
 import java.util.Objects;
 

@@ -1,17 +1,18 @@
-package org.kek.data.model.yandexApi;
+package org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
 /**
- * Information about the flight arrival station.
+ * Consists information about
+ * the departure departure station.
  *
  * @version 1.01 16 May 2020
  * @author Uladzislau Biadrytski
  *
  */
-public class SegmentsTo {
+public class SegmentsFrom {
 
     /**
      * The code of the point of departure in the Yandex schedules encoding system.
@@ -98,7 +99,7 @@ public class SegmentsTo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SegmentsTo that = (SegmentsTo) o;
+        SegmentsFrom that = (SegmentsFrom) o;
         return Objects.equals(code, that.code) &&
                 Objects.equals(title, that.title) &&
                 Objects.equals(stationType, that.stationType) &&
@@ -116,7 +117,7 @@ public class SegmentsTo {
 
     @Override
     public String toString() {
-        return "SegmentsTo{" +
+        return "SegmentsFrom{" +
                 "code='" + code + '\'' +
                 ", title='" + title + '\'' +
                 ", stationType='" + stationType + '\'' +

@@ -16,9 +16,6 @@ public class YandexApiServiceImplTest {
 
     @Test
     public void getResponse() {
-
-        System.out.println(yandexApiService.getFlightsBetweenTwoPointsByDate("SVO", "CDG", null));
-
-
+        yandexApiService.qq();
     }
 }

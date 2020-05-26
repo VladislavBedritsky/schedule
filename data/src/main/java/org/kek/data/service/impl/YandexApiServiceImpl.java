@@ -5,6 +5,7 @@ import org.kek.data.dto.Ticket;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.Place;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.ResponseTable;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.Segments;
+import org.kek.data.model.yandexApi.domainsForOneStationUrl.Response;
 import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,10 @@ public class YandexApiServiceImpl implements YandexApiService {
     private RestTemplate restTemplate;
     @Value("${url.api.yandex.findSegmentsBetweenTwoPointsByDate}")
     private String betweenTwoPointsByDateUri;
+    @Value("${url.api.yandex.findSegmentsByDeparturePointIataCodeAndDate}")
+    private String departurePointByDateUri;
+    @Value("${url.api.yandex.findSegmentsByArrivalPointIataCodeAndDate}")
+    private String arrivalPointByDateUri;
 
     @Override
     public List<Flight> getFlightsBetweenTwoPointsByDate(String fromIataCode, String toIataCode, String date) {
@@ -109,7 +114,16 @@ public class YandexApiServiceImpl implements YandexApiService {
         return tickets;
     }
 
-
+    @Override
+    public void qq() {
+        Response response = restTemplate.getForObject(
+                departurePointByDateUri,
+                Response.class,
+                "VKO",
+                ""
+        );
+        System.out.println(response);
+    }
 
 
 }

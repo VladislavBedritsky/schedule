@@ -4,6 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ *
+ * Information about the station.
+ *
+ * @version 1.01 26 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Station {
 
     private String code;

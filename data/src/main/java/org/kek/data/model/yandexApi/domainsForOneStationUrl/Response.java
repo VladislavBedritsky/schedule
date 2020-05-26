@@ -6,6 +6,14 @@ import org.kek.data.model.yandexApi.Pagination;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *
+ * Response info for one station by date from api.rasp.yandex.net REST API.
+ *
+ * @version 1.01 26 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class Response {
 
     private String date;
@@ -13,6 +21,9 @@ public class Response {
     private Station station;
     @JsonProperty("schedule")
     private List<Schedule> schedules;
+    @JsonProperty("schedule_direction")
+    private ScheduleDirection scheduleDirection;
+    private Directions directions;
 
     public String getDate() {
         return date;

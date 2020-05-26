@@ -49,4 +49,6 @@ public interface YandexApiService {
      * @return list of tickets
      */
     List<Ticket> convertResponseTableToListOfTickets(Segments segment);
+
+    void qq();
 }
