@@ -1,9 +1,11 @@
 package org.kek.data.service;
 
 import org.kek.data.dto.Flight;
+import org.kek.data.dto.StationFlight;
 import org.kek.data.dto.Ticket;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.ResponseTable;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.Segments;
+import org.kek.data.model.yandexApi.domainsForOneStationUrl.Response;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public interface YandexApiService {
     List<Flight> getFlightsBetweenTwoPointsByDate(String departure, String arrival, String date);
 
     /**
-     * Get all flights from ResponseTable.
+     * Convert ResponseTable to FlightsList.
      *
      * @param responseTable Response between two points by date from api.rasp.yandex.net REST API
      * @param fromIataCode Airport IATA code (departure)
@@ -42,7 +44,7 @@ public interface YandexApiService {
     );
 
     /**
-     * Get all tickets from ResponseTable.
+     * Convert ResponseTable to Tickets list.
      *
      * @param segment Information about flights found.
      *
@@ -50,5 +52,23 @@ public interface YandexApiService {
      */
     List<Ticket> convertResponseTableToListOfTickets(Segments segment);
 
-    void qq();
+    /**
+     * Get all flights by station and date.
+     *
+     * @param stationIataCode Station IATA code (departure)
+     * @param date Request date
+     *
+     * @return list of stationFlights
+     */
+    List<StationFlight> getFlightsByStationIataCodeAndDate(String stationIataCode, String date);
+
+    /**
+     * Convert Response to StationFlights list.
+     *
+     * @param response  Response info for one station by date from api.rasp.yandex.net REST API.
+     * @param stationIataCode Station IATA code
+     *
+     * @return list of stationFlights
+     */
+    List<StationFlight> convertResponseToListOfFlights(Response response, String stationIataCode);
 }

@@ -1,11 +1,13 @@
 package org.kek.data.service.impl;
 
 import org.kek.data.dto.Flight;
+import org.kek.data.dto.StationFlight;
 import org.kek.data.dto.Ticket;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.Place;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.ResponseTable;
 import org.kek.data.model.yandexApi.domainsBetweenTwoStationsUrl.Segments;
 import org.kek.data.model.yandexApi.domainsForOneStationUrl.Response;
+import org.kek.data.model.yandexApi.domainsForOneStationUrl.Schedule;
 import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -115,15 +117,49 @@ public class YandexApiServiceImpl implements YandexApiService {
     }
 
     @Override
-    public void qq() {
+    public List<StationFlight> getFlightsByStationIataCodeAndDate(String stationIataCode, String date) {
         Response response = restTemplate.getForObject(
                 departurePointByDateUri,
                 Response.class,
-                "VKO",
-                ""
+                stationIataCode,
+                date
         );
-        System.out.println(response);
+
+        List<StationFlight> flights = new ArrayList<>();
+        if(response != null) {
+            flights = convertResponseToListOfFlights(
+                    response, stationIataCode
+            );
+        }
+
+        return flights;
     }
 
+    @Override
+    public List<StationFlight> convertResponseToListOfFlights(Response response, String stationIataCode) {
+        List<StationFlight> flights = new ArrayList<>();
+        for(Schedule schedule : response.getSchedules()) {
+            StationFlight stationFlight = new StationFlight();
+            stationFlight.setDate(response.getDate());
+            stationFlight.setStationYandexCode(response.getStation().getCode());
+            stationFlight.setStationIataCode(stationIataCode);
+            stationFlight.setStationTitle(response.getStation().getTitle());
+            stationFlight.setPopularTitle(response.getStation().getPopularTitle());
+            stationFlight.setExceptDays(schedule.getExceptDays());
+            stationFlight.setArrivalTime(schedule.getArrivalTime());
+            stationFlight.setThreadTitle(schedule.getThread().getTitle());
+            stationFlight.setThreadNumber(schedule.getThread().getNumber());
+            stationFlight.setCarrierIataCode(schedule.getThread().getCarrier().getCodes().getIata());
+            stationFlight.setCarrierTitle(schedule.getThread().getCarrier().getTitle());
+            stationFlight.setVehicle(schedule.getThread().getVehicle());
+            stationFlight.setStops(schedule.getStops());
+            stationFlight.setDepartureTime(schedule.getDepartureTime());
+            stationFlight.setTerminal(schedule.getTerminal());
+
+            flights.add(stationFlight);
+        }
+
+        return flights;
+    }
 
 }

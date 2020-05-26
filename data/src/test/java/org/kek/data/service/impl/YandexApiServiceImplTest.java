@@ -16,6 +16,6 @@ public class YandexApiServiceImplTest {
 
     @Test
     public void getResponse() {
-        yandexApiService.qq();
+        System.out.println(yandexApiService.getFlightsByStationIataCodeAndDate("VKO", "2020-05-27"));
     }
 }
