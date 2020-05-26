@@ -9,6 +9,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * FlightService implementation
+ *
+ * @version 1.01 26 May 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 @Service
 public class FlightServiceImpl implements FlightService {
 
@@ -17,12 +24,9 @@ public class FlightServiceImpl implements FlightService {
     @Autowired
     private CityService cityService;
 
-
+    @Override
     public List<Flight> getFlightsBetweenTwoPointsByDate(
-            String departureCity, String arrivalCity, String date) {
-
-        String departureIataCode = null;
-        String arrivalIataCode = null;
+            String departureIataCode, String arrivalIataCode, String date) {
 
         return yandexApiService.getFlightsBetweenTwoPointsByDate(
                 departureIataCode, arrivalIataCode, date

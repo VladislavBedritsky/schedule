@@ -36,10 +36,12 @@
     <bean id="airportService" class="org.kek.backend.service.impl.AirportServiceImpl" />
     <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
+    <bean id="flightService" class="org.kek.backend.service.impl.FlightServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
     <bean id="userController" class="org.kek.rest.UserController" />
     <bean id="cityController" class="org.kek.rest.CityController" />
     <bean id="airportController" class="org.kek.rest.AirportController" />
+    <bean id="flightController" class="org.kek.rest.FlightController" />
 </beans>
