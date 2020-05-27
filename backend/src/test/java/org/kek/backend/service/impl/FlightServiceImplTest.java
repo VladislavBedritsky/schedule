@@ -33,4 +33,13 @@ public class FlightServiceImplTest {
                         isA(String.class), isA(String.class), isA(String.class)
                 );
     }
+
+    @Test
+    public void getFlightsByStationIataCodeAndDateAndEvent() {
+        flightService.getFlightsByStationIataCodeAndDateAndEvent("code","date","event");
+        Mockito.verify(yandexApiService, Mockito.times(1))
+                .getFlightsByStationIataCodeAndDateAndEvent(
+                        isA(String.class), isA(String.class), isA(String.class)
+                );
+    }
 }
