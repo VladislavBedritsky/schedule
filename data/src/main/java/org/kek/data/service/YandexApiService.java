@@ -53,14 +53,17 @@ public interface YandexApiService {
     List<Ticket> convertResponseTableToListOfTickets(Segments segment);
 
     /**
-     * Get all flights by station and date.
+     * Get all flights by station and date and event.
      *
      * @param stationIataCode Station IATA code (departure)
      * @param date Request date
+     * @param event The event for which you want to filter threads
+     *              in the schedule ('departure' or 'arrival').
      *
      * @return list of stationFlights
      */
-    List<StationFlight> getFlightsByStationIataCodeAndDate(String stationIataCode, String date);
+    List<StationFlight> getFlightsByStationIataCodeAndDateAndEvent(
+            String stationIataCode, String date, String event);
 
     /**
      * Convert Response to StationFlights list.
@@ -71,4 +74,5 @@ public interface YandexApiService {
      * @return list of stationFlights
      */
     List<StationFlight> convertResponseToListOfFlights(Response response, String stationIataCode);
+
 }

@@ -34,10 +34,8 @@ public class YandexApiServiceImpl implements YandexApiService {
     private RestTemplate restTemplate;
     @Value("${url.api.yandex.findSegmentsBetweenTwoPointsByDate}")
     private String betweenTwoPointsByDateUri;
-    @Value("${url.api.yandex.findSegmentsByDeparturePointIataCodeAndDate}")
-    private String departurePointByDateUri;
-    @Value("${url.api.yandex.findSegmentsByArrivalPointIataCodeAndDate}")
-    private String arrivalPointByDateUri;
+    @Value("${url.api.yandex.findSegmentsByStationIataCodeAndDate}")
+    private String byStationAndDateAndEventUri;
 
     @Override
     public List<Flight> getFlightsBetweenTwoPointsByDate(String fromIataCode, String toIataCode, String date) {
@@ -117,12 +115,14 @@ public class YandexApiServiceImpl implements YandexApiService {
     }
 
     @Override
-    public List<StationFlight> getFlightsByStationIataCodeAndDate(String stationIataCode, String date) {
+    public List<StationFlight> getFlightsByStationIataCodeAndDateAndEvent(
+            String stationIataCode, String date, String event) {
         Response response = restTemplate.getForObject(
-                departurePointByDateUri,
+                byStationAndDateAndEventUri,
                 Response.class,
                 stationIataCode,
-                date
+                date,
+                event
         );
 
         List<StationFlight> flights = new ArrayList<>();

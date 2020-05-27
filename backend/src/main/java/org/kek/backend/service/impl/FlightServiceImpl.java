@@ -3,6 +3,7 @@ package org.kek.backend.service.impl;
 import org.kek.backend.service.CityService;
 import org.kek.backend.service.FlightService;
 import org.kek.data.dto.Flight;
+import org.kek.data.dto.StationFlight;
 import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +33,13 @@ public class FlightServiceImpl implements FlightService {
                 departureIataCode, arrivalIataCode, date
         );
     }
+
+    @Override
+    public List<StationFlight> getFlightsByStationIataCodeAndDateAndEvent(
+            String stationIataCode, String date, String event) {
+
+        return yandexApiService.getFlightsByStationIataCodeAndDateAndEvent(
+                stationIataCode, date, event);
+    }
+
 }
