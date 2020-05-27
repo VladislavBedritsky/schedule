@@ -3,9 +3,9 @@
     <mat-label>From</mat-label>
     <input type="text"
            matInput
-           [(ngModel)]="selectedPointFrom"
            (input)="filterPointsFrom()"
            [matAutocomplete]="autoFrom"
+           [formControl]="departureForm"
            name="city">
     <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300" >
       <mat-option *ngFor="let point of filteredPointsFrom"
@@ -25,18 +25,20 @@
           <span class="input-material-pointName">{{ point.pointName | truncateText:[21] }}</span>
           <span class="input-material-code">{{ point.pointIataCode }}</span>
         </span>
-
       </mat-option>
     </mat-autocomplete>
+    <mat-error *ngIf="departureForm.hasError('required')">
+      SELECT ORIGIN
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="form-to" appearance="outline">
     <mat-label>To</mat-label>
     <input type="text"
            matInput
-           [(ngModel)]="selectedPointTo"
            (input)="filterPointsTo()"
            [matAutocomplete]="autoTo"
+           [formControl]="arrivalForm"
            name="city">
     <mat-autocomplete #autoTo="matAutocomplete" [panelWidth]="300">
       <mat-option *ngFor="let point of filteredPointsTo"
@@ -59,5 +61,25 @@
 
       </mat-option>
     </mat-autocomplete>
+    <mat-error *ngIf="arrivalForm.hasError('required')">
+      SELECT DESTINATION
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Depart</mat-label>
+    <input matInput [min]="minDate" [matDatepicker]="picker" [formControl]="date" [errorStateMatcher]="matcher">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
+    <mat-error *ngIf="date.hasError('required')">
+      PICK A DATE
+    </mat-error>
+    <mat-error *ngIf="date.hasError('matDatepickerMin')" >
+      Minimum date should be {{ minDate | date }}
+    </mat-error>
+    <mat-error *ngIf="date.hasError('matDatepickerParse')">
+      "{{date.getError('matDatepickerParse').text}}"
+      IS NOT A VALID DATE!
+    </mat-error>
   </mat-form-field>
 </form>

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { City } from 'src/app/common/city';
 import { CityService } from 'src/app/service/city.service'
 import { Point } from 'src/app/dto/point';
 import { Airport } from 'src/app/common/airport';
 import { AirportService } from 'src/app/service/airport.service'
-
+import { InputErrorStateMatcher } from 'src/app/error/input-error-state-matcher'
 
 @Component({
   selector: 'app-search-from-to',
@@ -15,18 +15,26 @@ import { AirportService } from 'src/app/service/airport.service'
 })
 export class SearchFromToComponent implements OnInit {
 
-  colorControl = new FormControl('warn');
+  matcher = new InputErrorStateMatcher();
+  minDate: Date = new Date();
+  date = new FormControl(new Date(), [
+     Validators.required
+  ]);
 
   cities: City[] = [];
   airports: Airport[] = [];
   points: Point[] = [];
 
+  departureForm = new FormControl('', [
+      Validators.required
+  ])
   filteredPointsFrom = [];
-  selectedPointFrom: string;
   selectedPointFromIataCode: string;
 
+  arrivalForm = new FormControl('', [
+      Validators.required
+  ])
   filteredPointsTo = [];
-  selectedPointTo: string;
   selectedPointToIataCode: string;
 
   constructor(private _cityService: CityService,
@@ -35,6 +43,8 @@ export class SearchFromToComponent implements OnInit {
   ngOnInit(): void {
     this.getCitiesAndSetPoints();
     this.getAirportsAndSetPoints();
+
+    // console.log(this.date.value)
   }
 
   getCitiesAndSetPoints() {
@@ -79,12 +89,12 @@ export class SearchFromToComponent implements OnInit {
 
   filterPointsFrom() {
     this.filteredPointsFrom = this.points.filter(
-      item => item.cityName.toLowerCase().includes(this.selectedPointFrom.toLowerCase())
+      item => item.cityName.toLowerCase().includes(this.departureForm.value.toLowerCase())
     )
 
     if (this.filteredPointsFrom.length === 0) {
       this.filteredPointsFrom = this.points.filter(
-        item => item.pointName.toLowerCase().includes(this.selectedPointFrom.toLowerCase())
+        item => item.pointName.toLowerCase().includes(this.departureForm.value.toLowerCase())
       )
     }
   }
@@ -98,12 +108,12 @@ export class SearchFromToComponent implements OnInit {
 
   filterPointsTo() {
     this.filteredPointsTo = this.points.filter(
-      item => item.cityName.toLowerCase().includes(this.selectedPointTo.toLowerCase())
+      item => item.cityName.toLowerCase().includes(this.arrivalForm.value.toLowerCase())
     )
 
     if (this.filteredPointsTo.length === 0) {
       this.filteredPointsTo = this.points.filter(
-        item => item.pointName.toLowerCase().includes(this.selectedPointTo.toLowerCase())
+        item => item.pointName.toLowerCase().includes(this.arrivalForm.value.toLowerCase())
       )
     }
   }
