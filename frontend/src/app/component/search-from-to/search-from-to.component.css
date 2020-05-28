@@ -1,3 +1,8 @@
+::ng-deep .mat-raised-button{
+    height:60px !important;
+    width:200px !important;
+}
+
 ::ng-deep .mat-datepicker-content .mat-calendar{
 }
 
