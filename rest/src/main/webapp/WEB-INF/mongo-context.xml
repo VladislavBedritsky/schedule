@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd">
+
+
+    <mongo:mongo-client id="mongo" host="${db.spring.data.mongodb.host}" port="${db.spring.data.mongodb.port}"/>
+    <mongo:db-factory id="mongoDbFactory" dbname="${db.spring.data.mongodb.database}" mongo-ref="mongo" />
+    <bean id="mongodbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongoDbFactory"/>
+    </bean>
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <bean id="mongodbTransactionManager" class="org.springframework.data.mongodb.MongoTransactionManager">
+        <constructor-arg ref="mongoDbFactory" />
+    </bean>
+
+</beans>

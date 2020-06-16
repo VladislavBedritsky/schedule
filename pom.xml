@@ -13,6 +13,7 @@
         <module>rest</module>
         <module>data</module>
         <module>resources</module>
+        <module>camel</module>
     </modules>
 
     <properties>
@@ -29,6 +30,7 @@
         <mockito.version>2.23.4</mockito.version>
         <spring-data-rest-webmvc.version>3.2.7.RELEASE</spring-data-rest-webmvc.version>
         <servlet.version>3.1.0</servlet.version>
+        <env.camel.version>2.25.0</env.camel.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>2.4</maven-war-plugin.version>
@@ -55,6 +57,11 @@
             <dependency>
                 <groupId>org.kek</groupId>
                 <artifactId>resources</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kek</groupId>
+                <artifactId>camel</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -114,6 +121,16 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${env.camel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring-ws</artifactId>
+                <version>${env.camel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -4,7 +4,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -12,12 +11,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/data/mongo
-        http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
-
-    <import resource="beans.xml"/>
 
     <context:component-scan base-package="org.kek"/>
     <context:annotation-config/>
@@ -27,8 +22,8 @@
             ignore-unresolvable="true"
             order="0" />
 
-    <util:properties id="dev" location="classpath*:mongodb-dev.properties" />
-    <util:properties id="prod" location="classpath*:mongodb-prod.properties" />
+    <util:properties id="dev" location="classpath*:app-dev.properties" />
+    <util:properties id="prod" location="classpath*:app-prod.properties" />
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven />
@@ -38,16 +33,5 @@
                      allowed-headers="Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Authorization, X-Requested-With, requestId, Correlation-Id"
                      allowed-methods="GET, PUT, POST, DELETE"/>
     </mvc:cors>
-
-    <mongo:mongo-client id="mongo" host="${db.spring.data.mongodb.host}" port="${db.spring.data.mongodb.port}"/>
-    <mongo:db-factory id="mongoDbFactory" dbname="${db.spring.data.mongodb.database}" mongo-ref="mongo" />
-    <bean id="mongodbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg ref="mongoDbFactory"/>
-    </bean>
-    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-    <bean id="mongodbTransactionManager" class="org.springframework.data.mongodb.MongoTransactionManager">
-        <constructor-arg ref="mongoDbFactory" />
-    </bean>
-
 
 </beans>

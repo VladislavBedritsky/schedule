@@ -16,6 +16,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/app-context.xml
+            /WEB-INF/mongo-context.xml
+            /WEB-INF/beans.xml
+            /WEB-INF/camel-context.xml
         </param-value>
     </context-param>
 

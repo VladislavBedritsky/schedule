@@ -22,8 +22,8 @@
             ignore-unresolvable="true"
             order="0" />
 
-    <util:properties id="dev" location="classpath*:mongodb-dev.properties" />
-    <util:properties id="prod" location="classpath*:mongodb-prod.properties" />
+    <util:properties id="dev" location="classpath*:app-dev.properties" />
+    <util:properties id="prod" location="classpath*:app-prod.properties" />
 
     <mongo:mongo-client id="mongo" host="${db.spring.data.mongodb.host}" port="${db.spring.data.mongodb.port}"/>
     <mongo:db-factory id="mongoDbFactory" dbname="${db.spring.data.mongodb.database}" mongo-ref="mongo" />
