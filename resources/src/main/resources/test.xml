@@ -4,26 +4,33 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:component-scan base-package="org.kek"/>
     <context:annotation-config />
+    <context:property-placeholder
+            properties-ref="dev"
+            ignore-resource-not-found="true"
+            ignore-unresolvable="true"
+            order="0" />
 
-    <mongo:mongo-client id="mongo" host="localhost" port="27017"/>
-    <mongo:db-factory id="mongoDbFactory" dbname="schedule" mongo-ref="mongo" />
+    <util:properties id="dev" location="classpath*:mongodb-dev.properties" />
+    <util:properties id="prod" location="classpath*:mongodb-prod.properties" />
+
+    <mongo:mongo-client id="mongo" host="${db.spring.data.mongodb.host}" port="${db.spring.data.mongodb.port}"/>
+    <mongo:db-factory id="mongoDbFactory" dbname="${db.spring.data.mongodb.database}" mongo-ref="mongo" />
     <bean id="mongodbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongoDbFactory"/>
     </bean>
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-
     <bean id="mongodbTransactionManager" class="org.springframework.data.mongodb.MongoTransactionManager">
         <constructor-arg ref="mongoDbFactory" />
     </bean>
@@ -36,6 +43,7 @@
     <bean id="airportService" class="org.kek.backend.service.impl.AirportServiceImpl" />
     <bean id="aviationstackApiService" class="org.kek.data.service.impl.AviationstackApiServiceImpl" />
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
+    <bean id="flightService" class="org.kek.backend.service.impl.FlightServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
