@@ -4,11 +4,13 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.kek.backend.model.User;
 import org.kek.backend.service.AirportService;
 import org.kek.backend.service.CityService;
 import org.kek.backend.service.UserService;
 import org.kek.camel.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,6 +34,8 @@ public class ProducerServiceImpl implements ProducerService {
     private UserService userService;
     @Autowired
     private CamelContext produceDataToScheduleQueue;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Override
     public void produceCollectionOfCitiesToScheduleQueue() {

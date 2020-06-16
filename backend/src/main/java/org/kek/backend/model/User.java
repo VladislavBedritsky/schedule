@@ -2,6 +2,7 @@ package org.kek.backend.model;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  * @author Uladzislau Biadrytski
  *
  */
-public class User {
+public class User implements Serializable {
 
     @Id
     private String id;

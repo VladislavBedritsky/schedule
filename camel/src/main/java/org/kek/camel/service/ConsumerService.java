@@ -1,5 +1,9 @@
 package org.kek.camel.service;
 
+import org.kek.backend.model.User;
+
+import java.util.List;
+
 /**
  *
  * Camel context consumer service
@@ -9,4 +13,6 @@ package org.kek.camel.service;
  *
  */
 public interface ConsumerService {
+
+    List<User> getUsersFromScheduleQueue();
 }
