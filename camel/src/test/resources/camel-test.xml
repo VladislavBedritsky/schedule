@@ -10,18 +10,40 @@
 
     <import resource="classpath*:test.xml" />
 
-    <camel:camelContext id="produceDataToScheduleQueue">
+    <camel:camelContext id="produceUsersToScheduleQueue">
         <camel:route>
-            <camel:from uri="direct:start"/>
-            <camel:to uri="activemq:queue:schedule_queue" />
+            <camel:from uri="direct:users"/>
+            <camel:to uri="activemq:queue:users_queue" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="produceCitiesToScheduleQueue">
+        <camel:route>
+            <camel:from uri="direct:cities"/>
+            <camel:to uri="activemq:queue:cities_queue" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="produceAirportsToScheduleQueue">
+        <camel:route>
+            <camel:from uri="direct:airports"/>
+            <camel:to uri="activemq:queue:airports_queue" />
         </camel:route>
     </camel:camelContext>
 
     <camel:camelContext id="consumeUsersFromScheduleQueue">
         <camel:route>
-            <camel:from uri="activemq:queue:schedule_queue"/>
+            <camel:from uri="activemq:queue:users_queue"/>
             <camel:process ref="transformToUsersList" />
             <camel:to uri="mongodb:mongog?database=schedule&amp;collection=users&amp;operation=insert" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="consumeCitiesFromScheduleQueue">
+        <camel:route >
+            <camel:from uri="activemq:queue:cities_queue"/>
+            <camel:process ref="transformToCitiesList" />
+            <camel:to uri="mongodb:mongog?database=schedule&amp;collection=cities&amp;operation=insert" />
         </camel:route>
     </camel:camelContext>
 

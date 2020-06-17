@@ -10,6 +10,7 @@ import org.kek.backend.service.ConverterService;
 import org.kek.backend.service.UserService;
 import org.kek.camel.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,17 +35,28 @@ public class ProducerServiceImpl implements ProducerService {
     @Autowired
     private ConverterService converterService;
     @Autowired
-    private CamelContext produceDataToScheduleQueue;
+    @Qualifier("produceCitiesToScheduleQueue")
+    private CamelContext produceCitiesToScheduleQueue;
+    @Autowired
+    @Qualifier("produceUsersToScheduleQueue")
+    private CamelContext produceUsersToScheduleQueue;
+    @Autowired
+    @Qualifier("produceAirportsToScheduleQueue")
+    private CamelContext produceAirportsToScheduleQueue;
 
     @Override
     public void produceCollectionOfCitiesToScheduleQueue() {
+        String message = converterService.convertListToJsonString(
+                cityService.findAll()
+        );
+
         try {
-            produceDataToScheduleQueue.start();
+            produceCitiesToScheduleQueue.start();
 
-            ProducerTemplate producerTemplate = produceDataToScheduleQueue.createProducerTemplate();
-            producerTemplate.sendBody("direct:start", cityService.findAll());
+            ProducerTemplate producerTemplate = produceCitiesToScheduleQueue.createProducerTemplate();
+            producerTemplate.sendBody("direct:cities", message);
 
-            produceDataToScheduleQueue.stop();
+            produceCitiesToScheduleQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
@@ -52,13 +64,17 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public void produceCollectionOfAirportsToScheduleQueue() {
+        String message = converterService.convertListToJsonString(
+                airportService.findAll()
+        );
+
         try {
-            produceDataToScheduleQueue.start();
+            produceAirportsToScheduleQueue.start();
 
-            ProducerTemplate producerTemplate = produceDataToScheduleQueue.createProducerTemplate();
-            producerTemplate.sendBody("direct:start", airportService.findAll());
+            ProducerTemplate producerTemplate = produceAirportsToScheduleQueue.createProducerTemplate();
+            producerTemplate.sendBody("direct:airports", message);
 
-            produceDataToScheduleQueue.stop();
+            produceAirportsToScheduleQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
@@ -71,12 +87,12 @@ public class ProducerServiceImpl implements ProducerService {
         );
 
         try {
-            produceDataToScheduleQueue.start();
+            produceUsersToScheduleQueue.start();
 
-            ProducerTemplate producerTemplate = produceDataToScheduleQueue.createProducerTemplate();
-            producerTemplate.sendBody("direct:start", message);
+            ProducerTemplate producerTemplate = produceUsersToScheduleQueue.createProducerTemplate();
+            producerTemplate.sendBody("direct:users", message);
 
-            produceDataToScheduleQueue.stop();
+            produceUsersToScheduleQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }

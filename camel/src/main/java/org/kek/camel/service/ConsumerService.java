@@ -11,7 +11,12 @@ package org.kek.camel.service;
 public interface ConsumerService {
 
     /**
-     * Consume data from ActiveMQ Schedule queue
+     * Consume users from ActiveMQ Schedule queue
      */
-    void consumeDataFromScheduleQueue();
+    void consumeUsersFromScheduleQueue();
+
+    /**
+     * Consume cities from ActiveMQ Schedule queue
+     */
+    void consumeCitiesFromScheduleQueue();
 }

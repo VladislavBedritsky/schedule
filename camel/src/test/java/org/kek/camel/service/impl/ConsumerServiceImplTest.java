@@ -19,7 +19,8 @@ public class ConsumerServiceImplTest {
 
     @Test
     public void foo() {
+
         producerService.produceCollectionOfUsersToScheduleQueue();
-        consumerService.getUsersFromScheduleQueue();
+        consumerService.consumeUsersFromScheduleQueue();
     }
 }

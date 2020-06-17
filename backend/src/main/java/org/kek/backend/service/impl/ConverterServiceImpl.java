@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.kek.backend.model.User;
 import org.kek.backend.service.ConverterService;
+import org.kek.data.dto.Airport;
+import org.kek.data.dto.City;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,6 +32,22 @@ public class ConverterServiceImpl implements ConverterService {
         return new Gson()
                 .fromJson(
                         json, new TypeToken<ArrayList<User>>(){}.getType()
+                );
+    }
+
+    @Override
+    public List<City> convertJsonToListOfCities(String json) {
+        return new Gson()
+                .fromJson(
+                        json, new TypeToken<ArrayList<City>>(){}.getType()
+                );
+    }
+
+    @Override
+    public List<Airport> convertJsonToListOfAirports(String json) {
+        return new Gson()
+                .fromJson(
+                        json, new TypeToken<ArrayList<Airport>>(){}.getType()
                 );
     }
 

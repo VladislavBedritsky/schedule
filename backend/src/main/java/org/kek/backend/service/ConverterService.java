@@ -1,6 +1,8 @@
 package org.kek.backend.service;
 
 import org.kek.backend.model.User;
+import org.kek.data.dto.Airport;
+import org.kek.data.dto.City;
 
 import java.util.List;
 
@@ -30,4 +32,20 @@ public interface ConverterService {
      * @return list of users
      */
     List<User> convertJsonToListOfUsers(String json);
+
+    /**
+     * Get list of cities from JSON String
+     *
+     * @param json JSON String
+     * @return list of cities
+     */
+    List<City> convertJsonToListOfCities(String json);
+
+    /**
+     * Get list of airports from JSON String
+     *
+     * @param json JSON String
+     * @return list of airports
+     */
+    List<Airport> convertJsonToListOfAirports(String json);
 }
