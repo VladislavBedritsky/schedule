@@ -3,6 +3,7 @@ package org.kek.backend.dao.impl;
 import org.kek.backend.dao.UserDao;
 import org.kek.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -22,6 +23,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @Autowired
+    @Qualifier("mongodbTemplate")
     private MongoTemplate mongodbTemplate;
 
     @Override

@@ -15,10 +15,11 @@
         </camel:route>
     </camel:camelContext>
 
-    <camel:camelContext id="consumeDataFromScheduleQueue">
+    <camel:camelContext id="consumeUsersFromScheduleQueue">
         <camel:route >
             <camel:from uri="activemq:queue:schedule_queue"/>
-            <camel:to uri="seda:end" />
+            <camel:process ref="transformToUsersList" />
+            <camel:to uri="mongodb:mongog?database=schedule&amp;collection=users&amp;operation=insert" />
         </camel:route>
     </camel:camelContext>
 

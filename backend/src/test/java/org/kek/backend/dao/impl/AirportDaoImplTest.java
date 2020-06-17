@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.kek.backend.dao.AirportDao;
 import org.kek.data.dto.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -26,6 +27,7 @@ public class AirportDaoImplTest {
     @Autowired
     private AirportDao airportDao;
     @Autowired
+    @Qualifier("mongodbTemplate")
     private MongoTemplate mongodbTemplate;
 
     private Airport newAirport;

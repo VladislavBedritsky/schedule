@@ -3,6 +3,7 @@ package org.kek.backend.dao.impl;
 import org.kek.backend.dao.AirportDao;
 import org.kek.data.dto.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -22,6 +23,7 @@ import java.util.List;
 public class AirportDaoImpl implements AirportDao {
 
     @Autowired
+    @Qualifier("mongodbTemplate")
     private MongoTemplate mongodbTemplate;
 
     @Override

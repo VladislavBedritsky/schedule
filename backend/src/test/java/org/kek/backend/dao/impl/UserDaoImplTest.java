@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.kek.backend.dao.UserDao;
 import org.kek.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,6 +26,7 @@ public class UserDaoImplTest {
     @Autowired
     private UserDao userDao;
     @Autowired
+    @Qualifier("mongodbTemplate")
     private MongoTemplate mongodbTemplate;
 
     private User user;

@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.kek.backend.dao.CityDao;
 import org.kek.data.dto.City;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -26,6 +27,7 @@ public class CityDaoImplTest {
     @Autowired
     private CityDao cityDao;
     @Autowired
+    @Qualifier("mongodbTemplate")
     private MongoTemplate mongodbTemplate;
 
     private City newCity;
