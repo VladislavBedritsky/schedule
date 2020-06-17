@@ -35,64 +35,64 @@ public class ProducerServiceImpl implements ProducerService {
     @Autowired
     private ConverterService converterService;
     @Autowired
-    @Qualifier("produceCitiesToScheduleQueue")
-    private CamelContext produceCitiesToScheduleQueue;
+    @Qualifier("produceCitiesToCitiesQueue")
+    private CamelContext produceCitiesToCitiesQueue;
     @Autowired
-    @Qualifier("produceUsersToScheduleQueue")
-    private CamelContext produceUsersToScheduleQueue;
+    @Qualifier("produceUsersToUsersQueue")
+    private CamelContext produceUsersToUsersQueue;
     @Autowired
-    @Qualifier("produceAirportsToScheduleQueue")
-    private CamelContext produceAirportsToScheduleQueue;
+    @Qualifier("produceAirportsToAirportsQueue")
+    private CamelContext produceAirportsToAirportsQueue;
 
     @Override
-    public void produceCollectionOfCitiesToScheduleQueue() {
+    public void produceCollectionOfCitiesToCitiesQueue() {
         String message = converterService.convertListToJsonString(
                 cityService.findAll()
         );
 
         try {
-            produceCitiesToScheduleQueue.start();
+            produceCitiesToCitiesQueue.start();
 
-            ProducerTemplate producerTemplate = produceCitiesToScheduleQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceCitiesToCitiesQueue.createProducerTemplate();
             producerTemplate.sendBody("direct:cities", message);
 
-            produceCitiesToScheduleQueue.stop();
+            produceCitiesToCitiesQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
     }
 
     @Override
-    public void produceCollectionOfAirportsToScheduleQueue() {
+    public void produceCollectionOfAirportsToAirportsQueue() {
         String message = converterService.convertListToJsonString(
                 airportService.findAll()
         );
 
         try {
-            produceAirportsToScheduleQueue.start();
+            produceAirportsToAirportsQueue.start();
 
-            ProducerTemplate producerTemplate = produceAirportsToScheduleQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceAirportsToAirportsQueue.createProducerTemplate();
             producerTemplate.sendBody("direct:airports", message);
 
-            produceAirportsToScheduleQueue.stop();
+            produceAirportsToAirportsQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
     }
 
     @Override
-    public void produceCollectionOfUsersToScheduleQueue() {
+    public void produceCollectionOfUsersToUsersQueue() {
         String message = converterService.convertListToJsonString(
                 userService.findAll()
         );
 
         try {
-            produceUsersToScheduleQueue.start();
+            produceUsersToUsersQueue.start();
 
-            ProducerTemplate producerTemplate = produceUsersToScheduleQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceUsersToUsersQueue.createProducerTemplate();
             producerTemplate.sendBody("direct:users", message);
 
-            produceUsersToScheduleQueue.stop();
+            produceUsersToUsersQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }

@@ -11,21 +11,21 @@ package org.kek.camel.service;
 public interface ProducerService {
 
     /**
-     * Produce collection of cities from mongoDB to activeMQ
-     * schedule_queue
+     * Produce collection of cities from MongoDB to ActiveMQ
+     * cities queue
      */
-    void produceCollectionOfCitiesToScheduleQueue();
+    void produceCollectionOfCitiesToCitiesQueue();
 
     /**
-     * Produce collection of airports from mongoDB to activeMQ
-     * schedule_queue
+     * Produce collection of airports from MongoDB to ActiveMQ
+     * airports queue
      */
-    void produceCollectionOfAirportsToScheduleQueue();
+    void produceCollectionOfAirportsToAirportsQueue();
 
     /**
-     * Produce collection of users from mongoDB to activeMQ
-     * schedule_queue
+     * Produce collection of users from MongoDB to ActiveMQ
+     * users queue
      */
-    void produceCollectionOfUsersToScheduleQueue();
+    void produceCollectionOfUsersToUsersQueue();
 
 }

@@ -20,7 +20,7 @@ public class ConsumerServiceImplTest {
     @Test
     public void foo() {
 
-        producerService.produceCollectionOfUsersToScheduleQueue();
-        consumerService.consumeUsersFromScheduleQueue();
+        producerService.produceCollectionOfCitiesToCitiesQueue();
+        consumerService.consumeCitiesFromCitiesQueue();
     }
 }

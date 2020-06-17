@@ -4,10 +4,12 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.kek.backend.model.User;
 import org.kek.backend.service.ConverterService;
+import org.kek.camel.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -30,6 +32,14 @@ public class TransformToUsersList implements Processor {
 
         List<User> users = converterService.convertJsonToListOfUsers(payload);
 
-        exchange.getIn().setBody(users);
+        List<UserDto> result = users
+                .stream()
+                .map(user ->
+                        new UserDto(user.getUsername(), user.getPassword()))
+                .collect(Collectors.toList());
+
+        exchange.getIn().setBody(
+                result
+        );
     }
 }

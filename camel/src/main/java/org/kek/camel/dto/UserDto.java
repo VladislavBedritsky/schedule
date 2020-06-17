@@ -1,30 +1,23 @@
-package org.kek.backend.model;
-
-import org.springframework.data.annotation.Id;
+package org.kek.camel.dto;
 
 import java.util.Objects;
 
 /**
  *
- * User information.
+ * User DTO for saving into MongoDb via camel routes
  *
- * @version 1.01 16 May 2020
+ * @version 1.01 17 Jun 2020
  * @author Uladzislau Biadrytski
  *
  */
-public class User {
+public class UserDto{
 
-    @Id
-    private String id;
     private String username;
     private String password;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public UserDto(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
@@ -47,22 +40,21 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password);
+        if (!super.equals(o)) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(username, userDto.username) &&
+                Objects.equals(password, userDto.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(super.hashCode(), username, password);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
+        return "UserDto{" +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

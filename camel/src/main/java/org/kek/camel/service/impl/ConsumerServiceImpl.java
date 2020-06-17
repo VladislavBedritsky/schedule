@@ -22,28 +22,28 @@ public class ConsumerServiceImpl implements ConsumerService {
     private static Logger LOGGER = LogManager.getLogger(ConsumerServiceImpl.class);
 
     @Autowired
-    @Qualifier("consumeUsersFromScheduleQueue")
-    private CamelContext consumeUsersFromScheduleQueue;
+    @Qualifier("consumeUsersFromUsersQueue")
+    private CamelContext consumeUsersFromUsersQueue;
     @Autowired
-    @Qualifier("consumeCitiesFromScheduleQueue")
-    private CamelContext consumeCitiesFromScheduleQueue;
+    @Qualifier("consumeCitiesFromCitiesQueue")
+    private CamelContext consumeCitiesFromCitiesQueue;
 
     @Override
-    public void consumeUsersFromScheduleQueue() {
+    public void consumeUsersFromUsersQueue() {
         try {
-            consumeUsersFromScheduleQueue.start();
-            consumeUsersFromScheduleQueue.stop();
+            consumeUsersFromUsersQueue.start();
+            consumeUsersFromUsersQueue.stop();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void consumeCitiesFromScheduleQueue() {
+    public void consumeCitiesFromCitiesQueue() {
         try {
-            consumeCitiesFromScheduleQueue.start();
+            consumeCitiesFromCitiesQueue.start();
             Thread.sleep(6000);
-            consumeCitiesFromScheduleQueue.stop();
+            consumeCitiesFromCitiesQueue.stop();
         } catch (Exception e) {
             e.printStackTrace();
         }

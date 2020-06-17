@@ -10,28 +10,28 @@
 
     <import resource="classpath*:test.xml" />
 
-    <camel:camelContext id="produceUsersToScheduleQueue">
+    <camel:camelContext id="produceUsersToUsersQueue">
         <camel:route>
             <camel:from uri="direct:users"/>
             <camel:to uri="activemq:queue:users_queue" />
         </camel:route>
     </camel:camelContext>
 
-    <camel:camelContext id="produceCitiesToScheduleQueue">
+    <camel:camelContext id="produceCitiesToCitiesQueue">
         <camel:route>
             <camel:from uri="direct:cities"/>
             <camel:to uri="activemq:queue:cities_queue" />
         </camel:route>
     </camel:camelContext>
 
-    <camel:camelContext id="produceAirportsToScheduleQueue">
+    <camel:camelContext id="produceAirportsToAirportsQueue">
         <camel:route>
             <camel:from uri="direct:airports"/>
             <camel:to uri="activemq:queue:airports_queue" />
         </camel:route>
     </camel:camelContext>
 
-    <camel:camelContext id="consumeUsersFromScheduleQueue">
+    <camel:camelContext id="consumeUsersFromUsersQueue">
         <camel:route>
             <camel:from uri="activemq:queue:users_queue"/>
             <camel:process ref="transformToUsersList" />
@@ -39,7 +39,7 @@
         </camel:route>
     </camel:camelContext>
 
-    <camel:camelContext id="consumeCitiesFromScheduleQueue">
+    <camel:camelContext id="consumeCitiesFromCitiesQueue">
         <camel:route >
             <camel:from uri="activemq:queue:cities_queue"/>
             <camel:process ref="transformToCitiesList" />
