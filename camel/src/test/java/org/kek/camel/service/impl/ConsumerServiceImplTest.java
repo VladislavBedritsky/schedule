@@ -20,4 +20,5 @@ public class ConsumerServiceImplTest {
     @Test
     public void foo() {
     }
+
 }

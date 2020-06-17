@@ -57,28 +57,28 @@ public class CityControllerTest {
     @Test
     public void givenCitiesURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/api/cities"))
+        this.mockMvc.perform(get("/cities"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(cityService, Mockito.times(1))
                 .getListOfCitiesReferringOnParamValues(any(), any());
 
-        this.mockMvc.perform(get("/api/cities?cityName="))
+        this.mockMvc.perform(get("/cities?cityName="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(cityService, Mockito.times(1))
                 .getListOfCitiesReferringOnParamValues(isA(String.class), any());
 
-        this.mockMvc.perform(get("/api/cities?iataCode="))
+        this.mockMvc.perform(get("/cities?iataCode="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(cityService, Mockito.times(1))
                 .getListOfCitiesReferringOnParamValues(any(), isA(String.class));
 
-        this.mockMvc.perform(get("/api/cities?cityName=&iataCode="))
+        this.mockMvc.perform(get("/cities?cityName=&iataCode="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 

@@ -56,7 +56,7 @@ public class AirportControllerTest {
     @Test
     public void givenAirportsURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/api/airports"))
+        this.mockMvc.perform(get("/airports"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 

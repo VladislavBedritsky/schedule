@@ -3,10 +3,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:camel="http://camel.apache.org/schema/spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <import resource="classpath*:test.xml" />
 
@@ -17,4 +20,59 @@
     <bean id="cityController" class="org.kek.rest.CityController" />
     <bean id="airportController" class="org.kek.rest.AirportController" />
     <bean id="flightController" class="org.kek.rest.FlightController" />
+
+    <camel:camelContext id="produceUsersToUsersQueue">
+        <camel:route>
+            <camel:from uri="direct:users"/>
+            <camel:to uri="activemq:queue:users_queue" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="produceCitiesToCitiesQueue">
+        <camel:route>
+            <camel:from uri="direct:cities"/>
+            <camel:to uri="activemq:queue:cities_queue" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="produceAirportsToAirportsQueue">
+        <camel:route>
+            <camel:from uri="direct:airports"/>
+            <camel:to uri="activemq:queue:airports_queue" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="consumeUsersFromUsersQueue">
+        <camel:route>
+            <camel:from uri="activemq:queue:users_queue"/>
+            <camel:process ref="transformToUsersList" />
+            <camel:to uri="mongodb:mongog?database=schedule&amp;collection=users&amp;operation=insert" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="consumeCitiesFromCitiesQueue">
+        <camel:route >
+            <camel:from uri="activemq:queue:cities_queue"/>
+            <camel:process ref="transformToCitiesList" />
+            <camel:to uri="mongodb:mongog?database=schedule&amp;collection=cities&amp;operation=insert" />
+        </camel:route>
+    </camel:camelContext>
+
+    <camel:camelContext id="consumeAirportsFromAirportsQueue">
+        <camel:route >
+            <camel:from uri="activemq:queue:airports_queue"/>
+            <camel:process ref="transformToAirportsList" />
+            <camel:to uri="mongodb:mongog?database=schedule&amp;collection=airports&amp;operation=insert" />
+        </camel:route>
+    </camel:camelContext>
+
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="${activemq.brokerUrl}"/>
+                <property name="password" value="${activemq.username}" />
+                <property name="userName" value="${activemq.password}" />
+            </bean>
+        </property>
+    </bean>
 </beans>

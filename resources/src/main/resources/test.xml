@@ -54,7 +54,5 @@
     <bean id="mongogdbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongogDbFactory"/>
     </bean>
-    <bean id="mongogdbTransactionManager" class="org.springframework.data.mongodb.MongoTransactionManager">
-        <constructor-arg ref="mongogDbFactory" />
-    </bean>
+
 </beans>

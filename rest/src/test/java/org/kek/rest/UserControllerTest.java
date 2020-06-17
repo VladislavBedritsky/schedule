@@ -67,7 +67,7 @@ public class UserControllerTest {
     @Test
     public void givenUsersURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/api/users"))
+        this.mockMvc.perform(get("/users"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
@@ -80,7 +80,7 @@ public class UserControllerTest {
     public void givenUserIdURI_whenMockMVC_thenVerifyResponse() throws Exception {
         Mockito.when(userService.findUserById("123")).thenReturn(user);
 
-        this.mockMvc.perform(get("/api/users/123"))
+        this.mockMvc.perform(get("/users/123"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("123"))
@@ -95,7 +95,7 @@ public class UserControllerTest {
     @Test
     public void should_CreateUser_When_ValidRequest() throws Exception {
 
-        this.mockMvc.perform(post("/api/users")
+        this.mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(asJsonString(user))
                 .accept(MediaType.APPLICATION_JSON))
@@ -112,7 +112,7 @@ public class UserControllerTest {
     public void should_updateUserName_When_ValidRequest() throws Exception {
         Mockito.when(userService.findUserById("123")).thenReturn(user);
 
-        this.mockMvc.perform(put("/api/users/123")
+        this.mockMvc.perform(put("/users/123")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(asJsonString(user))
                 .accept(MediaType.APPLICATION_JSON))
@@ -131,7 +131,7 @@ public class UserControllerTest {
     public void should_deleteUser_When_ValidRequest() throws Exception {
         Mockito.when(userService.findUserById("123")).thenReturn(user);
 
-        this.mockMvc.perform(delete("/api/users/123"))
+        this.mockMvc.perform(delete("/users/123"))
                 .andExpect(status().is(200));
 
         Mockito.verify(userService, Mockito.times(1))
