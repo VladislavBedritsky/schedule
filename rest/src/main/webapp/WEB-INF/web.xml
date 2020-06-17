@@ -18,6 +18,7 @@
             /WEB-INF/app-context.xml
             /WEB-INF/mongo-context.xml
             /WEB-INF/beans.xml
+            /WEB-INF/camel-context.xml
         </param-value>
     </context-param>
 
@@ -34,7 +35,7 @@
 
     <servlet-mapping>
         <servlet-name>app</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
 

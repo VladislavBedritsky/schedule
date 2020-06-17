@@ -28,28 +28,28 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        mongodbTemplate.insert(user, "user");
+        mongodbTemplate.insert(user, "users");
     }
 
     @Override
     public List<User> findAll() {
-        return mongodbTemplate.findAll(User.class, "user");
+        return mongodbTemplate.findAll(User.class, "users");
     }
 
     @Override
     public User findUserById(String id) {
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(id));
-        return mongodbTemplate.findOne(query, User.class, "user");
+        return mongodbTemplate.findOne(query, User.class, "users");
     }
 
     @Override
     public void updateUser(User user) {
-        mongodbTemplate.save(user, "user");
+        mongodbTemplate.save(user, "users");
     }
 
     @Override
     public void removeUser(User user) {
-        mongodbTemplate.remove(user, "user");
+        mongodbTemplate.remove(user, "users");
     }
 }

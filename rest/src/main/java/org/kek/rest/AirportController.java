@@ -19,7 +19,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping(path = "/api/airports", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/airports", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class AirportController {
 
     @Autowired

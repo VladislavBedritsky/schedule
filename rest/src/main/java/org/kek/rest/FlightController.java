@@ -21,7 +21,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping(path = "/api/flights", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/flights", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class FlightController {
 
     @Autowired

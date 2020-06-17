@@ -17,7 +17,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping(path = "/api/users", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/users", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class UserController {
 
     @Autowired

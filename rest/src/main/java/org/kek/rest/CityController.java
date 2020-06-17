@@ -20,7 +20,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping(path = "/api/cities", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/cities", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class CityController {
 
     @Autowired
