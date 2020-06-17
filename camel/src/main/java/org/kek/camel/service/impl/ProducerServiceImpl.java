@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.kek.backend.model.User;
 import org.kek.backend.service.AirportService;
 import org.kek.backend.service.CityService;
+import org.kek.backend.service.ConverterService;
 import org.kek.backend.service.UserService;
 import org.kek.camel.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class ProducerServiceImpl implements ProducerService {
     private AirportService airportService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ConverterService converterService;
     @Autowired
     private CamelContext produceDataToScheduleQueue;
     @Autowired
@@ -67,11 +70,15 @@ public class ProducerServiceImpl implements ProducerService {
 
     @Override
     public void produceCollectionOfUsersToScheduleQueue() {
+        String message = converterService.convertListToJsonString(
+                userService.findAll()
+        );
+
         try {
             produceDataToScheduleQueue.start();
 
             ProducerTemplate producerTemplate = produceDataToScheduleQueue.createProducerTemplate();
-            producerTemplate.sendBody("direct:start", userService.findAll());
+            producerTemplate.sendBody("direct:start", message);
 
             produceDataToScheduleQueue.stop();
         } catch (Exception e) {

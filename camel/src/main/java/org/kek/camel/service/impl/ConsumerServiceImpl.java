@@ -5,6 +5,7 @@ import org.apache.camel.ConsumerTemplate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kek.backend.model.User;
+import org.kek.backend.service.ConverterService;
 import org.kek.camel.service.ConsumerService;
 import org.kek.data.dto.City;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,20 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Autowired
     private CamelContext consumeDataFromScheduleQueue;
+    @Autowired
+    private ConverterService converterService;
 
     @Override
     public List<User> getUsersFromScheduleQueue() {
         List<User> users = new ArrayList<>();
         try {
             consumeDataFromScheduleQueue.start();
-            System.out.println("qq");
 
             ConsumerTemplate consumerTemplate = consumeDataFromScheduleQueue.createConsumerTemplate();
-            users = consumerTemplate.receiveBody("seda:end", List.class);
+            String result = consumerTemplate.receiveBody("seda:end", String.class);
 
-            System.out.println("qs");
+            users = converterService.convertJsonToListOfUsers(result);
+
             consumeDataFromScheduleQueue.stop();
         } catch (Exception e) {
             LOGGER.error(e);
