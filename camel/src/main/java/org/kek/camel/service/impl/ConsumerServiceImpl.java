@@ -27,6 +27,9 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Autowired
     @Qualifier("consumeCitiesFromCitiesQueue")
     private CamelContext consumeCitiesFromCitiesQueue;
+    @Autowired
+    @Qualifier("consumeAirportsFromAirportsQueue")
+    private CamelContext consumeAirportsFromAirportsQueue;
 
     @Override
     public void consumeUsersFromUsersQueue() {
@@ -44,6 +47,17 @@ public class ConsumerServiceImpl implements ConsumerService {
             consumeCitiesFromCitiesQueue.start();
             Thread.sleep(6000);
             consumeCitiesFromCitiesQueue.stop();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void consumeAirportsFromAirportsQueue() {
+        try {
+            consumeAirportsFromAirportsQueue.start();
+            Thread.sleep(6000);
+            consumeAirportsFromAirportsQueue.stop();
         } catch (Exception e) {
             e.printStackTrace();
         }

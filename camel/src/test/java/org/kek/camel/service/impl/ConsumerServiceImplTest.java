@@ -19,8 +19,5 @@ public class ConsumerServiceImplTest {
 
     @Test
     public void foo() {
-
-        producerService.produceCollectionOfCitiesToCitiesQueue();
-        consumerService.consumeCitiesFromCitiesQueue();
     }
 }

@@ -19,4 +19,9 @@ public interface ConsumerService {
      * Consume cities from ActiveMQ cities queue
      */
     void consumeCitiesFromCitiesQueue();
+
+    /**
+     * Consume airports from ActiveMQ airports queue
+     */
+    void consumeAirportsFromAirportsQueue();
 }
