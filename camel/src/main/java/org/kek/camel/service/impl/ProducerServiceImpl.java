@@ -36,13 +36,13 @@ public class ProducerServiceImpl implements ProducerService {
     private ConverterService converterService;
     @Autowired
     @Qualifier("produceCitiesToCitiesQueue")
-    private CamelContext produceCitiesToCitiesQueue;
+    private CamelContext produceCities;
     @Autowired
     @Qualifier("produceUsersToUsersQueue")
-    private CamelContext produceUsersToUsersQueue;
+    private CamelContext produceUsers;
     @Autowired
     @Qualifier("produceAirportsToAirportsQueue")
-    private CamelContext produceAirportsToAirportsQueue;
+    private CamelContext produceAirports;
 
     @Override
     public void produceCollectionOfCitiesToCitiesQueue() {
@@ -51,12 +51,12 @@ public class ProducerServiceImpl implements ProducerService {
         );
 
         try {
-            produceCitiesToCitiesQueue.start();
+            produceCities.start();
 
-            ProducerTemplate producerTemplate = produceCitiesToCitiesQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceCities.createProducerTemplate();
             producerTemplate.sendBody("direct:cities", message);
 
-            produceCitiesToCitiesQueue.stop();
+            produceCities.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
@@ -69,12 +69,12 @@ public class ProducerServiceImpl implements ProducerService {
         );
 
         try {
-            produceAirportsToAirportsQueue.start();
+            produceAirports.start();
 
-            ProducerTemplate producerTemplate = produceAirportsToAirportsQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceAirports.createProducerTemplate();
             producerTemplate.sendBody("direct:airports", message);
 
-            produceAirportsToAirportsQueue.stop();
+            produceAirports.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
@@ -87,12 +87,12 @@ public class ProducerServiceImpl implements ProducerService {
         );
 
         try {
-            produceUsersToUsersQueue.start();
+            produceUsers.start();
 
-            ProducerTemplate producerTemplate = produceUsersToUsersQueue.createProducerTemplate();
+            ProducerTemplate producerTemplate = produceUsers.createProducerTemplate();
             producerTemplate.sendBody("direct:users", message);
 
-            produceUsersToUsersQueue.stop();
+            produceUsers.stop();
         } catch (Exception e) {
             LOGGER.error(e);
         }
