@@ -52,3 +52,9 @@
   color: #F57C00;
 }
 
+@media (max-height: 600px) {
+  .search-content {
+    height: 150%;
+  }
+}
+
