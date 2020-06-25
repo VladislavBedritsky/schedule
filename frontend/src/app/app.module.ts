@@ -11,6 +11,8 @@ import { MainComponent } from './component/main/main.component';
 import { CityComponent } from './component/city/city.component';
 import { SearchFromToComponent } from './component/search-from-to/search-from-to.component';
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { TruncateTextPipe } from './pipe/truncate-text.pipe';
     MainComponent,
     CityComponent,
     SearchFromToComponent,
-    TruncateTextPipe
+    TruncateTextPipe,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
