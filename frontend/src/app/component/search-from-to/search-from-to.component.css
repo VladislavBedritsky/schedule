@@ -1,5 +1,17 @@
+.search-form {
+  color: rgb(23,41,51); /* gray */
+}
+
+.search-form .form-from {
+  margin-right: 1em;
+}
+
+.search-form .calendar {
+  margin-left: 1em;
+}
 
 .button {
+  clear: left;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -25,30 +37,45 @@ button i {
 }
 
 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white !important;
+    border-radius: 5px;
+}
 
 
-::ng-deep .mat-raised-button{
+::ng-deep .mat-raised-button {
     height:60px !important;
     width:200px !important;
 }
 
-::ng-deep .mat-datepicker-content .mat-calendar{
+::ng-deep .mat-form-field-label {
+  color: rgb(80,87,92); /* gray */
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {
-  color: blue !important;
+  color: rgb(74,152,97) !important; /* green */
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-    color: white !important;
+    color: #E9E3E5 !important; /* light gray */
 }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: green !important;
+    color: rgb(74,152,97) !important; /* green */
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline {
+    color: rgb(231,79,19) !important; /* red */
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-label {
+    color: rgb(231,79,19) !important; /* red */
 }
 
 mat-error {
   text-align: center;
+  font-weight: 500;
+  font-size: 13px;
 }
 
 .input-material-cityName {

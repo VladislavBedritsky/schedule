@@ -1,5 +1,5 @@
 <form class="search-form">
-  <mat-form-field class="form-from" appearance="outline" >
+  <mat-form-field class="form-from" appearance="outline">
     <mat-label>From</mat-label>
     <input type="text"
            matInput
@@ -68,7 +68,10 @@
 
   <mat-form-field class="calendar" appearance="outline">
     <mat-label>Depart</mat-label>
-    <input matInput [min]="minDate" [matDatepicker]="picker" [formControl]="date" [errorStateMatcher]="matcher">
+    <input matInput [min]="minDate"
+           [matDatepicker]="picker"
+           [formControl]="date"
+           [errorStateMatcher]="matcher">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker ></mat-datepicker>
     <mat-error *ngIf="date.hasError('required')">

@@ -8,10 +8,12 @@ app-navbar {
   width: 100%;
   height: 100%;
   text-align: center;
+  background-color: rgb(90,184,244);
+  color: white;
 }
 
 .search-content #title {
-    padding-top: 10%;
+  padding-top: 100px;
 }
 
 .search-content #title h1 {
@@ -25,7 +27,8 @@ app-navbar {
 .search-content #app-search-from-to {
   margin-top: 3%;
   width: 80%;
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid blue;
 }
 
@@ -35,10 +38,27 @@ app-navbar {
   background-color: blue;
 }
 
+@media (max-width: 660px) {
+  .search-content #title {
+    padding-top: 80px;
+  }
 
-@media (max-height: 600px) {
+  .search-content #title h1 {
+      font-size: 30px;
+  }
+}
+
+@media (max-height: 450px) {
+
   .search-content {
-    height: 150%;
+    height: 120%;
+  }
+}
+
+@media (max-height: 350px) {
+
+  .search-content {
+    height: 140%;
   }
 }
 
