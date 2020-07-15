@@ -68,4 +68,9 @@ public class AirportServiceImpl implements AirportService {
         }
     }
 
+    @Override
+    public void saveAirport(Airport airport) {
+        airportDao.saveAirport(airport);
+    }
+
 }

@@ -81,4 +81,5 @@ public class CityDaoImplTest {
         List<City> cities = cityDao.findCitiesByCityNameAndIataCode(city.getCityName(), city.getIataCode());
         assertNotNull(cities);
     }
+
 }

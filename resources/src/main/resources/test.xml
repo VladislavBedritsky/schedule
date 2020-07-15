@@ -45,6 +45,7 @@
     <bean id="rapidApiService" class="org.kek.data.service.impl.RapidApiServiceImpl" />
     <bean id="flightService" class="org.kek.backend.service.impl.FlightServiceImpl" />
     <bean id="converterService" class="org.kek.backend.service.impl.ConverterServiceImpl" />
+    <bean id="dataService" class="org.kek.backend.service.impl.DataServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 

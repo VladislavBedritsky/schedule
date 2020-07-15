@@ -47,4 +47,11 @@ public interface AirportService {
      *
      */
     void updateCityNameInAirportsCollection();
+
+    /**
+     * Save Airport to DB
+     *
+     * @param airport Airport
+     */
+    void saveAirport(Airport airport);
 }

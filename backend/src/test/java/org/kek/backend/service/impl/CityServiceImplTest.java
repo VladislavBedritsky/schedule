@@ -165,4 +165,5 @@ public class CityServiceImplTest {
         Mockito.verify(cityDao, Mockito.times(2))
                 .findCityByIataCode(isA(String.class));
     }
+
 }
