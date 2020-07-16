@@ -12,6 +12,7 @@ import { SearchFromToComponent } from './component/search-from-to/search-from-to
 import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { MapComponent } from './component/map/map.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FooterComponent } from './component/footer/footer.component';
     SearchFromToComponent,
     TruncateTextPipe,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
