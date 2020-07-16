@@ -44,7 +44,9 @@ export class SearchFromToComponent implements OnInit {
     this.getCitiesAndSetPoints();
     this.getAirportsAndSetPoints();
 
-    // console.log(this.date.value)
+    this.departureForm.setValue('Warsaw')
+    this.selectedPointFromIataCode = 'WAW'
+
   }
 
   getCitiesAndSetPoints() {
@@ -102,7 +104,6 @@ export class SearchFromToComponent implements OnInit {
   getIataCodeFromSelectedPointFrom(event, point) {
     if (event.source.selected) {
        this.selectedPointFromIataCode = point.pointIataCode;
-       console.log(this.selectedPointFromIataCode)
     }
   }
 
@@ -121,7 +122,21 @@ export class SearchFromToComponent implements OnInit {
   getIataCodeFromSelectedPointTo(event, point) {
     if (event.source.selected) {
        this.selectedPointToIataCode = point.pointIataCode;
-       console.log(this.selectedPointToIataCode)
     }
+  }
+
+  doPointsReverse() {
+    const from = this.departureForm.value;
+    const iataCodefrom = this.selectedPointFromIataCode;
+
+    const to = this.arrivalForm.value;
+    const iataCodeTo = this.selectedPointToIataCode;
+
+    this.departureForm.setValue(to)
+    this.selectedPointFromIataCode = iataCodeTo
+
+    this.arrivalForm.setValue(from)
+    this.selectedPointToIataCode = iataCodefrom
+
   }
 }

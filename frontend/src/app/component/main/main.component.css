@@ -1,36 +1,35 @@
 app-navbar {
   width: 100%;
   position: fixed;
-  background-color: rgb(43,48,60); /* black */
   z-index:1;
 }
 
 .search-content {
   width: 100%;
-  height: 100%;
-  text-align: center;
+  height: auto;
   background-color:  rgb(254,211,2); /* yellow */
   color: rgb(43,48,60); /* black */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .search-content #title {
-  padding-top: 100px;
+  padding-top: 170px;
 }
 
 .search-content #title h1 {
     font-size: 40px;
+    margin-left: 17%;
 }
 
 .search-content #title h3 {
     font-size: 20px;
+    margin-left: 17%;
 }
 
 .search-content #app-search-from-to {
-  margin-top: 3%;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid blue;
+  margin-top: 50px;
+  width: 100%;
+  padding-bottom: 75px;
 }
 
 .info-content {
@@ -39,27 +38,31 @@ app-navbar {
   background-color: blue;
 }
 
-@media (max-width: 660px) {
+@media (max-width: 835px) {
   .search-content #title {
-    padding-top: 80px;
+    padding-top: 130px;
+    text-align: center;
   }
 
   .search-content #title h1 {
+      margin-left: 0;
+  }
+
+  .search-content #title h3 {
+      margin-left: 0;
+  }
+}
+
+@media (max-width: 607px) {
+  .search-content #title h1 {
+      margin-left: 0;
       font-size: 30px;
+      font-weight: 500;
+  }
+  .search-content #title h3 {
+      margin-left: 0;
   }
 }
 
-@media (max-height: 450px) {
 
-  .search-content {
-    height: 120%;
-  }
-}
-
-@media (max-height: 350px) {
-
-  .search-content {
-    height: 140%;
-  }
-}
 

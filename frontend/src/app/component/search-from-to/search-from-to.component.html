@@ -1,11 +1,12 @@
 <form class="search-form">
   <mat-form-field class="form-from" appearance="outline">
-    <mat-label>From</mat-label>
+    <mat-label></mat-label>
     <input type="text"
            matInput
            (input)="filterPointsFrom()"
            [matAutocomplete]="autoFrom"
            [formControl]="departureForm"
+           placeholder="From"
            name="city">
     <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300" >
       <mat-option *ngFor="let point of filteredPointsFrom"
@@ -32,13 +33,20 @@
     </mat-error>
   </mat-form-field>
 
+  <button mat-button class="reverse-button"
+          (click)="doPointsReverse()">
+    <i class="material-icons">
+      compare_arrows
+    </i>
+  </button>
+
   <mat-form-field class="form-to" appearance="outline">
-    <mat-label>To</mat-label>
     <input type="text"
            matInput
            (input)="filterPointsTo()"
            [matAutocomplete]="autoTo"
            [formControl]="arrivalForm"
+           placeholder="To?"
            name="city">
     <mat-autocomplete #autoTo="matAutocomplete" [panelWidth]="300">
       <mat-option *ngFor="let point of filteredPointsTo"
@@ -67,11 +75,11 @@
   </mat-form-field>
 
   <mat-form-field class="calendar" appearance="outline">
-    <mat-label>Depart</mat-label>
     <input matInput [min]="minDate"
            [matDatepicker]="picker"
            [formControl]="date"
-           [errorStateMatcher]="matcher">
+           [errorStateMatcher]="matcher"
+           placeholder="Depart">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker ></mat-datepicker>
     <mat-error *ngIf="date.hasError('required')">
@@ -86,8 +94,9 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button class="button">
-    <span>Search flights</span>
-    <i class="material-icons">flight</i>
+  <button mat-button class="button">
+    <i class="material-icons">
+      search
+    </i>
   </button>
 </form>

@@ -1,39 +1,54 @@
 .search-form {
-  color: rgb(23,41,51); /* gray */
+  color: rgb(43,48,60); /* black */
+  width: 100%;
+  text-align:center;
 }
 
 .search-form .form-from {
-  margin-right: 1em;
+}
+
+.search-form .reverse-button {
+  margin-left: 10px;
+  background-color: white;
+}
+
+.search-form .reverse-button:focus {
+  outline: none;
+}
+
+.search-form .reverse-button i {
+  font-size: 1.6em;
+  color: rgb(43,48,60); /* black */
+}
+
+.search-form .form-to {
+  margin-left: 10px;
 }
 
 .search-form .calendar {
-  margin-left: 1em;
+  margin-left: 10px;
 }
 
 .button {
-  clear: left;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  width: 300px !important;
-  background-color: #F57C00;
+  background-color: rgb(43,48,60); /* black */
+  margin-left: 10px;
 }
 
-button span {
-  font-size: 30px;
-  color: white;
-}
-
-button i {
-  vertical-align: middle;
-  font-size: 30px;
-  margin-left: 7px;
+.button i {
+  font-size: 1.6em;
   color: white;
 }
 
 .button:hover {
-  background-color: orange;
+  background-color: rgb(43,48,60); /* black */
+}
+
+.button:focus {
+  outline: none;
+}
+
+button i:hover {
+  color: rgb(254,211,2); /* yellow */
 }
 
 
@@ -43,9 +58,9 @@ button i {
 }
 
 
-::ng-deep .mat-raised-button {
-    height:60px !important;
-    width:200px !important;
+::ng-deep .mat-button {
+  font-size: 30px;
+  height: 51px;
 }
 
 ::ng-deep .mat-form-field-label {
@@ -105,5 +120,38 @@ mat-error {
   float: right;
   font-size: 80%;
   font-weight: 500;
+}
+
+@media (max-width: 505px) {
+
+.search-form .form-from {
+  width: 80%;
+}
+.search-form .reverse-button {
+  margin-left: 0px;
+  background-color: rgb(43,48,60); /* black */
+  width: 80%;
+}
+.search-form .reverse-button i {
+  font-size: 1.6em;
+  color: white;
+}
+
+.search-form .form-to {
+  margin-left: 0px;
+  width: 80%;
+  margin-top: 15px;
+}
+
+.search-form .calendar {
+  margin-left: 0px;
+  width: 80%;
+}
+
+.button {
+  margin-left: 0px;
+  width: 80%;
+}
+
 }
 
