@@ -1,12 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active">TICKETS</a>
+<nav class="navbar navbar-expand-lg navbar-light" (scroll)="onWindowScroll($event)">
+  <a class="navbar-brand" routerLink="/" routerLinkActive="active">
+    xfarm.Avia
+    <i class="input-material-icon material-icons">
+      flight_takeoff
+    </i>
+  <p>
+    from Yandex
+    <span>API</span>
+  </p>
+  </a>
 
   <div class="collapse navbar-collapse" >
   </div>
 
   <div>
-    <i class="input-material-icon material-icons">
-      flight_takeoff
-    </i>
   </div>
 </nav>

@@ -8,7 +8,7 @@ import { Airport } from 'src/app/common/airport'
 })
 export class AirportService {
 
-  private findAllAirports = "http://localhost:8080/api/airports"
+  private findAllAirports = "https://tomcat.xfarm.xyz/avia/api/airports"
 
   constructor(private _httpClient: HttpClient) { }
 
