@@ -13,6 +13,7 @@ import { TruncateTextPipe } from './pipe/truncate-text.pipe';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { MapComponent } from './component/map/map.component';
+import { ProposalsComponent } from './component/proposals/proposals.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MapComponent } from './component/map/map.component';
     TruncateTextPipe,
     NavbarComponent,
     FooterComponent,
-    MapComponent
+    MapComponent,
+    ProposalsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,66 @@
+<div id="container">
+
+  <div class="proposal">
+    <span class="material-icons">
+        pin_drop
+    </span>
+    <h1>
+      Popular Destinations
+    </h1>
+
+    <p>Find the best price on flights to our most popular destinations.</p>
+
+    <div class="row">
+      <div class="column"
+           *ngFor="let city of citiesFirstPart">
+        <a class="row" href="/">{{ city.cityName }}</a>
+      </div>
+      <div class="column"
+           *ngFor="let city of citiesSecondPart">
+        <a class="row" href="/">{{ city.cityName }}</a>
+      </div>
+      <div class="column"
+           *ngFor="let city of citiesThirdPart">
+        <a class="row" href="/">{{ city.cityName }}</a>
+      </div>
+      <div class="column"
+           *ngFor="let city of citiesFourthPart">
+        <a class="row" href="/">{{ city.cityName }}</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="proposal">
+    <span class="material-icons">
+        pin_drop
+    </span>
+    <h1>
+      Popular routes
+    </h1>
+
+    <p>Check out other popular flight routes found by fellow travellers.</p>
+
+    <div class="row">
+      <div class="col">
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+      </div>
+      <div class="col">
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+        <a class="row">a</a>
+      </div>
+    </div>
+  </div>
+
+</div>

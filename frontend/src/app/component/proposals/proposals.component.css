@@ -1,0 +1,84 @@
+#container {
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.proposal {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.proposal span {
+   font-size: 3em;
+   color: rgb(213,214,216); /* light gray */
+   vertical-align: middle;
+}
+
+.proposal h1 {
+  display: inline;
+  vertical-align: middle;
+  font-size: 2em;
+  margin-left: 10px;
+}
+
+.proposal p {
+  margin-top: 15px;
+  margin-left: 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: rgb(85,89,100); /* gray */
+}
+
+
+.proposal a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.proposal a:hover {
+  color: rgb(43,48,60); /* black */
+  text-decoration: none;
+}
+.proposal .row {
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 0px;
+}
+
+.proposal .column {
+    flex: 25%;
+}
+
+@media (max-width: 800px) {
+
+
+.proposal .column {
+    flex: 50%;
+}
+}
+
+@media (max-width: 700px) {
+
+.proposal span {
+   font-size: 2.5em;
+}
+
+.proposal h1 {
+  font-size: 1.5em;
+  margin-left: 5px;
+}
+
+.proposal p {
+  margin-left: 0px;
+  font-size: 1.0em;
+}
+
+.proposal a {
+  font-size: 1.0em;
+}
+
+}

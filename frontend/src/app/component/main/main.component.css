@@ -37,6 +37,11 @@ app-map {
   height: auto;
 }
 
+app-proposals {
+  width: 100%;
+  height: auto;
+}
+
 .info-content {
   width: 100%;
   height: 100%;
