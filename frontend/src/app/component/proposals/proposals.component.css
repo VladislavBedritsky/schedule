@@ -53,6 +53,10 @@
     flex: 25%;
 }
 
+.proposal .column_routes {
+    flex: 50%;
+}
+
 @media (max-width: 800px) {
 
 

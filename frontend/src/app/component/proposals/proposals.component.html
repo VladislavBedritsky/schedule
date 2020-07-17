@@ -12,19 +12,7 @@
 
     <div class="row">
       <div class="column"
-           *ngFor="let city of citiesFirstPart">
-        <a class="row" href="/">{{ city.cityName }}</a>
-      </div>
-      <div class="column"
-           *ngFor="let city of citiesSecondPart">
-        <a class="row" href="/">{{ city.cityName }}</a>
-      </div>
-      <div class="column"
-           *ngFor="let city of citiesThirdPart">
-        <a class="row" href="/">{{ city.cityName }}</a>
-      </div>
-      <div class="column"
-           *ngFor="let city of citiesFourthPart">
+           *ngFor="let city of popularDestinations">
         <a class="row" href="/">{{ city.cityName }}</a>
       </div>
     </div>
@@ -33,32 +21,18 @@
 
   <div class="proposal">
     <span class="material-icons">
-        pin_drop
+        language
     </span>
     <h1>
       Popular routes
     </h1>
 
-    <p>Check out other popular flight routes found by fellow travellers.</p>
+    <p>Check out busiest international flight routes.</p>
 
     <div class="row">
-      <div class="col">
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-      </div>
-      <div class="col">
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
-        <a class="row">a</a>
+      <div class="column_routes"
+           *ngFor="let route of popularRoutes">
+        <a class="row" href="/">{{ route.routeName }}</a>
       </div>
     </div>
   </div>
