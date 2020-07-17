@@ -9,7 +9,7 @@
            placeholder="From"
            name="city">
     <mat-autocomplete #autoFrom="matAutocomplete" [panelWidth]="300" >
-      <mat-option *ngFor="let point of filteredPointsFrom"
+      <mat-option *ngFor="let point of filteredPointsFrom | slice:0:15"
                   [value]="point.pointName"
                   (onSelectionChange)="getIataCodeFromSelectedPointFrom($event, point)">
 
@@ -49,7 +49,7 @@
            placeholder="To?"
            name="city">
     <mat-autocomplete #autoTo="matAutocomplete" [panelWidth]="300">
-      <mat-option *ngFor="let point of filteredPointsTo"
+      <mat-option *ngFor="let point of filteredPointsTo | slice:0:15"
                   [value]="point.pointName"
                   (onSelectionChange)="getIataCodeFromSelectedPointTo($event, point)">
 
