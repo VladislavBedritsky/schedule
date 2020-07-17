@@ -73,6 +73,10 @@ button i:hover {
   color: rgb(74,152,97) !important; /* green */
 }
 
+::ng-deep .mat-form-field-appearance-outline .mat-datepicker-toggle {
+  color: rgb(43,48,60); /* black */
+}
+
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
     color: #E9E3E5 !important; /* light gray */
 }

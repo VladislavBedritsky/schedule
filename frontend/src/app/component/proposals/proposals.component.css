@@ -57,6 +57,7 @@
     flex: 50%;
 }
 
+
 @media (max-width: 800px) {
 
 
@@ -84,5 +85,11 @@
 .proposal a {
   font-size: 1.0em;
 }
+
+.proposal .column_routes {
+    flex: 49%;
+    margin-left:2px;
+}
+
 
 }

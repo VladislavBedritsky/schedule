@@ -75,13 +75,14 @@
   </mat-form-field>
 
   <mat-form-field class="calendar" appearance="outline">
-    <input matInput [min]="minDate"
+    <input matInput
+           [min]="minDate"
            [matDatepicker]="picker"
            [formControl]="date"
            [errorStateMatcher]="matcher"
            placeholder="Depart">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker ></mat-datepicker>
+    <mat-datepicker #picker></mat-datepicker>
     <mat-error *ngIf="date.hasError('required')">
       PICK A DATE
     </mat-error>

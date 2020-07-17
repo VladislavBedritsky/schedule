@@ -1,19 +1,13 @@
-# _SCHEDULE APP_
+# _xfarm.Avia_
 
-### app in progress ...
+### App in progress ...
 
-## Technologies: 
+  * Front
+  
+https://avia.xfarm.xyz
 
-* Backend:
-
-         Spring MVC
-* Frontend:
-
-         Angular 9 
-* DB: 
-         
-         MongoDB
-* Other:
-
-         AWS, Docker, CI/CD(Jenkins, Artifactory, Sonar, Tomcat)         
+  * Back
+  
+https://tomcat.xfarm.xyz/avia/api/cities
+     
         
