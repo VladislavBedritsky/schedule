@@ -42,11 +42,21 @@ app-proposals {
   height: auto;
 }
 
+app-about {
+  width: 100%;
+  height: auto;
+}
+
 .info-content {
   width: 100%;
   height: 100%;
   background-color: blue;
 }
+
+
+
+
+
 
 @media (max-width: 835px) {
   .search-content #title {
