@@ -1,14 +1,14 @@
 version: "3.3"
 services:
 
-  frontend:
+  avia:
     build:
       context: ./frontend/
       dockerfile: Dockerfile
-    image: frontend
+    image: avia
     ports:
       - 4203:4200
-    container_name: frontend
+    container_name: avia
     restart: on-failure
     command: ng serve --host 0.0.0.0 --port 4200 --disable-host-check
 
