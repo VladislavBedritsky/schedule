@@ -1,0 +1,68 @@
+.search {
+  width: 100%;
+  background-color:  rgb(254,211,2); /* yellow */
+}
+
+.main {
+  width: 100%;
+  height: auto;
+  background-color: rgb(245,246,247); /* light gray  */
+  margin: 0;
+  padding-bottom: 30px;
+}
+
+.properties {
+  height: 100px;
+  flex: 25%;
+  border: 1px dotted red;
+}
+
+.tickets {
+  height: auto;
+  flex: 50%;
+  border: 1px dotted blue;
+}
+
+.tickets .ticket {
+  height: 200px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(186,182,186,1);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(186,182,186,1);
+  box-shadow: 0px 2px 3px 0px rgba(186,182,186,1);
+
+  background-color: white;
+  border-radius: 3px;
+}
+
+
+.advertisement {
+  height: 100px;
+  flex: 25%;
+  border: 1px dotted red;
+}
+
+app-footer {
+  margin-top: 30px;
+}
+
+
+
+/* media queries */
+@media (max-width: 700px) {
+  .properties {
+    visibility:hidden;
+    position: absolute;
+  }
+
+  .tickets {
+    flex: 100%;
+  }
+
+  .advertisement {
+    flex: 100%;
+  }
+}

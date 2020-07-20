@@ -15,7 +15,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { MapComponent } from './component/map/map.component';
 import { ProposalsComponent } from './component/proposals/proposals.component';
 import { AboutComponent } from './component/about/about.component';
-import { FlightsComponent } from './component/flights/flights.component';
+import { FlightsComponent } from './component/flight/flights/flights.component';
 
 
 @NgModule({
