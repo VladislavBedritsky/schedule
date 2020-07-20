@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { City } from 'src/app/common/city';
 import { CityService } from 'src/app/service/city.service'
@@ -38,7 +39,8 @@ export class SearchFromToComponent implements OnInit {
   selectedPointToIataCode: string;
 
   constructor(private _cityService: CityService,
-              private _airportService: AirportService) { }
+              private _airportService: AirportService,
+              private _router: Router) { }
 
   ngOnInit(): void {
     this.getCitiesAndSetPoints();
@@ -138,5 +140,9 @@ export class SearchFromToComponent implements OnInit {
     this.arrivalForm.setValue(from)
     this.selectedPointToIataCode = iataCodefrom
 
+  }
+
+  navigateToFlights() {
+    this._router.navigateByUrl('/flights')
   }
 }
