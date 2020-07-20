@@ -58,7 +58,7 @@ public class FlightController {
     @GetMapping("/station")
     public List<StationFlight> getFlightsByStationAndDateAndEvent (
             @RequestParam String iataCode,
-            @RequestParam(required = false) String date,
+            @RequestParam String date,
             @RequestParam String event) {
 
         return flightService.getFlightsByStationIataCodeAndDateAndEvent(

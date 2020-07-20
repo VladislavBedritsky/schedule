@@ -1,7 +1,5 @@
 package org.kek.backend.service.impl;
 
-import org.kek.backend.comparator.SortFlightsByDate;
-import org.kek.backend.comparator.SortStationFlightsByDate;
 import org.kek.backend.service.CityService;
 import org.kek.backend.service.FlightService;
 import org.kek.data.dto.Flight;
@@ -10,6 +8,7 @@ import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,7 @@ public class FlightServiceImpl implements FlightService {
         return yandexApiService
                 .getFlightsBetweenTwoPointsByDate(departureIataCode, arrivalIataCode, date)
                 .stream()
-                .sorted(new SortFlightsByDate())
+                .sorted(Comparator.comparing(Flight::getStartDate))
                 .collect(Collectors.toList());
     }
 
@@ -44,10 +43,7 @@ public class FlightServiceImpl implements FlightService {
             String stationIataCode, String date, String event) {
 
         return yandexApiService
-                .getFlightsByStationIataCodeAndDateAndEvent(stationIataCode, date, event)
-                .stream()
-                .sorted(new SortStationFlightsByDate())
-                .collect(Collectors.toList());
+                .getFlightsByStationIataCodeAndDateAndEvent(stationIataCode, date, event);
     }
 
 }

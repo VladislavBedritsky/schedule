@@ -75,13 +75,6 @@ public class FlightControllerTest {
     @Test
     public void givenFlightsByStationAndDateAndEventURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/flights/station?iataCode=&event="))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
-
-        Mockito.verify(flightService, Mockito.times(1))
-                .getFlightsByStationIataCodeAndDateAndEvent(isA(String.class), any(), isA(String.class));
-
         this.mockMvc.perform(get("/flights/station?iataCode=&event=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
