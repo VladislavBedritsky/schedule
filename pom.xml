@@ -32,7 +32,7 @@
         <servlet.version>3.1.0</servlet.version>
         <env.camel.version>2.25.0</env.camel.version>
         <activemq-camel.version>5.15.7</activemq-camel.version>
-        <org.apache.logging.log4j.log4j-api.version>2.12.1</org.apache.logging.log4j.log4j-api.version>
+        <org.apache.logging.log4j.log4j-api.version>2.13.3</org.apache.logging.log4j.log4j-api.version>
         <gson.version>2.2.2</gson.version>
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
