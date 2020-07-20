@@ -46,7 +46,7 @@
 .about .info {
   color: rgb(85,89,100); /* gray */
   font-weight: 600;
-  margin-left: 2%;
+  padding-right: 2%;
 }
 
 .help {
@@ -139,7 +139,6 @@
 .about .info {
   color: rgb(85,89,100); /* gray */
   font-weight: 600;
-  margin-left: 0;
 }
 
 }
