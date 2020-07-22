@@ -18,6 +18,7 @@
     <bean id="dataService" class="org.kek.backend.service.impl.DataServiceImpl" />
     <bean id="urlService" class="org.kek.data.service.impl.UrlServiceImpl" />
     <bean id="aviasalesService" class="org.kek.data.service.impl.AviasalesServiceImpl" />
+    <bean id="ticketService" class="org.kek.backend.service.impl.TicketServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 

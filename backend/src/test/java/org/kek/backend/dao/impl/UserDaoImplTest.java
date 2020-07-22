@@ -1,10 +1,15 @@
 package org.kek.backend.dao.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kek.backend.dao.UserDao;
 import org.kek.backend.model.User;
+import org.kek.backend.service.FlightService;
+import org.kek.data.model.aviasales.FlightData;
+import org.kek.data.service.AviasalesService;
+import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -14,7 +19,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -31,6 +38,11 @@ public class UserDaoImplTest {
 
     private User user;
     private User userFromDb;
+
+    @Autowired
+    private AviasalesService aviasalesService;
+    @Autowired
+    private FlightService flightService;
 
     @Before
     public void setUp() {
@@ -87,4 +99,10 @@ public class UserDaoImplTest {
         assertNotEquals(sizeOfListBeforeRemove, userDao.findAll().size());
     }
 
+    @Test
+    public void test() {
+
+        flightService.getDirectFlightsBetweenTwoStationsByDate("LHR","JFK","2020-07-25", "USD")
+        .forEach(System.out::println);
+    }
 }

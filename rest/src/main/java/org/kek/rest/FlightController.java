@@ -35,14 +35,18 @@ public class FlightController {
      * @param date Request date
      * @return list of flights
      */
-    @GetMapping
-    public List<Flight> getFlightsBetweenTwoStationsByDate (
+    @GetMapping("/direct")
+    public List<Flight> getDirectFlightsBetweenTwoStationsByDate (
             @RequestParam String fromIataCode,
             @RequestParam String toIataCode,
-            @RequestParam(required = false) String date) {
+            @RequestParam(required = false) String date,
+            @RequestParam(required = false) String currency) {
 
-        return flightService.getFlightsBetweenTwoPointsByDate(
-                fromIataCode, toIataCode, date);
+        if (currency == null) {
+            currency = "USD";
+        }
+        return flightService.getDirectFlightsBetweenTwoStationsByDate(
+                fromIataCode, toIataCode, date, currency);
 
     }
 

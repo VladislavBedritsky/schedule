@@ -80,4 +80,6 @@ public interface CityService {
      * @return name of city
      */
     String getCityNameByCityIataCode(String cityIataCode);
+
+    String getCityIataCodeByPointIataCode(String iataCode);
 }

@@ -27,7 +27,8 @@ public class FlightServiceImplTest {
 
     @Test
     public void getFlightsBetweenTwoPointsByDate() {
-        flightService.getFlightsBetweenTwoPointsByDate("from","to","date");
+        flightService.getDirectFlightsBetweenTwoStationsByDate(
+                "from","to","date", "currency");
         Mockito.verify(yandexApiService, Mockito.times(1))
                 .getFlightsBetweenTwoPointsByDate(
                         isA(String.class), isA(String.class), isA(String.class)

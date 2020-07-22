@@ -57,19 +57,26 @@ public class FlightControllerTest {
     @Test
     public void givenFlightsBetweenTwoStationsByDateURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/flights?fromIataCode=&toIataCode="))
+        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getFlightsBetweenTwoPointsByDate(isA(String.class), isA(String.class), any());
+                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), any(), any());
 
-        this.mockMvc.perform(get("/flights?fromIataCode=&toIataCode=&date="))
+        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getFlightsBetweenTwoPointsByDate(isA(String.class), isA(String.class), isA(String.class));
+                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), isA(String.class),any());
+
+        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode=&date=&currency="))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
+
+        Mockito.verify(flightService, Mockito.times(1))
+                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), isA(String.class), isA(String.class));
     }
 
     @Test
