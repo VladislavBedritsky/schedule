@@ -4,6 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * This class provides information about flight from aviasales API response
+ *
+ * @version 1.01 22 Jul 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 public class FlightData {
 
     private Long price;

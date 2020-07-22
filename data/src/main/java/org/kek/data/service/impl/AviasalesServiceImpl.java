@@ -1,59 +1,108 @@
 package org.kek.data.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.kek.data.model.aviasales.FlightData;
+import org.kek.data.service.AviasalesService;
+import org.kek.data.service.UrlService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ *
+ * AviasalesService implementation.
+ *
+ * @version 1.01 22 Jul 2020
+ * @author Uladzislau Biadrytski
+ *
+ */
 @Service
 @PropertySource("classpath:url.properties")
-public class AviasalesServiceImpl {
+public class AviasalesServiceImpl implements AviasalesService {
+
+    @Autowired
+    private UrlService urlService;
 
     @Value("${url.api.travelpayouts.findFlightsWithCheapPrices}")
     private String findCheapFlightsUrl;
+    @Value("${url.api.travelpayouts.findDirectFlightsWithPrices}")
+    private String findDirectFlightsUrl;
 
-
-    public void getCheapFlightsBetweenTwoPointsAndDate(String origin, String destination, String date) {
-        String json = MessageFormat.format(
+    @Override
+    public Map<String, FlightData> getCheapFlights (
+            String pointOriginIataCode,
+            String pointDestinationIataCode,
+            String date,
+            String currency,
+            String cityDestinationIataCode
+    ) {
+        String url = MessageFormat.format(
                 findCheapFlightsUrl,
-                origin,
-                destination,
-                date);
+                pointOriginIataCode,
+                pointDestinationIataCode,
+                date,
+                currency);
+        String json = urlService.getJsonInTypeStringFromRestUrl(url);
 
-        String jsonFromRestUrl;
+        Map<String, FlightData> result = new HashMap<>();
         try {
-            jsonFromRestUrl = getJsonInTypeStringFromRestUrl(json);
-        } catch (IOException e) {
+            result = parseJsonWithCheapOrDirectFlights(
+                    json, cityDestinationIataCode);
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
-
+        return result;
     }
 
-    public String getJsonInTypeStringFromRestUrl(String url) throws IOException {
-        URL urlObject = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
+    @Override
+    public Map<String, FlightData> getDirectFlights (
+            String pointOriginIataCode,
+            String pointDestinationIataCode,
+            String date,
+            String currency,
+            String cityDestinationIataCode
+    ) {
+        String url = MessageFormat.format(
+                findDirectFlightsUrl,
+                pointOriginIataCode,
+                pointDestinationIataCode,
+                date,
+                currency);
+        String json = urlService.getJsonInTypeStringFromRestUrl(url);
 
-        BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(
-                        connection.getInputStream()
-                )
-        );
-
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = bufferedReader.readLine()) != null) {
-            response.append(inputLine);
+        Map<String, FlightData> result = new HashMap<>();
+        try {
+            result = parseJsonWithCheapOrDirectFlights(
+                    json, cityDestinationIataCode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
-        bufferedReader.close();
+        return result;
+    }
 
-        return response.toString();
+    @Override
+    public Map<String, FlightData> parseJsonWithCheapOrDirectFlights(
+            String json,
+            String cityDestinationIataCode)
+            throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(json);
+
+        String cityJsonNode = jsonNode
+                .path("data")
+                .path(cityDestinationIataCode)
+                .toString();
+        jsonNode = objectMapper.readTree(cityJsonNode);
+
+        return objectMapper
+                .convertValue(jsonNode, new TypeReference<HashMap<String, FlightData>>(){});
     }
 }

@@ -16,6 +16,8 @@
     <bean id="yandexApiService" class="org.kek.data.service.impl.YandexApiServiceImpl" />
     <bean id="converterService" class="org.kek.backend.service.impl.ConverterServiceImpl" />
     <bean id="dataService" class="org.kek.backend.service.impl.DataServiceImpl" />
+    <bean id="urlService" class="org.kek.data.service.impl.UrlServiceImpl" />
+    <bean id="aviasalesService" class="org.kek.data.service.impl.AviasalesServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
