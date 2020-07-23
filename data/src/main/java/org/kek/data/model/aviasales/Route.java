@@ -1,6 +1,7 @@
 package org.kek.data.model.aviasales;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +15,8 @@ import java.util.Objects;
  */
 public class Route {
 
+    @Id
+    private String id;
     @JsonProperty("airline_iata")
     private String airlineIata;
     @JsonProperty("airline_icao")
@@ -35,6 +38,14 @@ public class Route {
      * Plane iata codes
      */
     private List<String> planes;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getAirlineIata() {
         return airlineIata;
@@ -113,7 +124,8 @@ public class Route {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Route route = (Route) o;
-        return Objects.equals(airlineIata, route.airlineIata) &&
+        return Objects.equals(id, route.id) &&
+                Objects.equals(airlineIata, route.airlineIata) &&
                 Objects.equals(airlineIcao, route.airlineIcao) &&
                 Objects.equals(departureAirportIata, route.departureAirportIata) &&
                 Objects.equals(departureAirportIcao, route.departureAirportIcao) &&
@@ -126,13 +138,14 @@ public class Route {
 
     @Override
     public int hashCode() {
-        return Objects.hash(airlineIata, airlineIcao, departureAirportIata, departureAirportIcao, arrivalAirportIata, arrivalAirportIcao, codeshare, transfers, planes);
+        return Objects.hash(id, airlineIata, airlineIcao, departureAirportIata, departureAirportIcao, arrivalAirportIata, arrivalAirportIcao, codeshare, transfers, planes);
     }
 
     @Override
     public String toString() {
         return "Route{" +
-                "airlineIata='" + airlineIata + '\'' +
+                "id='" + id + '\'' +
+                ", airlineIata='" + airlineIata + '\'' +
                 ", airlineIcao='" + airlineIcao + '\'' +
                 ", departureAirportIata='" + departureAirportIata + '\'' +
                 ", departureAirportIcao='" + departureAirportIcao + '\'' +

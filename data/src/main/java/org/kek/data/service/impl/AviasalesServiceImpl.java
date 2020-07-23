@@ -5,16 +5,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kek.data.model.aviasales.FlightData;
+import org.kek.data.model.aviasales.Route;
 import org.kek.data.service.AviasalesService;
 import org.kek.data.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -30,11 +32,15 @@ public class AviasalesServiceImpl implements AviasalesService {
 
     @Autowired
     private UrlService urlService;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Value("${url.api.travelpayouts.findFlightsWithCheapPrices}")
     private String findCheapFlightsUrl;
     @Value("${url.api.travelpayouts.findDirectFlightsWithPrices}")
     private String findDirectFlightsUrl;
+    @Value("${url.api.travelpayouts.findAllRoutes}")
+    private String findAllRoutesUrl;
 
     @Override
     public Map<String, FlightData> getCheapFlights (
@@ -104,5 +110,16 @@ public class AviasalesServiceImpl implements AviasalesService {
 
         return objectMapper
                 .convertValue(jsonNode, new TypeReference<HashMap<String, FlightData>>(){});
+    }
+
+    @Override
+    public List<Route> findAll() {
+        ResponseEntity<Route[]> responseEntity =
+                restTemplate.getForEntity(
+                        findAllRoutesUrl,
+                        Route[].class
+                );
+
+        return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
     }
 }

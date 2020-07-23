@@ -49,6 +49,8 @@
     <bean id="urlService" class="org.kek.data.service.impl.UrlServiceImpl" />
     <bean id="aviasalesService" class="org.kek.data.service.impl.AviasalesServiceImpl" />
     <bean id="ticketService" class="org.kek.backend.service.impl.TicketServiceImpl" />
+    <bean id="routeDao" class="org.kek.backend.dao.impl.RouteDaoImpl" />
+    <bean id="routeService" class="org.kek.backend.service.impl.RouteServiceImpl" />
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 

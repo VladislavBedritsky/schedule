@@ -2,7 +2,9 @@ package org.kek.data.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.kek.data.model.aviasales.FlightData;
+import org.kek.data.model.aviasales.Route;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,6 +65,12 @@ public interface AviasalesService {
      */
     Map<String, FlightData> parseJsonWithCheapOrDirectFlights(
             String json,
-            String cityDestinationIataCode)
-            throws JsonProcessingException;
+            String cityDestinationIataCode) throws JsonProcessingException;
+
+    /**
+     * Get all routes from aviasales api
+     *
+     * @return list of routes
+     */
+    List<Route> findAll();
 }
