@@ -29,12 +29,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath*:test-rest.xml"})
-public class FlightControllerTest {
+public class YandexFlightControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
     @InjectMocks
-    private FlightController flightController;
+    private YandexFlightController yandexFlightController;
     @Mock
     private FlightService flightService;
     private MockMvc mockMvc;
@@ -42,7 +42,7 @@ public class FlightControllerTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.flightController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.yandexFlightController).build();
     }
 
     @Test
@@ -51,42 +51,44 @@ public class FlightControllerTest {
 
         Assert.assertNotNull(servletContext);
         Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(wac.getBean("flightController"));
+        Assert.assertNotNull(wac.getBean("yandexFlightController"));
     }
 
     @Test
     public void givenFlightsBetweenTwoStationsByDateURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode="))
+        this.mockMvc.perform(get("/yandex/flights/direct?fromIataCode=&toIataCode="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), any(), any());
+                .getDirectFlightsYandexAndAviasalesApi(isA(String.class), isA(String.class), any(), any());
 
-        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode=&date="))
+        this.mockMvc.perform(get("/yandex/flights/direct?fromIataCode=&toIataCode=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), isA(String.class),any());
+                .getDirectFlightsYandexAndAviasalesApi(isA(String.class), isA(String.class), isA(String.class),any());
 
-        this.mockMvc.perform(get("/flights/direct?fromIataCode=&toIataCode=&date=&currency="))
+        this.mockMvc.perform(get("/yandex/flights/direct?fromIataCode=&toIataCode=&date=&currency="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getDirectFlightsBetweenTwoStationsByDate(isA(String.class), isA(String.class), isA(String.class), isA(String.class));
+                .getDirectFlightsYandexAndAviasalesApi(
+                        isA(String.class), isA(String.class), isA(String.class), isA(String.class));
     }
 
     @Test
     public void givenFlightsByStationAndDateAndEventURI_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/flights/station?iataCode=&event=&date="))
+        this.mockMvc.perform(get("/yandex/flights/station?iataCode=&event=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getFlightsByStationIataCodeAndDateAndEvent(isA(String.class), isA(String.class), isA(String.class));
+                .getFlightsByStationIataCodeAndDateAndEvent(
+                        isA(String.class), isA(String.class), isA(String.class));
     }
 }

@@ -14,15 +14,15 @@ import java.util.List;
 
 /**
  *
- * Flight REST controller
+ * Flight REST controller which produce data from Yandex API
  *
  * @version 1.01 26 May 2020
  * @author Uladzislau Biadrytski
  *
  */
 @RestController
-@RequestMapping(path = "/flights", produces = {MediaType.APPLICATION_JSON_VALUE})
-public class FlightController {
+@RequestMapping(path = "/yandex/flights", produces = {MediaType.APPLICATION_JSON_VALUE})
+public class YandexFlightController {
 
     @Autowired
     private FlightService flightService;
@@ -42,10 +42,7 @@ public class FlightController {
             @RequestParam(required = false) String date,
             @RequestParam(required = false) String currency) {
 
-        if (currency == null) {
-            currency = "USD";
-        }
-        return flightService.getDirectFlightsBetweenTwoStationsByDate(
+        return flightService.getDirectFlightsYandexAndAviasalesApi(
                 fromIataCode, toIataCode, date, currency);
 
     }

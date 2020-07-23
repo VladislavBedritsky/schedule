@@ -35,8 +35,12 @@ public class FlightServiceImpl implements FlightService {
     private AviasalesService aviasalesService;
 
     @Override
-    public List<Flight> getDirectFlightsBetweenTwoStationsByDate(
+    public List<Flight> getDirectFlightsYandexAndAviasalesApi(
             String departureIataCode, String arrivalIataCode, String date, String currency) {
+
+        if (currency == null) {
+            currency = "USD";
+        }
 
         List<Flight> flights = yandexApiService
                 .getFlightsBetweenTwoPointsByDate(departureIataCode, arrivalIataCode, date);

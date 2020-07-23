@@ -29,7 +29,7 @@ public interface FlightService {
      *
      * @return list of flights
      */
-    List<Flight> getDirectFlightsBetweenTwoStationsByDate(
+    List<Flight> getDirectFlightsYandexAndAviasalesApi(
             String departureIataCode, String arrivalIataCode, String date, String currency);
 
     /**

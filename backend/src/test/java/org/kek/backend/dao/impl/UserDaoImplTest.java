@@ -101,8 +101,8 @@ public class UserDaoImplTest {
 
     @Test
     public void test() {
-
-        flightService.getDirectFlightsBetweenTwoStationsByDate("LHR","JFK","2020-07-25", "USD")
-        .forEach(System.out::println);
+//
+//        flightService.getDirectFlightsBetweenTwoStationsByDate("LHR","JFK","2020-07-25", "USD")
+//        .forEach(System.out::println);
     }
 }

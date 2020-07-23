@@ -100,14 +100,6 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public String getCityIataCodeByPointIataCode(String iataCode) {
-
-//        for (Airport airport : airportService.findAll()) {
-//            if (airport.getCityIataCode().equalsIgnoreCase(iataCode) ||
-//                    airport.getIataCode().equalsIgnoreCase(iataCode)) {
-//                return airport.getCityIataCode();
-//            }
-//        }
-
         return airportService.findAll()
                 .stream()
                 .filter(airport ->
