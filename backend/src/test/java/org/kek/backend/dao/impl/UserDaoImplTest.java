@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kek.backend.dao.UserDao;
+import org.kek.backend.enums.Currency;
 import org.kek.backend.model.User;
+import org.kek.backend.service.CityService;
 import org.kek.backend.service.FlightService;
 import org.kek.data.model.aviasales.FlightData;
 import org.kek.data.service.AviasalesService;
@@ -43,6 +45,8 @@ public class UserDaoImplTest {
     private AviasalesService aviasalesService;
     @Autowired
     private FlightService flightService;
+    @Autowired
+    private CityService cityService;
 
     @Before
     public void setUp() {
@@ -101,8 +105,19 @@ public class UserDaoImplTest {
 
     @Test
     public void test() {
-//
-//        flightService.getDirectFlightsBetweenTwoStationsByDate("LHR","JFK","2020-07-25", "USD")
-//        .forEach(System.out::println);
+
+        String departure = "DUB";
+        String arrival = "LHR";
+        String date = "2020-07-25";
+        String currency = Currency.USD.toString();
+
+        String cityIata = cityService.getCityIataCodeByPointIataCode(arrival);
+
+        System.out.println(aviasalesService.getDirectFlights(departure, arrival, date, currency, cityIata));
+
+        flightService
+                .getDirectFlightsYandexAndAviasalesApi(
+                        departure,arrival,date, Currency.USD)
+                .forEach(System.out::println);
     }
 }

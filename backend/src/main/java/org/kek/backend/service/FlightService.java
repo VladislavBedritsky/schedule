@@ -1,8 +1,8 @@
 package org.kek.backend.service;
 
+import org.kek.backend.enums.Currency;
 import org.kek.data.dto.Flight;
 import org.kek.data.dto.StationFlight;
-import org.kek.data.dto.Ticket;
 import org.kek.data.model.aviasales.FlightData;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public interface FlightService {
      * @return list of flights
      */
     List<Flight> getDirectFlightsYandexAndAviasalesApi(
-            String departureIataCode, String arrivalIataCode, String date, String currency);
+            String departureIataCode, String arrivalIataCode, String date, Currency currency);
 
     /**
      * Get all flights by station and date and event.
@@ -46,12 +46,17 @@ public interface FlightService {
             String stationIataCode, String date, String event);
 
 
+    /**
+     * Checking if tickets list in Flight.class is empty then
+     * set tickets with aviasales api data
+     *
+     * @param flights List of flights from yandex API
+     * @param currency Currency
+     * @param map Map with aviasales API flight data
+     */
     void checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData(
             List<Flight> flights,
-            String departureIataCode,
-            String arrivalIataCode,
-            String date,
-            String currency,
+            Currency currency,
             Map<String, FlightData> map
     );
 

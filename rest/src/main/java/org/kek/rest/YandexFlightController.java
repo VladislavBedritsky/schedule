@@ -1,5 +1,6 @@
 package org.kek.rest;
 
+import org.kek.backend.enums.Currency;
 import org.kek.backend.service.FlightService;
 import org.kek.data.dto.Flight;
 import org.kek.data.dto.StationFlight;
@@ -42,8 +43,12 @@ public class YandexFlightController {
             @RequestParam(required = false) String date,
             @RequestParam(required = false) String currency) {
 
+        Currency finalCurrency = currency == null || currency.isEmpty()
+                ? Currency.USD : Currency.valueOf(currency);
+
         return flightService.getDirectFlightsYandexAndAviasalesApi(
-                fromIataCode, toIataCode, date, currency);
+                fromIataCode, toIataCode, date, finalCurrency
+                );
 
     }
 

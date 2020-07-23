@@ -3,6 +3,7 @@ package org.kek.backend.service.impl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kek.backend.enums.Currency;
 import org.kek.backend.service.CityService;
 import org.kek.backend.service.FlightService;
 import org.kek.backend.service.TicketService;
@@ -42,7 +43,7 @@ public class FlightServiceImplTest {
     private final String DEPARTURE_IATA = "FROM";
     private final String ARRIVAL_IATA = "TO";
     private final String DATE = "2020-07-25";
-    private final String CURRENCY = "USD";
+    private final Currency CURRENCY = Currency.USD;
     private Flight flight = new Flight();
     private Ticket ticket = new Ticket();
     private String cityDestinationIataCode = "cityIata";
@@ -76,13 +77,13 @@ public class FlightServiceImplTest {
 
         Mockito.when(aviasalesService.getDirectFlights(
                 DEPARTURE_IATA, ARRIVAL_IATA,
-                DATE, CURRENCY, cityDestinationIataCode))
+                DATE, CURRENCY.toString(), cityDestinationIataCode))
                 .thenReturn(map);
         Assert.assertEquals(
                 1,
                 aviasalesService.getDirectFlights(
                         DEPARTURE_IATA, ARRIVAL_IATA,
-                        DATE, CURRENCY, cityDestinationIataCode)
+                        DATE, CURRENCY.toString(), cityDestinationIataCode)
                         .size()
         );
 
@@ -97,7 +98,7 @@ public class FlightServiceImplTest {
         Mockito.verify(aviasalesService, Mockito.times(2))
                 .getDirectFlights(
                         DEPARTURE_IATA, ARRIVAL_IATA,
-                        DATE, CURRENCY, cityDestinationIataCode);
+                        DATE, CURRENCY.toString(), cityDestinationIataCode);
         Mockito.verify(ticketService, Mockito.times(1))
                 .getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(
                         flight, map, CURRENCY);
@@ -117,7 +118,7 @@ public class FlightServiceImplTest {
     public void checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData() {
         flightService
                 .checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData(
-                        list, DEPARTURE_IATA, ARRIVAL_IATA, DATE, CURRENCY, map
+                        list, CURRENCY, map
                 );
         Mockito.verify(ticketService, Mockito.times(1))
                 .getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(

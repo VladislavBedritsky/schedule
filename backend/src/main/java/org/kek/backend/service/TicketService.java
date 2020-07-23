@@ -1,5 +1,6 @@
 package org.kek.backend.service;
 
+import org.kek.backend.enums.Currency;
 import org.kek.data.dto.Flight;
 import org.kek.data.dto.Ticket;
 import org.kek.data.model.aviasales.FlightData;
@@ -18,8 +19,8 @@ import java.util.Map;
 public interface TicketService {
 
     List<Ticket> getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(
-            Flight flight, Map<String, FlightData> map, String currency);
+            Flight flight, Map<String, FlightData> map, Currency currency);
 
-    Ticket getTicketWithCurrencyAndPriceSet(String id, String currency, Long price);
+    Ticket getTicketWithCurrencyAndPriceSet(String id, Currency currency, Long price);
 
 }

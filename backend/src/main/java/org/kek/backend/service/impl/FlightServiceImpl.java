@@ -1,5 +1,6 @@
 package org.kek.backend.service.impl;
 
+import org.kek.backend.enums.Currency;
 import org.kek.backend.service.CityService;
 import org.kek.backend.service.FlightService;
 import org.kek.backend.service.TicketService;
@@ -36,10 +37,10 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public List<Flight> getDirectFlightsYandexAndAviasalesApi(
-            String departureIataCode, String arrivalIataCode, String date, String currency) {
+            String departureIataCode, String arrivalIataCode, String date, Currency currency) {
 
         if (currency == null) {
-            currency = "USD";
+            currency = Currency.USD;
         }
 
         List<Flight> flights = yandexApiService
@@ -53,13 +54,14 @@ public class FlightServiceImpl implements FlightService {
                         departureIataCode,
                         arrivalIataCode,
                         date,
-                        currency,
+                        currency.toString(),
                         cityDestinationIataCode
                 );
 
-        checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData(
-                flights, departureIataCode, arrivalIataCode,
-                date, currency, directFlightsFromAviasalesApi);
+        if (directFlightsFromAviasalesApi != null) {
+            checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData(
+                    flights, currency, directFlightsFromAviasalesApi);
+        }
 
         return flights;
     }
@@ -75,10 +77,7 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public void checkIfFlightTicketsIsEmptyThenFillItWithAviasalesData(
             List<Flight> flights,
-            String departureIataCode,
-            String arrivalIataCode,
-            String date,
-            String currency,
+            Currency currency,
             Map<String, FlightData> map) {
 
         flights.stream()

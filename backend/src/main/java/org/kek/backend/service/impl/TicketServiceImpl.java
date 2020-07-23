@@ -1,5 +1,6 @@
 package org.kek.backend.service.impl;
 
+import org.kek.backend.enums.Currency;
 import org.kek.backend.service.TicketService;
 import org.kek.data.dto.Flight;
 import org.kek.data.dto.Ticket;
@@ -22,7 +23,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(
-            Flight flight, Map<String, FlightData> map, String currency) {
+            Flight flight, Map<String, FlightData> map, Currency currency) {
 
         List<Ticket> tickets = new ArrayList<>();
 
@@ -53,10 +54,10 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket getTicketWithCurrencyAndPriceSet(String id, String currency, Long price) {
+    public Ticket getTicketWithCurrencyAndPriceSet(String id, Currency currency, Long price) {
         Ticket ticket = new Ticket();
         ticket.setId(id);
-        ticket.setCurrency(currency);
+        ticket.setCurrency(currency.toString());
         ticket.setWhole(price);
         return ticket;
     }

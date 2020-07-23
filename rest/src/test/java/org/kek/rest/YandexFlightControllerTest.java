@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kek.backend.enums.Currency;
 import org.kek.backend.service.FlightService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -75,9 +76,9 @@ public class YandexFlightControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
-        Mockito.verify(flightService, Mockito.times(1))
+        Mockito.verify(flightService, Mockito.times(2))
                 .getDirectFlightsYandexAndAviasalesApi(
-                        isA(String.class), isA(String.class), isA(String.class), isA(String.class));
+                        isA(String.class), isA(String.class), isA(String.class), isA(Currency.class));
     }
 
     @Test
