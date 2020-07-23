@@ -18,9 +18,26 @@ import java.util.Map;
  */
 public interface TicketService {
 
+    /**
+     * Get list of tickets and set them in case of thread numbers from yandex
+     * and aviasales api are equal
+     *
+     * @param flight Flight data from yandex api
+     * @param map Map with aviasales flight data
+     * @param currency Currency
+     * @return list of tickets
+     */
     List<Ticket> getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(
             Flight flight, Map<String, FlightData> map, Currency currency);
 
-    Ticket getTicketWithCurrencyAndPriceSet(String id, Currency currency, Long price);
+    /**
+     * Get ticket with set id, currency and price
+     *
+     * @param id Ticket id
+     * @param currency Ticket currency
+     * @param price Ticker price
+     * @return ticket
+     */
+    Ticket getTicketWithSetCurrencyAndPrice(String id, Currency currency, Long price);
 
 }

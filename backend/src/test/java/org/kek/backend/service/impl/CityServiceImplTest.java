@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kek.backend.dao.CityDao;
+import org.kek.backend.service.AirportService;
 import org.kek.backend.service.CityService;
 import org.kek.data.dto.City;
 import org.kek.data.service.AviationstackApiService;
@@ -34,6 +35,8 @@ public class CityServiceImplTest {
     private RapidApiService rapidApiService;
     @Mock
     private AviationstackApiService aviationstackApiService;
+    @Mock
+    private AirportService airportService;
 
     public CityServiceImplTest() {
         cityService = new CityServiceImpl();
@@ -164,6 +167,13 @@ public class CityServiceImplTest {
         cityService.getCityNameByCityIataCode("iataCode");
         Mockito.verify(cityDao, Mockito.times(2))
                 .findCityByIataCode(isA(String.class));
+    }
+
+    @Test
+    public void getCityIataCodeByPointIataCode() {
+        cityService.getCityIataCodeByPointIataCode("airportIataCode");
+        Mockito.verify(airportService, Mockito.times(1))
+                .findAll();
     }
 
 }

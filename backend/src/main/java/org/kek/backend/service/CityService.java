@@ -81,5 +81,11 @@ public interface CityService {
      */
     String getCityNameByCityIataCode(String cityIataCode);
 
+    /**
+     * Get city iata code by airport iata code
+     *
+     * @param iataCode Airport or city iata code
+     * @return City iata code
+     */
     String getCityIataCodeByPointIataCode(String iataCode);
 }

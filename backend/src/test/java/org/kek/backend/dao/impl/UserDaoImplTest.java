@@ -1,17 +1,10 @@
 package org.kek.backend.dao.impl;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kek.backend.dao.UserDao;
-import org.kek.backend.enums.Currency;
 import org.kek.backend.model.User;
-import org.kek.backend.service.CityService;
-import org.kek.backend.service.FlightService;
-import org.kek.data.model.aviasales.FlightData;
-import org.kek.data.service.AviasalesService;
-import org.kek.data.service.YandexApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -21,9 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -41,12 +32,6 @@ public class UserDaoImplTest {
     private User user;
     private User userFromDb;
 
-    @Autowired
-    private AviasalesService aviasalesService;
-    @Autowired
-    private FlightService flightService;
-    @Autowired
-    private CityService cityService;
 
     @Before
     public void setUp() {
@@ -103,21 +88,4 @@ public class UserDaoImplTest {
         assertNotEquals(sizeOfListBeforeRemove, userDao.findAll().size());
     }
 
-    @Test
-    public void test() {
-
-        String departure = "DUB";
-        String arrival = "LHR";
-        String date = "2020-07-25";
-        String currency = Currency.USD.toString();
-
-        String cityIata = cityService.getCityIataCodeByPointIataCode(arrival);
-
-        System.out.println(aviasalesService.getDirectFlights(departure, arrival, date, currency, cityIata));
-
-        flightService
-                .getDirectFlightsYandexAndAviasalesApi(
-                        departure,arrival,date, Currency.USD)
-                .forEach(System.out::println);
-    }
 }

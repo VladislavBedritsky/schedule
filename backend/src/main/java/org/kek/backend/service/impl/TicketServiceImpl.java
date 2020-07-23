@@ -44,7 +44,7 @@ public class TicketServiceImpl implements TicketService {
             threadNumber.append(airline).append(" ").append(flightNumber.toString());
 
             if (threadNumber.toString().equalsIgnoreCase(flight.getThreadNumber())) {
-                Ticket ticket = getTicketWithCurrencyAndPriceSet(
+                Ticket ticket = getTicketWithSetCurrencyAndPrice(
                         key, currency, price);
                 tickets.add(ticket);
             }
@@ -54,7 +54,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket getTicketWithCurrencyAndPriceSet(String id, Currency currency, Long price) {
+    public Ticket getTicketWithSetCurrencyAndPrice(String id, Currency currency, Long price) {
         Ticket ticket = new Ticket();
         ticket.setId(id);
         ticket.setCurrency(currency.toString());
