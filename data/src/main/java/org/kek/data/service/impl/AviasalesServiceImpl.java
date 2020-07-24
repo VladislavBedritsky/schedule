@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.kek.data.dto.Flight;
+import org.kek.data.dto.Ticket;
 import org.kek.data.model.aviasales.FlightData;
 import org.kek.data.model.aviasales.Route;
 import org.kek.data.service.AviasalesService;
@@ -41,9 +43,11 @@ public class AviasalesServiceImpl implements AviasalesService {
     private String findDirectFlightsUrl;
     @Value("${url.api.travelpayouts.findAllRoutes}")
     private String findAllRoutesUrl;
+    @Value("${url.api.travelpayouts.carrierLogo}")
+    private String findCarrierLogoUri;
 
     @Override
-    public Map<String, FlightData> getCheapFlights (
+    public Map<String, FlightData> getMapOFCheapFlights (
             String pointOriginIataCode,
             String pointDestinationIataCode,
             String date,
@@ -56,57 +60,53 @@ public class AviasalesServiceImpl implements AviasalesService {
                 pointDestinationIataCode,
                 date,
                 currency);
-        String json = urlService.getJsonInTypeStringFromRestUrl(url);
 
-        Map<String, FlightData> result = new HashMap<>();
-        try {
-            result = parseJsonWithCheapOrDirectFlights(
-                    json, cityDestinationIataCode);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        Map<String, FlightData> map = parseJsonWithCheapOrDirectFlights(url, cityDestinationIataCode);
+        setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
+        return map;
     }
 
     @Override
-    public Map<String, FlightData> getDirectFlights (
+    public Map<String, FlightData> getMapOfDirectFlights (
             String pointOriginIataCode,
             String pointDestinationIataCode,
             String date,
             String currency,
             String cityDestinationIataCode
     ) {
+
         String url = MessageFormat.format(
                 findDirectFlightsUrl,
                 pointOriginIataCode,
                 pointDestinationIataCode,
                 date,
                 currency);
-        String json = urlService.getJsonInTypeStringFromRestUrl(url);
 
-        Map<String, FlightData> result = new HashMap<>();
-        try {
-            result = parseJsonWithCheapOrDirectFlights(
-                    json, cityDestinationIataCode);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        Map<String, FlightData> map = parseJsonWithCheapOrDirectFlights(url, cityDestinationIataCode);
+        setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
+        return map;
     }
 
     @Override
     public Map<String, FlightData> parseJsonWithCheapOrDirectFlights(
-            String json,
-            String cityDestinationIataCode)
-            throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(json);
+            String url,
+            String cityDestinationIataCode) {
 
-        String cityJsonNode = jsonNode
-                .path("data")
-                .path(cityDestinationIataCode)
-                .toString();
-        jsonNode = objectMapper.readTree(cityJsonNode);
+        String json = urlService.getJsonInTypeStringFromRestUrl(url);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = null;
+
+        try {
+            jsonNode = objectMapper.readTree(json);
+            String cityJsonNode = jsonNode
+                    .path("data")
+                    .path(cityDestinationIataCode)
+                    .toString();
+            jsonNode = objectMapper.readTree(cityJsonNode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         return objectMapper
                 .convertValue(jsonNode, new TypeReference<HashMap<String, FlightData>>(){});
@@ -121,5 +121,61 @@ public class AviasalesServiceImpl implements AviasalesService {
                 );
 
         return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+    }
+
+    @Override
+    public String getCarrierLogoUri(String airlineIataCode) {
+        return MessageFormat.format(
+                findCarrierLogoUri, airlineIataCode);
+    }
+
+    @Override
+    public void setMapOfFlightsWithAdditionalData(
+            Map<String, FlightData> map, String originIataCode,
+            String destinationIataCode, String currency) {
+
+        Objects.requireNonNull(map, "Map with FlightData is null");
+
+        for (String key : map.keySet()) {
+            FlightData flightData = map.get(key);
+            flightData.setCurrency(currency);
+            flightData.setOriginIataCode(originIataCode);
+            flightData.setDestinationIataCode(destinationIataCode);
+            flightData.setCarrierLogoUri(getCarrierLogoUri(flightData.getAirline()));
+        }
+    }
+
+    @Override
+    public List<Flight> convertMapOfFlightDataToListOfFlights(
+            Map<String, FlightData> map) {
+        Objects.requireNonNull(map, "Map with FlightData is null");
+
+        ArrayList<Flight> flights = new ArrayList<>();
+
+        for (String key : map.keySet()) {
+            FlightData flightData = map.get(key);
+
+            Flight flight = new Flight();
+            flight.setId(key);
+            flight.setTimeArrival(flightData.getArrivalTime());
+            flight.setFromIataCode(flightData.getOriginIataCode());
+            flight.setThreadNumber(flightData.getAirline()+" "+flightData.getFlightNumber());
+            flight.setCarrierLogoSvg(getCarrierLogoUri(flightData.getAirline()));
+            flight.setDepartureTime(flightData.getDepartureTime());
+            flight.setToIataCode(flightData.getDestinationIataCode());
+
+            List<Ticket> tickets = new ArrayList<>();
+            Ticket ticket = new Ticket();
+            ticket.setCurrency(flightData.getCurrency());
+            ticket.setWhole(flightData.getPrice());
+            ticket.setId(key);
+            tickets.add(ticket);
+
+            flight.setTickets(tickets);
+
+            flights.add(flight);
+        }
+
+        return flights;
     }
 }

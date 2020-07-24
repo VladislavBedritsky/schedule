@@ -50,7 +50,7 @@ public class FlightServiceImpl implements FlightService {
                 cityService.getCityIataCodeByPointIataCode(arrivalIataCode);
 
         Map<String, FlightData> directFlightsFromAviasalesApi =
-                aviasalesService.getDirectFlights(
+                aviasalesService.getMapOfDirectFlights(
                         departureIataCode,
                         arrivalIataCode,
                         date,

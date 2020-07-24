@@ -23,6 +23,10 @@ public class FlightData {
     private String arrivalTime;
     @JsonProperty("expires_at")
     private String expiresTime;
+    private String originIataCode;
+    private String destinationIataCode;
+    private String currency;
+    private String carrierLogoUri;
 
     public Long getPrice() {
         return price;
@@ -72,6 +76,38 @@ public class FlightData {
         this.expiresTime = expiresTime;
     }
 
+    public String getOriginIataCode() {
+        return originIataCode;
+    }
+
+    public void setOriginIataCode(String originIataCode) {
+        this.originIataCode = originIataCode;
+    }
+
+    public String getDestinationIataCode() {
+        return destinationIataCode;
+    }
+
+    public void setDestinationIataCode(String destinationIataCode) {
+        this.destinationIataCode = destinationIataCode;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getCarrierLogoUri() {
+        return carrierLogoUri;
+    }
+
+    public void setCarrierLogoUri(String carrierLogoUri) {
+        this.carrierLogoUri = carrierLogoUri;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,12 +118,16 @@ public class FlightData {
                 Objects.equals(flightNumber, that.flightNumber) &&
                 Objects.equals(departureTime, that.departureTime) &&
                 Objects.equals(arrivalTime, that.arrivalTime) &&
-                Objects.equals(expiresTime, that.expiresTime);
+                Objects.equals(expiresTime, that.expiresTime) &&
+                Objects.equals(originIataCode, that.originIataCode) &&
+                Objects.equals(destinationIataCode, that.destinationIataCode) &&
+                Objects.equals(currency, that.currency) &&
+                Objects.equals(carrierLogoUri, that.carrierLogoUri);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(price, airline, flightNumber, departureTime, arrivalTime, expiresTime);
+        return Objects.hash(price, airline, flightNumber, departureTime, arrivalTime, expiresTime, originIataCode, destinationIataCode, currency, carrierLogoUri);
     }
 
     @Override
@@ -99,6 +139,10 @@ public class FlightData {
                 ", departureTime='" + departureTime + '\'' +
                 ", arrivalTime='" + arrivalTime + '\'' +
                 ", expiresTime='" + expiresTime + '\'' +
+                ", originIataCode='" + originIataCode + '\'' +
+                ", destinationIataCode='" + destinationIataCode + '\'' +
+                ", currency='" + currency + '\'' +
+                ", carrierLogoUri='" + carrierLogoUri + '\'' +
                 '}';
     }
 }

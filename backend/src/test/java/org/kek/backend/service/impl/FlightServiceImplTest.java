@@ -75,13 +75,13 @@ public class FlightServiceImplTest {
                 cityService.getCityIataCodeByPointIataCode(ARRIVAL_IATA)
         );
 
-        Mockito.when(aviasalesService.getDirectFlights(
+        Mockito.when(aviasalesService.getMapOfDirectFlights(
                 DEPARTURE_IATA, ARRIVAL_IATA,
                 DATE, CURRENCY.toString(), cityDestinationIataCode))
                 .thenReturn(map);
         Assert.assertEquals(
                 1,
-                aviasalesService.getDirectFlights(
+                aviasalesService.getMapOfDirectFlights(
                         DEPARTURE_IATA, ARRIVAL_IATA,
                         DATE, CURRENCY.toString(), cityDestinationIataCode)
                         .size()
@@ -96,7 +96,7 @@ public class FlightServiceImplTest {
         Mockito.verify(cityService, Mockito.times(2))
                 .getCityIataCodeByPointIataCode(ARRIVAL_IATA);
         Mockito.verify(aviasalesService, Mockito.times(2))
-                .getDirectFlights(
+                .getMapOfDirectFlights(
                         DEPARTURE_IATA, ARRIVAL_IATA,
                         DATE, CURRENCY.toString(), cityDestinationIataCode);
         Mockito.verify(ticketService, Mockito.times(1))

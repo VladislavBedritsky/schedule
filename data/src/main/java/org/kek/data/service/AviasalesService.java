@@ -1,6 +1,7 @@
 package org.kek.data.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.kek.data.dto.Flight;
 import org.kek.data.model.aviasales.FlightData;
 import org.kek.data.model.aviasales.Route;
 
@@ -27,7 +28,7 @@ public interface AviasalesService {
      * @param cityDestinationIataCode destination city IATA code
      * @return Map with FlightData as a value and string as a key (e.g. '0','1','2', ...).
      */
-    Map<String, FlightData> getCheapFlights(
+    Map<String, FlightData> getMapOFCheapFlights(
             String pointOriginIataCode,
             String pointDestinationIataCode,
             String date,
@@ -45,7 +46,7 @@ public interface AviasalesService {
      * @param cityDestinationIataCode destination city IATA code
      * @return Map with FlightData as a value and string as a key (e.g. '0','1','2', ...).
      */
-    Map<String, FlightData> getDirectFlights (
+    Map<String, FlightData> getMapOfDirectFlights (
             String pointOriginIataCode,
             String pointDestinationIataCode,
             String date,
@@ -73,4 +74,19 @@ public interface AviasalesService {
      * @return list of routes
      */
     List<Route> findAll();
+
+    /**
+     * Get carrier logo uri in type string by airline iata code
+     *
+     * @param airlineIataCode Airline Iata Code
+     * @return carrier logo uri
+     */
+    String getCarrierLogoUri(String airlineIataCode);
+
+    void setMapOfFlightsWithAdditionalData(
+            Map<String, FlightData> map, String originIataCode,
+            String destinationIataCode, String currency);
+
+    List<Flight> convertMapOfFlightDataToListOfFlights(
+            Map<String, FlightData> map);
 }
