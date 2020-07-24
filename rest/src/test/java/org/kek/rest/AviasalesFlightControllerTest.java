@@ -30,12 +30,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath*:test-rest.xml"})
-public class YandexFlightControllerTest {
+public class AviasalesFlightControllerTest {
+
 
     @Autowired
     private WebApplicationContext wac;
     @InjectMocks
-    private YandexFlightController yandexFlightController;
+    private AviasalesFlightController aviasalesFlightController;
     @Mock
     private FlightService flightService;
     private MockMvc mockMvc;
@@ -43,7 +44,7 @@ public class YandexFlightControllerTest {
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(this.yandexFlightController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(this.aviasalesFlightController).build();
     }
 
     @Test
@@ -52,44 +53,48 @@ public class YandexFlightControllerTest {
 
         Assert.assertNotNull(servletContext);
         Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(wac.getBean("yandexFlightController"));
+        Assert.assertNotNull(wac.getBean("aviasalesFlightController"));
     }
 
     @Test
-    public void givenFlightsBetweenTwoStationsByDateURI_whenMockMVC_thenVerifyResponse() throws Exception {
+    public void givenDirectFlightsUri_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/yandex/flights/direct?from=&to="))
+        this.mockMvc.perform(get("/aviasales/flights/direct?from=&to=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getDirectFlightsYandexAndAviasalesApi(isA(String.class), isA(String.class), any(), any());
+                .getDirectFlightsFromAviasalesApi(
+                        isA(String.class), isA(String.class), isA(String.class), any());
 
-        this.mockMvc.perform(get("/yandex/flights/direct?from=&to=&date="))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
-        Mockito.verify(flightService, Mockito.times(1))
-                .getDirectFlightsYandexAndAviasalesApi(isA(String.class), isA(String.class), isA(String.class),any());
-
-        this.mockMvc.perform(get("/yandex/flights/direct?from=&to=&date=&currency="))
+        this.mockMvc.perform(get("/aviasales/flights/direct?from=&to=&date=&currency="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(2))
-                .getDirectFlightsYandexAndAviasalesApi(
+                .getDirectFlightsFromAviasalesApi(
                         isA(String.class), isA(String.class), isA(String.class), isA(Currency.class));
     }
 
     @Test
-    public void givenFlightsByStationAndDateAndEventURI_whenMockMVC_thenVerifyResponse() throws Exception {
+    public void givenCheapFlightsUri_whenMockMVC_thenVerifyResponse() throws Exception {
 
-        this.mockMvc.perform(get("/yandex/flights/station?iataCode=&event=&date="))
+        this.mockMvc.perform(get("/aviasales/flights/cheap?from=&to=&date="))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
 
         Mockito.verify(flightService, Mockito.times(1))
-                .getFlightsByStationIataCodeAndDateAndEvent(
-                        isA(String.class), isA(String.class), isA(String.class));
+                .getCheapFlightsFromAviasalesApi(
+                        isA(String.class), isA(String.class), isA(String.class), any());
+
+
+        this.mockMvc.perform(get("/aviasales/flights/cheap?from=&to=&date=&currency="))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_VALUE));
+
+        Mockito.verify(flightService, Mockito.times(2))
+                .getCheapFlightsFromAviasalesApi(
+                        isA(String.class), isA(String.class), isA(String.class), isA(Currency.class));
     }
 }

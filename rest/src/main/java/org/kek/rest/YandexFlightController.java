@@ -31,15 +31,15 @@ public class YandexFlightController {
     /**
      * Get list of flights between two stations by date and stations IATA code.
      *
-     * @param fromIataCode Departure station IATA code
-     * @param toIataCode Arrival station IATA code
+     * @param from Departure station IATA code
+     * @param to Arrival station IATA code
      * @param date Request date
      * @return list of flights
      */
     @GetMapping("/direct")
     public List<Flight> getDirectFlightsBetweenTwoStationsByDate (
-            @RequestParam String fromIataCode,
-            @RequestParam String toIataCode,
+            @RequestParam String from,
+            @RequestParam String to,
             @RequestParam(required = false) String date,
             @RequestParam(required = false) String currency) {
 
@@ -47,7 +47,7 @@ public class YandexFlightController {
                 ? Currency.USD : Currency.valueOf(currency);
 
         return flightService.getDirectFlightsYandexAndAviasalesApi(
-                fromIataCode, toIataCode, date, finalCurrency
+                from, to, date, finalCurrency
                 );
 
     }

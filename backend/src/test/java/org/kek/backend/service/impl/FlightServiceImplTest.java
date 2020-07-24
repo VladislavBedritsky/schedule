@@ -122,6 +122,48 @@ public class FlightServiceImplTest {
                 );
         Mockito.verify(ticketService, Mockito.times(1))
                 .getTicketsIfThreadNumbersFromYandexAndAviasalesApiAreEqual(
-                        flight, map, CURRENCY);
+                        isA(Flight.class), isA(Map.class), isA(Currency.class));
+    }
+
+    @Test
+    public void getDirectFlightsFromAviasalesApi() {
+        Mockito.when(cityService.getCityIataCodeByPointIataCode(ARRIVAL_IATA))
+                .thenReturn("IATA");
+
+        flightService.getDirectFlightsFromAviasalesApi(
+                DEPARTURE_IATA, ARRIVAL_IATA, DATE, CURRENCY
+        );
+
+        Mockito.verify(cityService, Mockito.times(1))
+                .getCityIataCodeByPointIataCode(
+                        isA(String.class));
+        Mockito.verify(aviasalesService, Mockito.times(1))
+                .getMapOfDirectFlights(
+                        isA(String.class), isA(String.class), isA(String.class),
+                        isA(String.class), isA(String.class));
+        Mockito.verify(aviasalesService, Mockito.times(1))
+                .convertMapOfFlightDataToListOfFlights(
+                        isA(Map.class));
+    }
+
+    @Test
+    public void getCheapFlightsFromAviasalesApi() {
+        Mockito.when(cityService.getCityIataCodeByPointIataCode(ARRIVAL_IATA))
+                .thenReturn("IATA");
+
+        flightService.getCheapFlightsFromAviasalesApi(
+                DEPARTURE_IATA, ARRIVAL_IATA, DATE, CURRENCY
+        );
+
+        Mockito.verify(cityService, Mockito.times(1))
+                .getCityIataCodeByPointIataCode(
+                        isA(String.class));
+        Mockito.verify(aviasalesService, Mockito.times(1))
+                .getMapOFCheapFlights(
+                        isA(String.class), isA(String.class), isA(String.class),
+                        isA(String.class), isA(String.class));
+        Mockito.verify(aviasalesService, Mockito.times(1))
+                .convertMapOfFlightDataToListOfFlights(
+                        isA(Map.class));
     }
 }

@@ -20,6 +20,7 @@
     <bean id="cityController" class="org.kek.rest.CityController" />
     <bean id="airportController" class="org.kek.rest.AirportController" />
     <bean id="yandexFlightController" class="org.kek.rest.YandexFlightController" />
+    <bean id="aviasalesFlightController" class="org.kek.rest.AviasalesFlightController" />
 
     <camel:camelContext id="produceUsersToUsersQueue">
         <camel:route>

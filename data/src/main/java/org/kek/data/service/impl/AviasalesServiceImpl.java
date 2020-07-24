@@ -62,8 +62,14 @@ public class AviasalesServiceImpl implements AviasalesService {
                 currency);
 
         Map<String, FlightData> map = parseJsonWithCheapOrDirectFlights(url, cityDestinationIataCode);
-        setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
-        return map;
+
+        if (map != null) {
+            setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
+            return map;
+        } else {
+            return new HashMap<>();
+        }
+
     }
 
     @Override
@@ -83,8 +89,13 @@ public class AviasalesServiceImpl implements AviasalesService {
                 currency);
 
         Map<String, FlightData> map = parseJsonWithCheapOrDirectFlights(url, cityDestinationIataCode);
-        setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
-        return map;
+
+        if (map != null) {
+            setMapOfFlightsWithAdditionalData(map, pointOriginIataCode, cityDestinationIataCode, currency);
+            return map;
+        } else {
+            return new HashMap<>();
+        }
     }
 
     @Override
@@ -134,7 +145,6 @@ public class AviasalesServiceImpl implements AviasalesService {
             Map<String, FlightData> map, String originIataCode,
             String destinationIataCode, String currency) {
 
-        Objects.requireNonNull(map, "Map with FlightData is null");
 
         for (String key : map.keySet()) {
             FlightData flightData = map.get(key);
@@ -148,7 +158,6 @@ public class AviasalesServiceImpl implements AviasalesService {
     @Override
     public List<Flight> convertMapOfFlightDataToListOfFlights(
             Map<String, FlightData> map) {
-        Objects.requireNonNull(map, "Map with FlightData is null");
 
         ArrayList<Flight> flights = new ArrayList<>();
 

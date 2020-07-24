@@ -29,7 +29,7 @@ public class RouteDaoImplTest {
 
     private Route newRoute;
     private Route routeFromDb;
-    private final String airlineIata = "SU";
+    private final String airlineIata = "airlineIata";
 
     @Before
     public void setUp() {

@@ -19,14 +19,10 @@ import static org.mockito.ArgumentMatchers.isA;
 public class RouteServiceImplTest {
 
     @InjectMocks
-    private RouteService routeService;
+    private RouteService routeService = new RouteServiceImpl();;
     @Mock
     private RouteDao routeDao;
 
-    @Before
-    public void setUp() throws Exception {
-        routeService = new RouteServiceImpl();
-    }
 
     @Test
     public void saveRoute() {
