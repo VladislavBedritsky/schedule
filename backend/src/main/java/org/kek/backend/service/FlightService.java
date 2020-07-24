@@ -60,6 +60,30 @@ public interface FlightService {
             Map<String, FlightData> map
     );
 
+    /**
+     * Get direct flights from aviasales api
+     *
+     * @param departureIataCode departure iata
+     * @param arrivalIataCode arrival iata
+     * @param date date
+     * @param currency currency
+     * @return list of flights
+     */
+    List<Flight> getDirectFlightsFromAviasalesApi (
+            String departureIataCode, String arrivalIataCode, String date, Currency currency
+    );
 
+    /**
+     * Get cheap flights from aviasales api
+     *
+     * @param departureIataCode departure iata
+     * @param arrivalIataCode arrival iata
+     * @param date date
+     * @param currency currency
+     * @return list of flights
+     */
+    List<Flight> getCheapFlightsFromAviasalesApi (
+            String departureIataCode, String arrivalIataCode, String date, Currency currency
+    );
 
 }

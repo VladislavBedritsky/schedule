@@ -92,5 +92,44 @@ public class FlightServiceImpl implements FlightService {
                 );
     }
 
+    @Override
+    public List<Flight> getDirectFlightsFromAviasalesApi (
+            String departureIataCode, String arrivalIataCode, String date, Currency currency
+    ) {
+
+        String cityDestinationIataCode =
+                cityService.getCityIataCodeByPointIataCode(arrivalIataCode);
+
+        Map<String, FlightData> directFlightsFromAviasalesApi =
+                aviasalesService.getMapOfDirectFlights(
+                        departureIataCode,
+                        arrivalIataCode,
+                        date,
+                        currency.toString(),
+                        cityDestinationIataCode
+                );
+
+        return aviasalesService.convertMapOfFlightDataToListOfFlights(directFlightsFromAviasalesApi);
+    }
+
+    @Override
+    public List<Flight> getCheapFlightsFromAviasalesApi (
+            String departureIataCode, String arrivalIataCode, String date, Currency currency
+    ) {
+
+        String cityDestinationIataCode =
+                cityService.getCityIataCodeByPointIataCode(arrivalIataCode);
+
+        Map<String, FlightData> cheapFlightsFromAviasalesApi =
+                aviasalesService.getMapOFCheapFlights(
+                        departureIataCode,
+                        arrivalIataCode,
+                        date,
+                        currency.toString(),
+                        cityDestinationIataCode
+                );
+
+        return aviasalesService.convertMapOfFlightDataToListOfFlights(cheapFlightsFromAviasalesApi);
+    }
 
 }
