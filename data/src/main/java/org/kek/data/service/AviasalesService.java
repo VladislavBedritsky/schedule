@@ -83,10 +83,24 @@ public interface AviasalesService {
      */
     String getCarrierLogoUri(String airlineIataCode);
 
+    /**
+     * Set map of flightData with additional info
+     *
+     * @param map Map of flightData
+     * @param originIataCode origin iata
+     * @param destinationIataCode destination iata
+     * @param currency currency
+     */
     void setMapOfFlightsWithAdditionalData(
             Map<String, FlightData> map, String originIataCode,
             String destinationIataCode, String currency);
 
+    /**
+     * Convert map of flightsData to list of flights
+     *
+     * @param map Map of flightData
+     * @return list of flights
+     */
     List<Flight> convertMapOfFlightDataToListOfFlights(
             Map<String, FlightData> map);
 }
