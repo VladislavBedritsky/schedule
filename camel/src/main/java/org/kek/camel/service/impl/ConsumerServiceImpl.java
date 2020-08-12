@@ -1,6 +1,7 @@
 package org.kek.camel.service.impl;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.ConsumerTemplate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kek.camel.service.ConsumerService;
@@ -30,6 +31,9 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Autowired
     @Qualifier("consumeAirportsFromAirportsQueue")
     private CamelContext consumeAirports;
+    @Autowired
+    @Qualifier("consumeCurrencyFromFirstQueue")
+    private CamelContext consumeFirstQueue;
 
     @Override
     public void consumeUsersFromUsersQueue() {

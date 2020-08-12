@@ -8,8 +8,13 @@
         http://www.springframework.org/schema/data/mongo
         http://www.springframework.org/schema/data/mongo/spring-mongo-2.0.xsd">
 
-    <mongo:mongo-client id="mongo" host="${db.spring.data.mongodb.host}" port="${db.spring.data.mongodb.port}"/>
-    <mongo:db-factory id="mongoDbFactory" dbname="${db.spring.data.mongodb.database}" mongo-ref="mongo" />
+    <mongo:mongo-client id="mongo"
+                        host="${db.spring.data.mongodb.host}"
+                        port="${db.spring.data.mongodb.port}"
+                        credentials="${db.spring.data.mongodb.username}:${db.spring.data.mongodb.pwd}@${db.spring.data.mongodb.database}"/>
+    <mongo:db-factory id="mongoDbFactory"
+                      dbname="${db.spring.data.mongodb.database}"
+                      mongo-ref="mongo" />
     <bean id="mongodbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongoDbFactory"/>
     </bean>
@@ -18,8 +23,13 @@
         <constructor-arg ref="mongoDbFactory" />
     </bean>
 
-    <mongo:mongo-client id="mongog" host="35.239.53.104" port="27017"/>
-    <mongo:db-factory id="mongogDbFactory" dbname="schedule" mongo-ref="mongog" />
+    <mongo:mongo-client id="mongog"
+                        host="${db.spring.data.mongodb.host}"
+                        port="${db.spring.data.mongodb.port}"
+                        credentials="${db.spring.data.mongodb.username}:${db.spring.data.mongodb.pwd}@${db.spring.data.mongodb.database}"/>
+    <mongo:db-factory id="mongogDbFactory"
+                      dbname="${db.spring.data.mongodb.database}"
+                      mongo-ref="mongog" />
     <bean id="mongogdbTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg ref="mongogDbFactory"/>
     </bean>

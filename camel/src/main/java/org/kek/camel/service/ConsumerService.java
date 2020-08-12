@@ -24,4 +24,5 @@ public interface ConsumerService {
      * Consume airports from ActiveMQ airports queue
      */
     void consumeAirportsFromAirportsQueue();
+
 }
