@@ -25,7 +25,7 @@
         <org.springframework.version>5.2.6.RELEASE</org.springframework.version>
         <junit.version>4.12</junit.version>
         <org.mongodb.mongo-java-driver.version>3.12.2</org.mongodb.mongo-java-driver.version>
-        <org.springframework.data.spring-data-mongodb.version>2.2.6.RELEASE</org.springframework.data.spring-data-mongodb.version>
+        <org.springframework.data.spring-data-mongodb.version>3.3.5</org.springframework.data.spring-data-mongodb.version>
         <jackson-databind.version>2.10.1</jackson-databind.version>
         <mockito.version>2.23.4</mockito.version>
         <spring-data-rest-webmvc.version>3.2.7.RELEASE</spring-data-rest-webmvc.version>
